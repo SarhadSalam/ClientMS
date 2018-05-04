@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ClientMS:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ClientMS_jar</output-path>
+    <root id="archive" name="ClientMS.jar">
+      <element id="module-output" name="ClientMS" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/8.0.11/2c3d25fe1dfdd6496e0bbe47d67809f67487cfba/mysql-connector-java-8.0.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.java.dev.jna/jna/4.2.2/5012450aee579c3118ff09461d5ce210e0cdc2a9/jna-4.2.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-java/2.6.0/88ba32feefe385d5dc284b71f649201eabd15778/protobuf-java-2.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-crypto/1.0.0/7938f66b01f62f03ef8af8a64401e85e45d51c5d/commons-crypto-1.0.0.jar" path-in-jar="/" />
+      <element id="directory" name="layout">
+        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources/layout" />
+      </element>
+      <element id="directory" name="i18n">
+        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources/i18n" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/env.properties" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/user.properties" />
+      </element>
+    </root>
+  </artifact>
+</component>
