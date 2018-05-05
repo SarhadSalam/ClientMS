@@ -1,7 +1,9 @@
 package authentication;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import properties.Properties;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -11,33 +13,28 @@ import java.sql.SQLException;
  */
 public class DatabaseConnection
 {
-	
-	public static Connection getConnection(String username, String password) throws SQLException
+	/*
+	* A connection with the database is obtained through this method provided the username and password.
+	* */
+	public Connection getConnection(String username, String password) throws SQLException, IOException
 	{
 		
+		Properties p = new Properties();
+		//get the data source driver
 		MysqlDataSource dataSource = new MysqlDataSource();
 		
+		//permanent settings
 		dataSource.setServerTimezone("UTC");
 		dataSource.setUseSSL(false);
 		dataSource.setUser(username);
 		dataSource.setPassword(password);
 		
-		dataSource.setPort(3306);
-		dataSource.setDatabaseName("hijama_cms");
-		dataSource.setServerName("localhost");
+		//settings obtained through the properties file
+		dataSource.setPort(Integer.parseInt(p.getProperty("port", Properties.PROPERTY_TYPE.env)));
+		dataSource.setDatabaseName(p.getProperty("dbName", Properties.PROPERTY_TYPE.env));
+		dataSource.setServerName(p.getProperty("serverName", Properties.PROPERTY_TYPE.env));
 		
+		//return the connection
 		return dataSource.getConnection();
-	}
-	
-	public static void main(String[] args)
-	{
-		try
-		{
-			Connection c = getConnection("sarhad", "4791");
-		} catch( SQLException e )
-		{
-			System.out.println("Connection failed, err: ");
-			e.printStackTrace();
-		}
 	}
 }

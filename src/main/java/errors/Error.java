@@ -8,11 +8,14 @@ import java.util.ArrayList;
  */
 public class Error
 {
-	
+	/*
+	* The method sets the errors produced during the operating of the app. The errors are user level and not dev level.
+	* */
 	private ArrayList<String> errors = new ArrayList<>();
 	
 	public void setErrors(ArrayList<String> errors)
 	{
+		//if the error is null, dont make the array list null instead start a new list!
 		if( errors == null ) {
 			this.errors.clear();
 			return;
