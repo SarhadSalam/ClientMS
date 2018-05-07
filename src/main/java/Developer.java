@@ -3,6 +3,7 @@ import authentication.EmployeeLogin;
 import crypto.Crypto;
 import com.github.javafaker.Faker;
 import models.Employee;
+import properties.Properties;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -23,6 +24,7 @@ import java.sql.SQLException;
  */
 public class Developer
 {
+	private Properties p=new Properties();
 	
 	public void createEmployee(String first_name, String last_name, String username, String password, Connection c) throws SQLException, GeneralSecurityException, IOException, URISyntaxException
 	{
@@ -36,10 +38,10 @@ public class Developer
 		ps.execute();
 	}
 	
-	public static void createClusterOfEmployees(String[] args) throws IOException, SQLException, GeneralSecurityException, URISyntaxException
+	public void createClusterOfEmployees(String[] args) throws IOException, SQLException, GeneralSecurityException, URISyntaxException
 	{
 		DatabaseConnection databaseConnection = new DatabaseConnection();
-		Connection c = databaseConnection.getConnection("sarhad", "4791");
+		Connection c = databaseConnection.getConnection(p.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), p.getProperty("dbPassword", Properties.PROPERTY_TYPE.env));
 		Developer dev = new Developer();
 		for( int i = 0; i<10; i++ )
 		{
@@ -49,22 +51,12 @@ public class Developer
 		c.close();
 	}
 	
-	public static void main(String[] args) throws IOException, SQLException, GeneralSecurityException, URISyntaxException
+	public void createASingleEmployee(String firstName, String lastName, String userName, String password) throws IOException, SQLException, GeneralSecurityException, URISyntaxException
 	{
 		DatabaseConnection databaseConnection = new DatabaseConnection();
-		Connection c = databaseConnection.getConnection("sarhad", "4791");
-		Crypto crypto = new Crypto();
-		
+		Connection c = databaseConnection.getConnection(p.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), p.getProperty("dbPassword", Properties.PROPERTY_TYPE.env));
 		Developer dev = new Developer();
-		dev.createEmployee("bigboss", "okboss", "boss", "stillahoe", c);
-
-		Employee empl = new Employee();
-		EmployeeLogin employeeLogin = new EmployeeLogin();
-		
-		if(employeeLogin.getEmployee("boss", c, empl))
-		{
-			empl.print();
-		} else System.out.println("Error, Employee not found.");
+		dev.createEmployee(firstName, lastName, userName, password, c);
 	}
 	
 }

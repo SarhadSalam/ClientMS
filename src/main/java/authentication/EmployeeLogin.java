@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import models.Employee;
 import properties.Properties;
@@ -84,12 +85,13 @@ public class EmployeeLogin extends Application
 		primaryStage.setTitle("Specialized Hijama");
 		primaryStage.setScene(new Scene(root, 600, 400));
 		primaryStage.setResizable(false);
+		primaryStage.getIcons().add(new Image(cl.getResourceAsStream("img/logo.png")));
 		primaryStage.show();
 	}
 	
 	public boolean getEmployee(String username, Connection c, Employee empl) throws SQLException
 	{
-		String query = "select * from employee where username='"+username+"' order by id asc";
+		String query = "select first_name, last_name,password, username from employee where username='"+username+"'";
 		Statement statement = c.createStatement();
 		ResultSet rs = statement.executeQuery(query);
 		

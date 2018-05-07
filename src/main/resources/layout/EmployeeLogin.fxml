@@ -13,12 +13,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EmployeeLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.EmployeeLoginController">
    <children>
-      <Label layoutX="165.0" layoutY="145.0" text="Username:" />
-      <Label layoutX="165.0" layoutY="181.0" text="Password:" />
-      <TextField fx:id="username" layoutX="265.0" layoutY="140.0" prefHeight="26.0" prefWidth="261.0" promptText="More than 3 Characters, Less than 12" />
-      <PasswordField fx:id="password" layoutX="265.0" layoutY="176.0" prefHeight="26.0" prefWidth="261.0" promptText="More than 6 Characters. Less than 12." />
       <MenuBar layoutX="199.0" layoutY="49.0" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -38,6 +34,10 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Label layoutX="165.0" layoutY="145.0" text="Username:" />
+      <Label layoutX="165.0" layoutY="181.0" text="Password:" />
+      <TextField fx:id="username" layoutX="265.0" layoutY="140.0" prefHeight="26.0" prefWidth="261.0" promptText="More than 3 Characters, Less than 12" />
+      <PasswordField fx:id="password" layoutX="265.0" layoutY="176.0" prefHeight="26.0" prefWidth="261.0" promptText="More than 6 Characters. Less than 12." />
       <RadioButton id="englishRadio" fx:id="englishRadio" layoutX="265.0" layoutY="215.0" mnemonicParsing="false" selected="true" text="English">
          <toggleGroup>
             <ToggleGroup fx:id="languageRadio" />

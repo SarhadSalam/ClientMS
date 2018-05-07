@@ -2,14 +2,23 @@ package controllers;
 
 import authentication.EmployeeLogin;
 import errors.Error;
+import errors.ErrorPane;
+import events.LoginEvent;
+import home.Home;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 
 /**
@@ -19,12 +28,17 @@ import java.sql.SQLException;
 public class EmployeeLoginController
 {
 	
+	
 	/*
 	 * Sets the employeeLogin UI here.
 	 * */
 	private EmployeeLogin employeeLogin = new EmployeeLogin();
 	private Error error = new Error();
+	private Home home = new Home();
 	
+	
+	@FXML
+	public AnchorPane anchorPane;
 	@FXML
 	public RadioButton arabicRadio;
 	@FXML
@@ -42,20 +56,12 @@ public class EmployeeLoginController
 	
 	/*When the user signs in, this method is triggered*/
 	@FXML
-	private void signUserIn()
+	private void signUserIn(ActionEvent event)
 	{
 		//if input is invalid
 		if( !employeeLogin.validateInput(username.getText(), password.getText(), error) )
 		{
-			//if error pane is not visible, then this is the first tie, set the color text to red
-			if( !errorPane.isVisible() ) errorPane.setCellFactory(param -> new ColorText());
-				//if error pane is already visible, that means there was previous error, so clear it
-			else errorPane.getItems().clear();
-			
-			//control the error pane and get the errors
-			errorPane.setVisible(true);
-			errorPane.setItems(FXCollections.observableArrayList(error.getErrors()));
-			error.setErrors(null);
+			ErrorPane.handleErrorPane(errorPane, error);
 		} else
 		{
 			//if login was succesffull, popup a dialog and start the login code
@@ -74,13 +80,28 @@ public class EmployeeLoginController
 			{
 				e.printStackTrace();
 			}
+
+			//if the employee exists
 			if( empl != null )
 			{
 				//load new activity
-				System.out.println("Well that works daddy");
 				alert.close();
+				//add to event bus
+				//create new stage and close
+				Stage stage = (Stage) signIn.getScene().getWindow();
+				try
+				{
+					stage.close();
+					home.start(stage);
+					
+					EventBus.getDefault().post(new LoginEvent(empl, true, new Date(System.currentTimeMillis())));
+				} catch( Exception e )
+				{
+					stage.show();
+					e.printStackTrace();
+				}
 				
-			} else
+			} else //if employee does not exist
 			{
 				Alert noUser = new Alert(Alert.AlertType.ERROR);
 				noUser.setHeaderText("No such user exists. Oops");
@@ -93,25 +114,6 @@ public class EmployeeLoginController
 			
 		}
 	}
-	
-	//color warning red for the listview
-	static class ColorText extends ListCell<String>
-	{
-		
-		@Override
-		public void updateItem(String s, boolean b)
-		{
-			super.updateItem(s, b);
-			
-			if( s == null || b )
-			{
-				setText(null);
-				setGraphic(null);
-			} else
-			{
-				setText(s);
-				this.setTextFill(Color.RED);
-			}
-		}
-	}
 }
+
+
