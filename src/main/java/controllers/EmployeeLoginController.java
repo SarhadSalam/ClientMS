@@ -35,7 +35,7 @@ public class EmployeeLoginController
 	private EmployeeLogin employeeLogin = new EmployeeLogin();
 	private Error error = new Error();
 	private Home home = new Home();
-	
+	private ErrorPane errorPaneHandler = new ErrorPane();
 	
 	@FXML
 	public AnchorPane anchorPane;
@@ -61,7 +61,7 @@ public class EmployeeLoginController
 		//if input is invalid
 		if( !employeeLogin.validateInput(username.getText(), password.getText(), error) )
 		{
-			ErrorPane.handleErrorPane(errorPane, error);
+			errorPaneHandler.handleErrorPane(errorPane, error);
 		} else
 		{
 			//if login was succesffull, popup a dialog and start the login code

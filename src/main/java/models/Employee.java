@@ -17,6 +17,7 @@ import java.security.GeneralSecurityException;
  */
 public class Employee
 {
+	
 	private String first_name;
 	private String last_name;
 	private String username;
@@ -64,6 +65,11 @@ public class Employee
 	
 	public void print() throws GeneralSecurityException, IOException, URISyntaxException
 	{
+		if( password == null )
+		{
+			System.out.println("NULL");
+			return;
+		}
 		Crypto c = new Crypto();
 		String decrypt = c.byteArrToString(c.decrypt(password));
 		System.out.println("Employee First Name:"+first_name);

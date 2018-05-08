@@ -1,15 +1,18 @@
 package controllers;
 
+import customers.AddPatient;
 import errors.Error;
 import errors.ErrorPane;
+import home.Home;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Employee;
 
-import java.awt.event.ActionEvent;
-
-import static home.Home.searchForUser;
-import static home.Home.validateInput;
+import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Class Details:-
@@ -24,6 +27,7 @@ public class HomeController
 {
 	
 	private Employee empl;
+	private ErrorPane errorPaneHandler = new ErrorPane();
 	
 	@FXML
 	private ToggleGroup searchMethod;
@@ -40,6 +44,7 @@ public class HomeController
 	@FXML
 	private ListView<String> errorPane;
 	
+	//when button is clicked
 	public void setButtonAction()
 	{
 		searchButton.setOnAction(event -> {
@@ -47,25 +52,54 @@ public class HomeController
 			
 			boolean resultOfSearch;
 			Error error = new Error();
-			if( validateInput(searchBar.getText(), error) )
+			if( Home.validateSearchPatientInput(searchBar.getText(), error) )
 			{
 				if( selectedButton.getText().equals("Phone") )
-					resultOfSearch = searchForUser(searchBar.getText(), "phone");
-				else resultOfSearch = searchForUser(searchBar.getText(), "id");
+					resultOfSearch = Home.searchForUser(searchBar.getText(), "phone");
+				else resultOfSearch = Home.searchForUser(searchBar.getText(), "id");
 				
 				//patient found
 				if( resultOfSearch )
 				{
 					System.out.println("Patient Found");
+					//todo implement found
 				} else
 				{
-					System.out.println("Patient not found");
+					ButtonType addPatientButton = new ButtonType("Add Patient", ButtonBar.ButtonData.OK_DONE);
+					ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 					
-					//create an alert and ask if they want a new patient to be added
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setHeaderText("Patient Not Found.");
+					alert.setContentText("Please check your information is correct or \nadd a new patient.");
+					alert.initStyle(StageStyle.UTILITY);
+					alert.setResizable(false);
+					alert.getButtonTypes().remove(ButtonType.OK);
+					alert.getButtonTypes().add(addPatientButton);
+					alert.getButtonTypes().add(cancel);
+					alert.initModality(Modality.APPLICATION_MODAL);
+					Optional<ButtonType> userOption = alert.showAndWait();
+					
+					if( userOption.isPresent() )
+					{
+						if( userOption.get().getButtonData() == ButtonBar.ButtonData.OK_DONE )
+						{
+							//start a new scene to add a patient, the old scene should become unclickable on addition of new one
+							
+							AddPatient addPatient = new AddPatient();
+							try
+							{
+								addPatient.start((Stage) searchBar.getScene().getWindow(), empl);
+							} catch( IOException e )
+							{
+								//in case cannot be inserted
+								e.printStackTrace();
+							}
+						}
+					}
 				}
 			} else
 			{
-				ErrorPane.handleErrorPane(errorPane, error);
+				errorPaneHandler.handleErrorPane(errorPane, error);
 			}
 		});
 	}

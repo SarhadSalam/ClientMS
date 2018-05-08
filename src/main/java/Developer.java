@@ -57,6 +57,7 @@ public class Developer
 		Connection c = databaseConnection.getConnection(p.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), p.getProperty("dbPassword", Properties.PROPERTY_TYPE.env));
 		Developer dev = new Developer();
 		dev.createEmployee(firstName, lastName, userName, password, c);
+		c.close();
 	}
 	
 }

@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 public class ErrorPane
 {
 	
-	public static void handleErrorPane(ListView<String> errorPane, Error error)
+	public void handleErrorPane(ListView<String> errorPane, Error error)
 	{
 		//if error pane is not visible, then this is the first tie, set the color text to red
 		if( !errorPane.isVisible() ) errorPane.setCellFactory(param -> new ColorText());

@@ -115,11 +115,14 @@ public class EmployeeLogin extends Application
 		Employee empl = new Employee();
 		DatabaseConnection databaseConnection = new DatabaseConnection();
 		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
+		
 		if( getEmployee(username, c, empl) )
 		{
+			c.close();
 			return empl;
 		}
-			return null;
+		c.close();
+		return null;
 	}
 	
 	public static void main(String[] args)

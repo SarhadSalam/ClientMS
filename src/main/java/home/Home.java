@@ -82,7 +82,7 @@ public class Home extends Application
 		return false;
 	}
 	
-	public static boolean validateInput(String identifier, Error error)
+	public static boolean validateSearchPatientInput(String identifier, Error error)
 	{
 		boolean valid = true;
 		
