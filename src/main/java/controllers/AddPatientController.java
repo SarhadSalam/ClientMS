@@ -24,7 +24,6 @@ import java.sql.SQLException;
  */
 public class AddPatientController
 {
-	
 	private Employee empl;
 	private ErrorPane errorPaneHandler = new ErrorPane();
 	
@@ -49,7 +48,7 @@ public class AddPatientController
 	@FXML
 	public ToggleGroup genderGroup;
 	
-	public void setButtonAction(Stage childStage)
+	public void setButtonAction(Stage childStage, Patient p)
 	{
 		cancelButton.setOnAction(event -> {
 			childStage.close();
@@ -61,11 +60,16 @@ public class AddPatientController
 			{
 				RadioButton gender = (RadioButton) genderGroup.getSelectedToggle();
 				
-				Patient patient = new Patient(nameField.getText(), empl.getUsername(), Integer.valueOf(ageField.getText()), Integer.valueOf(idField.getText()), Integer.valueOf(phoneField.getText()), gender.getText().charAt(0));
+				p.setName(nameField.getText());
+				p.setAge(Integer.valueOf(ageField.getText()));
+				p.setEmployee_entered(empl.getUsername());
+				p.setGender(gender.getText().charAt(0));
+				p.setPhone(phoneField.getText());
+				p.setGovid(idField.getText());
 				
 				try
 				{
-					AddPatient.addPatientToDatabase(patient);
+					AddPatient.addPatientToDatabase(p);
 				} catch( IOException | SQLException e )
 				{
 					//todo add constructive feedback about how it failed
@@ -73,8 +77,7 @@ public class AddPatientController
 					e.printStackTrace();
 				}
 				
-				//insert into database
-				patient.print();
+				childStage.close();
 			} else
 			{
 				errorPaneHandler.handleErrorPane(errorPane, error);

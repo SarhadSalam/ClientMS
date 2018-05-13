@@ -9,34 +9,24 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import models.Employee;
 import models.Patient;
 import properties.Properties;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
- * Class Details:-
- * Author: Sarhad
- * User: sarhad
- * Date: 07/05/18
- * Time : 11:57 AM
- * Project Name: ClientMS
- * Class Name: AddPatient
+ * Class Details:- Author: Sarhad User: sarhad Date: 07/05/18 Time : 11:57 AM Project Name: ClientMS Class Name:
+ * AddPatient
  */
 public class AddPatient
 {
 	
 	private AddPatientController addPatientController = new AddPatientController();
 	
-	public void start(Stage parent, Employee empl) throws IOException
+	public void start(Stage parent, Employee empl, Patient patient) throws IOException
 	{
-		System.out.println(empl);
-		
 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
 		
 		FXMLLoader loader = new FXMLLoader(cl.getResource("layout/AddPatient.fxml"));
@@ -53,7 +43,7 @@ public class AddPatient
 		childStage.setResizable(false);
 		childStage.getIcons().add(new Image(cl.getResourceAsStream("img/logo.png")));
 		addPatientController.setEmpl(empl);
-		addPatientController.setButtonAction(childStage);
+		addPatientController.setButtonAction(childStage, patient);
 		childStage.showAndWait();
 	}
 	
@@ -63,19 +53,27 @@ public class AddPatient
 		DatabaseConnection databaseConnection = new DatabaseConnection();
 		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
 		
-		
 		String statement = "INSERT INTO patients (name, age, sex, govid, phone, employee_entered) values (?,?,?,?,?,?)";
-		PreparedStatement ps = c.prepareStatement(statement);
+		
+		String colName[] = new String[]{"patient_id"};
+		
+		PreparedStatement ps = c.prepareStatement(statement, colName);
 		ps.setString(1, patient.getName());
 		ps.setInt(2, patient.getAge());
 		ps.setString(3, String.valueOf(patient.getGender()));
-		ps.setInt(4, patient.getGovid());
-		ps.setInt(5, patient.getPhone());
+		ps.setString(4, patient.getGovid());
+		ps.setString(5, patient.getPhone());
 		ps.setString(6, patient.getEmployee_entered());
-		ps.execute();
 		
+		if( ps.executeUpdate()>0 )
+		{
+			ResultSet rs = ps.getGeneratedKeys();
+			if( rs.next() )
+			{
+				patient.setId(rs.getInt(1));
+			}
+		}
 		c.close();
-		
 	}
 	
 	public static boolean checkPatientInfo(String name, String age, String phone, String id, Error error)
@@ -107,5 +105,55 @@ public class AddPatient
 		}
 		
 		return isCorrect;
+	}
+	
+	public boolean searchForPatient(String identifier, String method, Patient patient) throws IOException, SQLException
+	{
+		method = ( method.equals("Phone") ) ? "phone" : "govid";
+		
+		Properties prop = new Properties();
+		DatabaseConnection databaseConnection = new DatabaseConnection();
+		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
+		
+		String query = "SELECT * FROM patients where "+method+"='"+identifier+"'";
+		
+		ResultSet resultSet = c.createStatement().executeQuery(query);
+		
+		if( resultSet.next() )
+		{
+			patient.setName(resultSet.getString("name"));
+			patient.setAge(resultSet.getInt("age"));
+			patient.setGender(resultSet.getString("sex").charAt(0));
+			patient.setGovid(resultSet.getString("govid"));
+			patient.setPhone(resultSet.getString("phone"));
+			patient.setEmployee_entered(resultSet.getString("employee_entered"));
+			patient.setId(resultSet.getInt("patient_id"));
+			return true;
+		}
+		patient = null;
+		return false;
+	}
+	
+	public boolean validateSearchPatientInput(String identifier, Error error)
+	{
+		boolean valid = true;
+		
+		if( identifier == null || identifier.equals("") || identifier.length()<=0 )
+		{
+			valid = false;
+			error.getErrors().add("Search cannot be empty.");
+		}
+		if( identifier.length()>15 )
+		{
+			error.getErrors().add("Length cannot be greater than 15.");
+			valid = false;
+		}
+		
+		if( !identifier.matches("^[0-9]*$") )
+		{
+			error.getErrors().add("Has to be purely numbers.");
+			valid = false;
+		}
+		return valid;
 	}
 }

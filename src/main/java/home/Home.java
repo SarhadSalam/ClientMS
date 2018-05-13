@@ -1,5 +1,6 @@
 package home;
 
+import authentication.DatabaseConnection;
 import controllers.HomeController;
 import errors.Error;
 import events.LoginEvent;
@@ -12,19 +13,18 @@ import javafx.stage.Stage;
 import models.Employee;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import properties.Properties;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
- * Class Details:-
- * Author: Sarhad
- * User: sarhad
- * Date: 06/05/18
- * Time : 11:32 PM
- * Project Name: ClientMS
- * Class Name: Home
+ * Class Details:- Author: Sarhad User: sarhad Date: 06/05/18 Time : 11:32 PM Project Name: ClientMS Class Name: Home
  */
 
 //TODO: Remove Application
@@ -64,44 +64,8 @@ public class Home extends Application
 	@Subscribe
 	public void onLoginEvent(LoginEvent event)
 	{
-		try
-		{
-			empl = event.employee;
-			empl.print();
-			homeController.setEmpl(empl);
-			homeController.setEmployeeInformation();
-		} catch( GeneralSecurityException|IOException|URISyntaxException e )
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	public static boolean searchForUser(String identifier, String method)
-	{
-		//TODO: Perform query
-		return false;
-	}
-	
-	public static boolean validateSearchPatientInput(String identifier, Error error)
-	{
-		boolean valid = true;
-		
-		if(identifier==null || identifier.equals("") || identifier.length()<=0)
-		{
-			valid=false;
-			error.getErrors().add("Search cannot be empty.");
-		}
-		if( identifier.length()>15 )
-		{
-			error.getErrors().add("Length cannot be greater than 15.");
-			valid = false;
-		}
-		
-		if( !identifier.matches("^[0-9]*$") )
-		{
-			error.getErrors().add("Has to be purely numbers.");
-			valid = false;
-		}
-		return valid;
+		empl = event.employee;
+		homeController.setEmpl(empl);
+		homeController.setEmployeeInformation();
 	}
 }

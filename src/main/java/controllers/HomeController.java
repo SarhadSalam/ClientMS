@@ -1,6 +1,7 @@
 package controllers;
 
 import customers.AddPatient;
+import customers.PatientVisits;
 import errors.Error;
 import errors.ErrorPane;
 import home.Home;
@@ -10,23 +11,21 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
+import models.Patient;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 /**
- * Class Details:-
- * Author: Sarhad
- * User: sarhad
- * Date: 06/05/18
- * Time : 11:29 PM
- * Project Name: ClientMS
- * Class Name: HomeController
+ * Class Details:- Author: Sarhad User: sarhad Date: 06/05/18 Time : 11:29 PM Project Name: ClientMS Class Name:
+ * HomeController
  */
 public class HomeController
 {
 	
 	private Employee empl;
+	private AddPatient addPatient = new AddPatient();
 	private ErrorPane errorPaneHandler = new ErrorPane();
 	
 	@FXML
@@ -50,20 +49,21 @@ public class HomeController
 		searchButton.setOnAction(event -> {
 			RadioButton selectedButton = (RadioButton) searchMethod.getSelectedToggle();
 			
-			boolean resultOfSearch;
+			Patient patient = new Patient();
+			boolean resultOfSearch = false;
 			Error error = new Error();
-			if( Home.validateSearchPatientInput(searchBar.getText(), error) )
+			if( addPatient.validateSearchPatientInput(searchBar.getText(), error) )
 			{
-				if( selectedButton.getText().equals("Phone") )
-					resultOfSearch = Home.searchForUser(searchBar.getText(), "phone");
-				else resultOfSearch = Home.searchForUser(searchBar.getText(), "id");
+				try
+				{
+					resultOfSearch = addPatient.searchForPatient(searchBar.getText(), selectedButton.getText(), patient);
+				} catch( IOException|SQLException e )
+				{
+					e.printStackTrace();
+				}
 				
 				//patient found
-				if( resultOfSearch )
-				{
-					System.out.println("Patient Found");
-					//todo implement found
-				} else
+				if( !resultOfSearch )
 				{
 					ButtonType addPatientButton = new ButtonType("Add Patient", ButtonBar.ButtonData.OK_DONE);
 					ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -88,14 +88,34 @@ public class HomeController
 							AddPatient addPatient = new AddPatient();
 							try
 							{
-								addPatient.start((Stage) searchBar.getScene().getWindow(), empl);
+								alert.close();
+								addPatient.start((Stage) searchBar.getScene().getWindow(), empl, patient);
+								resultOfSearch = true;
 							} catch( IOException e )
 							{
+								patient = null;
 								//in case cannot be inserted
+								resultOfSearch = false;
 								e.printStackTrace();
 							}
 						}
 					}
+				}
+				if( resultOfSearch )
+				{
+					//start a service screen
+					Stage stage = (Stage) searchButton.getScene().getWindow();
+					PatientVisits visits = new PatientVisits(patient, empl);
+					try
+					{
+						visits.start(stage);
+					} catch( IOException e )
+					{
+						e.printStackTrace();
+					}
+				} else
+				{
+					System.out.println("Something went wrong. Patient is null");
 				}
 			} else
 			{

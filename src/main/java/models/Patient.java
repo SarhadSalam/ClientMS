@@ -12,11 +12,11 @@ package models;
 public class Patient
 {
 	
-	private String name, employee_entered;
-	private int age, govid, phone;
+	private String name, employee_entered, govid, phone;
+	private int age, id;
 	private char gender;
 	
-	public Patient(String name, String employee_entered, int age, int govid, int phone, char gender)
+	public Patient(String name, String employee_entered, int age, String govid, String phone, char gender, int id)
 	{
 		this.name = name;
 		this.employee_entered = employee_entered;
@@ -24,6 +24,11 @@ public class Patient
 		this.govid = govid;
 		this.phone = phone;
 		this.gender = gender;
+		this.id=id;
+	}
+	
+	public Patient()
+	{
 	}
 	
 	public String getName()
@@ -46,12 +51,12 @@ public class Patient
 		this.employee_entered = employee_entered;
 	}
 	
-	public int getPhone()
+	public String getPhone()
 	{
 		return phone;
 	}
 	
-	public void setPhone(int phone)
+	public void setPhone(String phone)
 	{
 		this.phone = phone;
 	}
@@ -66,12 +71,12 @@ public class Patient
 		this.gender = gender;
 	}
 	
-	public int getGovid()
+	public String getGovid()
 	{
 		return govid;
 	}
 	
-	public void setGovid(int govid)
+	public void setGovid(String govid)
 	{
 		this.govid = govid;
 	}
@@ -101,5 +106,15 @@ public class Patient
 		System.out.println("Phone: "+phone);
 		System.out.println("Employee Entered: "+employee_entered);
 		System.out.println("``````````````````");
+	}
+	
+	public int getId()
+	{
+		return id;
+	}
+	
+	public void setId(int id)
+	{
+		this.id = id;
 	}
 }

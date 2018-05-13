@@ -17,7 +17,7 @@
         <Label layoutX="149.0" layoutY="98.0" text="Age:"/>
         <Label layoutX="149.0" layoutY="64.0" text="Name:"/>
         <Label layoutX="149.0" layoutY="168.0" text="Phone No.:"/>
-        <Label layoutX="149.0" layoutY="203.0" text="Government fx:id:"/>
+        <Label layoutX="149.0" layoutY="203.0" text="Government:"/>
         <Label layoutX="201.0" layoutY="5.0" text="Add A Patient">
             <font>
                 <Font size="29.0"/>
