@@ -31,15 +31,15 @@
       <Label disable="true" layoutX="143.0" layoutY="406.0" text="Patient File No.:" />
       <Label disable="true" layoutX="143.0" layoutY="430.0" text="Name:" />
       <Label disable="true" layoutX="144.0" layoutY="455.0" text="Age:" />
-      <Label disable="true" layoutX="288.0" layoutY="430.0" text="Name" />
-      <Label disable="true" layoutX="289.0" layoutY="406.0" text="Patient File No" />
-      <Label disable="true" layoutX="288.0" layoutY="455.0" text="Age" />
+      <Label fx:id="name" disable="true" layoutX="288.0" layoutY="430.0" text="Name" />
+      <Label fx:id="fileNo" disable="true" layoutX="289.0" layoutY="406.0" text="Patient File No" />
+      <Label fx:id="age" disable="true" layoutX="288.0" layoutY="455.0" text="Age" />
       <Label disable="true" layoutX="145.0" layoutY="481.0" text="Gender:" />
       <Label disable="true" layoutX="145.0" layoutY="508.0" text="Iqama/National ID:" />
       <Label disable="true" layoutX="147.0" layoutY="539.0" text="Phone:" />
-      <Label disable="true" layoutX="289.0" layoutY="481.0" text="Gender" />
-      <Label disable="true" layoutX="290.0" layoutY="508.0" text="ID" />
-      <Label disable="true" layoutX="290.0" layoutY="539.0" text="Phone" />
+      <Label fx:id="gender" disable="true" layoutX="289.0" layoutY="481.0" text="Gender" />
+      <Label fx:id="id" disable="true" layoutX="290.0" layoutY="508.0" text="ID" />
+      <Label fx:id="phone" disable="true" layoutX="290.0" layoutY="539.0" text="Phone" />
       <Label disable="true" layoutX="87.0" layoutY="570.0" text="*To edit patient information, please contact manager." textFill="#c30e0e" />
       <Button fx:id="cancelButton" layoutX="114.0" layoutY="340.0" mnemonicParsing="false" text="Cancel" />
       <Button fx:id="recordButton" layoutX="217.0" layoutY="340.0" mnemonicParsing="false" text="Record" />

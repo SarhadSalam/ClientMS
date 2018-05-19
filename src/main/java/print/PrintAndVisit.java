@@ -3,13 +3,12 @@ package print;
 import authentication.DatabaseConnection;
 import models.Employee;
 import models.Patient;
+import models.Visits;
 import properties.Properties;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 import errors.Error;
 
@@ -30,26 +29,52 @@ public class PrintAndVisit
 	}
 	
 	//add to database
-	public void addVisit(String services, double amountPaid) throws SQLException, IOException
+	public void addVisit(String services, double amountPaid, Visits visits) throws SQLException, IOException
 	{
 		Properties prop = new Properties();
 		DatabaseConnection databaseConnection = new DatabaseConnection();
 		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
 		
+		String colName[] = new String[]{"visit_id"};
+		
 		String statement = "INSERT INTO patient_visit_details (patient_id, employee_entered, services, amount_paid) values (?,?,?,?)";
-		PreparedStatement ps = c.prepareStatement(statement);
+		PreparedStatement ps = c.prepareStatement(statement, colName);
 		ps.setInt(1, patient.getId());
 		ps.setString(2, empl.getUsername());
 		ps.setString(3, services);
 		ps.setBigDecimal(4, new BigDecimal(amountPaid));
-		ps.execute();
+		
+		visits.setAmount_paid(new BigDecimal(amountPaid));
+		visits.setEmployeeEntered(empl.getFirst_name()+" "+empl.getLast_name());
+		visits.setPatientId(patient.getId());
+		visits.setTimestamp(new Timestamp(System.currentTimeMillis()));
+		visits.setServices(services);
+		
+		if( ps.executeUpdate()>0 )
+		{
+			ResultSet rs = ps.getGeneratedKeys();
+			if( rs.next() ) visits.setVisitId(rs.getInt(1));
+		}
 		c.close();
 	}
 	
 	public boolean validateInput(String services, String amountPaid, Error error)
 	{
-		//todo implement logic
 		boolean isCorrect = true;
+		
+		
+		if(services==null || services.equals(""))
+		{
+			isCorrect=false;
+			error.getErrors().add("Services cannot be empty.");
+		}
+		
+		if(amountPaid==null || amountPaid.equals(""))
+		{
+			isCorrect=false;
+			error.getErrors().add("Amount cannot be empty.");
+		}
+		
 		if( services.length()>500 )
 		{
 			error.getErrors().add("Services rendered has to be smaller than 5 characters.");
@@ -64,3 +89,5 @@ public class PrintAndVisit
 		return isCorrect;
 	}
 }
+
+

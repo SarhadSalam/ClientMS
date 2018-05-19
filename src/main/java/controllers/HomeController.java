@@ -84,7 +84,6 @@ public class HomeController
 						if( userOption.get().getButtonData() == ButtonBar.ButtonData.OK_DONE )
 						{
 							//start a new scene to add a patient, the old scene should become unclickable on addition of new one
-							
 							AddPatient addPatient = new AddPatient();
 							try
 							{

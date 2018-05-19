@@ -1,5 +1,6 @@
 package authentication;
 
+import controllers.MenuBarController;
 import errors.Error;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +27,8 @@ public class EmployeeLogin extends Application
 	
 	/*
 	 * Responsible for validating inputs, checks for username, password and sets the error messages.
-	 *
 	 * */
+	
 	public boolean validateInput(String username, String password, Error error)
 	{
 		boolean noInputIsWrong = true;
@@ -82,6 +83,10 @@ public class EmployeeLogin extends Application
 		
 		//Set the scenes
 		Parent root = FXMLLoader.load(cl.getResource("layout/EmployeeLogin.fxml"));
+		
+		
+		primaryStag
+		
 		primaryStage.setTitle("Specialized Hijama");
 		primaryStage.setScene(new Scene(root, 600, 400));
 		primaryStage.setResizable(false);

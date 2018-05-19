@@ -28,7 +28,8 @@ import java.sql.SQLException;
 public class EmployeeLoginController
 {
 	
-	
+	@FXML
+	public AnchorPane menubarInclude;
 	/*
 	 * Sets the employeeLogin UI here.
 	 * */
@@ -64,7 +65,7 @@ public class EmployeeLoginController
 			errorPaneHandler.handleErrorPane(errorPane, error);
 		} else
 		{
-			//if login was succesffull, popup a dialog and start the login code
+			//if login was succesfull, popup a dialog and start the login code
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setHeaderText("Signing In");
 			alert.setContentText("Please wait while I sign you in");
@@ -113,6 +114,13 @@ public class EmployeeLoginController
 			}
 			
 		}
+	}
+	
+	public EmployeeLoginController()
+	{
+		if(menubarInclude==null) System.out.println(0);
+		
+		menubarInclude.getChildren();
 	}
 }
 
