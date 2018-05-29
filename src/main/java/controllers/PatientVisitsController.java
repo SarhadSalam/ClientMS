@@ -2,15 +2,19 @@ package controllers;
 
 import errors.Error;
 import errors.ErrorPane;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Employee;
 import models.Patient;
 import models.Visits;
 import print.CreateInvoice;
+import print.Print;
 import print.PrintAndVisit;
 
+import java.awt.print.PrinterException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -57,7 +61,6 @@ public class PatientVisitsController
 		age.setText(String.valueOf(patient.getAge()));
 		id.setText(( patient.getGovid() != null ) ? patient.getGovid() : "Not available");
 		phone.setText(( patient.getPhone() != null ) ? patient.getPhone() : "Not available");
-		
 	}
 	
 	public void setEmpl(Employee empl)
@@ -78,8 +81,10 @@ public class PatientVisitsController
 	private void addPatient(Stage childStage, Button recordButton, boolean print)
 	{
 		recordButton.setOnAction(event -> {
+			Print printFile = new Print();
+			
 			PrintAndVisit printAndVisit = new PrintAndVisit(patient, empl);
-			if( printAndVisit.validateInput(servicesText.getText(), amount.getText(), error) )
+			if( printAndVisit.validateInput(servicesText.getText(), amount.getText(), error) && printFile.validate(printCustomerAmount, printCustomerCheck, printHospitalAmount, printHospitalCheck, error, print) )
 			{
 				try
 				{
@@ -90,19 +95,49 @@ public class PatientVisitsController
 				}
 				childStage.close();
 				
-				
 				if( print )
 				{
+					String filename = null;
 					CreateInvoice createInvoice = new CreateInvoice();
 					try
 					{
-						createInvoice.createInvoiceDetails(patient, visits);
+						filename = createInvoice.createInvoiceDetails(patient, visits);
 					} catch( IOException e )
 					{
 						e.printStackTrace();
 					}
-					System.out.println("ok");
-					//todo handle the printing
+					try
+					{
+						String jobName = printFile.print(filename, visits, Integer.valueOf(printHospitalAmount.getText()));
+						
+						Alert alert = new Alert(Alert.AlertType.INFORMATION);
+						alert.setResizable(false);
+						alert.setHeaderText("Printing in progress.");
+						alert.setContentText("Print job name: "+jobName);
+						alert.initStyle(StageStyle.UTILITY);
+						
+						Thread thread = new Thread(() -> {
+							try
+							{
+								// Wait for 5 secs
+								Thread.sleep(5000);
+								if( alert.isShowing() )
+								{
+									Platform.runLater(alert::close);
+								}
+							} catch( Exception exp )
+							{
+								exp.printStackTrace();
+							}
+						});
+						thread.setDaemon(true);
+						thread.start();
+						alert.showAndWait();
+						printFile.print(filename, visits, Integer.valueOf(printCustomerAmount.getText()));
+					} catch( IOException|PrinterException e )
+					{
+						e.printStackTrace();
+					}
 				}
 				
 			} else
@@ -153,5 +188,4 @@ public class PatientVisitsController
 			}
 		} ) ));
 	}
-	
 }

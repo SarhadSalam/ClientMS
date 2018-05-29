@@ -53,6 +53,7 @@ public class AddPatient
 		DatabaseConnection databaseConnection = new DatabaseConnection();
 		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
 		
+		
 		String statement = "INSERT INTO patients (name, age, sex, govid, phone, employee_entered) values (?,?,?,?,?,?)";
 		
 		String colName[] = new String[]{"patient_id"};
@@ -109,14 +110,11 @@ public class AddPatient
 	
 	public boolean searchForPatient(String identifier, String method, Patient patient) throws IOException, SQLException
 	{
-		method = ( method.equals("Phone") ) ? "phone" : "govid";
-		
 		Properties prop = new Properties();
 		DatabaseConnection databaseConnection = new DatabaseConnection();
 		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
 		
-		String query = "SELECT * FROM patients where "+method+"='"+identifier+"'";
-		
+		String query = "SELECT * FROM patients where phone"+"='"+identifier+"' OR govid"+"='"+identifier+"'";
 		ResultSet resultSet = c.createStatement().executeQuery(query);
 		
 		if( resultSet.next() )
@@ -130,6 +128,7 @@ public class AddPatient
 			patient.setId(resultSet.getInt("patient_id"));
 			return true;
 		}
+		c.close();
 		patient = null;
 		return false;
 	}

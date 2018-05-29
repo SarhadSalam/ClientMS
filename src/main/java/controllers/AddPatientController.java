@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Employee;
 import models.Patient;
 
@@ -14,16 +15,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Class Details:-
- * Author: Sarhad
- * User: sarhad
- * Date: 07/05/18
- * Time : 11:57 AM
- * Project Name: ClientMS
- * Class Name: AddPatientController
+ * Class Details:- Author: Sarhad User: sarhad Date: 07/05/18 Time : 11:57 AM Project Name: ClientMS Class Name:
+ * AddPatientController
  */
 public class AddPatientController
 {
+	
 	private Employee empl;
 	private ErrorPane errorPaneHandler = new ErrorPane();
 	
@@ -69,8 +66,23 @@ public class AddPatientController
 				
 				try
 				{
-					AddPatient.addPatientToDatabase(p);
-				} catch( IOException | SQLException e )
+					//check for duplicates
+					AddPatient addPatient = new AddPatient();
+					if( !addPatient.searchForPatient(phoneField.getText(), null, p) && !addPatient.searchForPatient(idField.getText(), null, p) )
+					{
+						AddPatient.addPatientToDatabase(p);
+						System.out.println("Patient found");
+					} else
+					{
+						Alert alert = new Alert(Alert.AlertType.ERROR);
+						alert.initStyle(StageStyle.UTILITY);
+						alert.setResizable(false);
+						alert.setHeaderText("ID/Phone duplicate.");
+						alert.setContentText("The patient with the following phone/id number already exists. Search for the patient again.");
+						childStage.close();
+						alert.showAndWait();
+					}
+				} catch( IOException|SQLException e )
 				{
 					//todo add constructive feedback about how it failed
 					//oops failed

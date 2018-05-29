@@ -48,25 +48,6 @@
       <CheckBox fx:id="printHospitalCheck" layoutX="156.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Print Hospital Copy" />
       <TextField fx:id="printCustomerAmount" layoutX="361.0" layoutY="260.0" prefHeight="26.0" prefWidth="63.0" text="1" />
       <TextField fx:id="printHospitalAmount" layoutX="361.0" layoutY="291.0" prefHeight="26.0" prefWidth="63.0" text="1" />
-      <MenuBar layoutX="14.0" layoutY="4.0" prefHeight="26.0" prefWidth="600.0" AnchorPane.bottomAnchor="778.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
       <ListView fx:id="errorPane" layoutX="29.0" layoutY="593.0" prefHeight="143.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

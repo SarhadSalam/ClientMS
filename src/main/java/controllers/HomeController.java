@@ -112,9 +112,6 @@ public class HomeController
 					{
 						e.printStackTrace();
 					}
-				} else
-				{
-					System.out.println("Something went wrong. Patient is null");
 				}
 			} else
 			{

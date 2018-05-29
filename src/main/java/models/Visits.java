@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  */
 public class Visits
 {
-	
+	public final int CURRENCY_PRECISION=2;
 	private int patientId, visitId;
 	private String employeeEntered, services;
 	private BigDecimal amount_paid;

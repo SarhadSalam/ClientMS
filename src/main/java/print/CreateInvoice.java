@@ -18,7 +18,7 @@ public class CreateInvoice
 	
 	private ClassLoader cl = Thread.currentThread().getContextClassLoader();
 	
-	private void createInvoice(ArrayList<String> customerDetails) throws IOException
+	private String createInvoice(ArrayList<String> customerDetails) throws IOException
 	{
 		PDDocument pdDocument = PDDocument.load(cl.getResourceAsStream("invoice/Invoice.pdf"));
 		
@@ -34,11 +34,14 @@ public class CreateInvoice
 		}
 		
 		//set the patientNameField
-		pdDocument.save("/home/sarhad/Projects/ClientMS/print_dump/Invoice"+System.currentTimeMillis()+".pdf");
+		String filename ="/home/sarhad/Projects/ClientMS/print_dump/Invoice"+System.currentTimeMillis()+".pdf";
+		pdDocument.save(filename);
 		pdDocument.close();
+		
+		return filename;
 	}
 	
-	public void createInvoiceDetails(Patient patient, Visits patientVisits) throws IOException
+	public String createInvoiceDetails(Patient patient, Visits patientVisits) throws IOException
 	{
 		CreateInvoice createInvoice = new CreateInvoice();
 		createInvoice.setSystemProperty();
@@ -55,11 +58,11 @@ public class CreateInvoice
 		customerDetails.add(patient.getEmployee_entered());
 		customerDetails.add(patientVisits.getTimestamp().toLocalDateTime().toString());
 		customerDetails.add(patientVisits.getServices());
-		customerDetails.add(patientVisits.getAmount_paid().toString());
+		customerDetails.add(patientVisits.getAmount_paid().toString().substring(0,4));
 		customerDetails.add(String.valueOf(patientVisits.getVisitId()));
 		customerDetails.add(((new Date(System.currentTimeMillis()))).toString());
 		
-		createInvoice(customerDetails);
+		return createInvoice(customerDetails);
 	}
 	
 	private void setSystemProperty(){

@@ -3,9 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -13,25 +10,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <fx:include source="Menubar.fxml" fx:id="menubarInclude"/>
-   <children>
-      <Label layoutX="165.0" layoutY="145.0" text="Username:" />
-      <Label layoutX="165.0" layoutY="181.0" text="Password:" />
-      <TextField fx:id="username" layoutX="265.0" layoutY="140.0" prefHeight="26.0" prefWidth="261.0" promptText="More than 3 Characters, Less than 12" />
-      <PasswordField fx:id="password" layoutX="265.0" layoutY="176.0" prefHeight="26.0" prefWidth="261.0" promptText="More than 6 Characters. Less than 12." />
-      <RadioButton id="englishRadio" fx:id="englishRadio" layoutX="265.0" layoutY="215.0" mnemonicParsing="false" selected="true" text="English">
-         <toggleGroup>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="165.0" layoutY="145.0" text="%username" />
+    <Label layoutX="165.0" layoutY="181.0" text="%password" />
+    <TextField fx:id="username" layoutX="265.0" layoutY="140.0" prefHeight="26.0" prefWidth="261.0" promptText="%username_req" />
+    <PasswordField fx:id="password" layoutX="265.0" layoutY="176.0" prefHeight="26.0" prefWidth="261.0" promptText="%password_req" />
+    <RadioButton id="englishRadio" fx:id="englishRadio" layoutX="265.0" layoutY="215.0" mnemonicParsing="false" selected="true" text="%english">
+        <toggleGroup>
             <ToggleGroup fx:id="languageRadio" />
-         </toggleGroup></RadioButton>
-      <RadioButton id="arabicRadio" layoutX="265.0" layoutY="244.0" mnemonicParsing="false" text="Arabic" toggleGroup="$languageRadio" />
-      <Label layoutX="166.0" layoutY="216.0" text="Language:" />
-      <Label layoutX="211.0" layoutY="82.0" text="Sign In">
-         <font>
+        </toggleGroup>
+    </RadioButton>
+    <RadioButton id="arabicRadio" layoutX="265.0" layoutY="244.0" mnemonicParsing="false" text="%arabic" toggleGroup="$languageRadio" />
+    <Label layoutX="166.0" layoutY="216.0" text="%language" />
+    <Label layoutX="211.0" layoutY="82.0" text="%sign_in">
+        <font>
             <Font name="System Bold" size="28.0" />
-         </font>
-      </Label>
-      <Button fx:id="signIn" layoutX="234.0" layoutY="283.0" mnemonicParsing="false" onAction="#signUserIn" text="Sign In" />
-      <ListView fx:id="errorPane" layoutX="10.0" layoutY="312.0" prefHeight="84.0" prefWidth="581.0" visible="false" />
-   </children>
+        </font>
+    </Label>
+    <Button fx:id="signIn" layoutX="234.0" layoutY="283.0" mnemonicParsing="false" text="%sign_in" />
+    <ListView fx:id="errorPane" layoutX="10.0" layoutY="312.0" prefHeight="84.0" prefWidth="581.0" visible="false" />
 </AnchorPane>

@@ -6,26 +6,24 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.MenuBarController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <MenuBar layoutX="199.0" layoutY="49.0" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.leftAnchor="0.0"
              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" fx:id="menubar">
         <menus>
             <Menu text="_Session">
                 <items>
-                    <MenuItem text="_Refresh"/>
-                    <MenuItem text="_Close"/>
+                    <MenuItem fx:id="closeItem" text="_Close"/>
                 </items>
             </Menu>
             <Menu text="_User" fx:id="userMenu">
                 <items>
-                    <MenuItem text="_Sign Out"/>
+                    <MenuItem fx:id="signOutItem" text="_Sign Out"/>
                 </items>
             </Menu>
             <Menu text="_Help">
                 <items>
-                    <MenuItem text="File a _bug report"/>
-                    <MenuItem text="_About"/>
+                    <MenuItem text="File a _bug report" fx:id="fileBugItem"/>
+                    <MenuItem text="_About" fx:id="aboutItem"/>
                 </items>
             </Menu>
         </menus>

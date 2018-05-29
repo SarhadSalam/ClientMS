@@ -1,14 +1,13 @@
+package dev;
+
 import authentication.DatabaseConnection;
-import authentication.EmployeeLogin;
 import crypto.Crypto;
 import com.github.javafaker.Faker;
-import models.Employee;
 import properties.Properties;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -20,7 +19,7 @@ import java.sql.SQLException;
  * Date: 04/05/18
  * Time : 10:09 PM
  * Project Name: ClientMS
- * Class Name: Developer
+ * Class Name: dev.Developer
  */
 public class Developer
 {
@@ -60,4 +59,15 @@ public class Developer
 		c.close();
 	}
 	
+	public static void main(String[] args)
+	{
+		Developer developer = new Developer();
+		try
+		{
+			developer.createASingleEmployee("Martin", "Daddy", "martin", "martin");
+		} catch( IOException | SQLException | GeneralSecurityException | URISyntaxException e )
+		{
+			e.printStackTrace();
+		}
+	}
 }

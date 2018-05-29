@@ -1,6 +1,7 @@
 package print;
 
 import authentication.DatabaseConnection;
+import customers.PatientVisits;
 import models.Employee;
 import models.Patient;
 import models.Visits;
@@ -29,7 +30,7 @@ public class PrintAndVisit
 	}
 	
 	//add to database
-	public void addVisit(String services, double amountPaid, Visits visits) throws SQLException, IOException
+	public Visits addVisit(String services, double amountPaid, Visits visits) throws SQLException, IOException
 	{
 		Properties prop = new Properties();
 		DatabaseConnection databaseConnection = new DatabaseConnection();
@@ -42,7 +43,7 @@ public class PrintAndVisit
 		ps.setInt(1, patient.getId());
 		ps.setString(2, empl.getUsername());
 		ps.setString(3, services);
-		ps.setBigDecimal(4, new BigDecimal(amountPaid));
+		ps.setBigDecimal(4, new BigDecimal(amountPaid).setScale(new Visits().CURRENCY_PRECISION, BigDecimal.ROUND_HALF_UP));
 		
 		visits.setAmount_paid(new BigDecimal(amountPaid));
 		visits.setEmployeeEntered(empl.getFirst_name()+" "+empl.getLast_name());
@@ -56,6 +57,7 @@ public class PrintAndVisit
 			if( rs.next() ) visits.setVisitId(rs.getInt(1));
 		}
 		c.close();
+		return visits;
 	}
 	
 	public boolean validateInput(String services, String amountPaid, Error error)

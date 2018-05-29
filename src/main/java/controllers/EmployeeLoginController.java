@@ -1,25 +1,27 @@
 package controllers;
 
-import authentication.EmployeeLogin;
 import errors.Error;
 import errors.ErrorPane;
 import events.LoginEvent;
 import home.Home;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
 import org.greenrobot.eventbus.EventBus;
+import properties.Properties;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.GeneralSecurityException;
 import java.sql.Date;
 import java.sql.SQLException;
+
+import static authentication.EmployeeLogin.validateInput;
+import static authentication.EmployeeLogin.userExists;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 04/05/18 Time : 1:01 AM Project Name: inc.sarhad.CMS Class Name:
@@ -28,15 +30,15 @@ import java.sql.SQLException;
 public class EmployeeLoginController
 {
 	
-	@FXML
-	public AnchorPane menubarInclude;
 	/*
 	 * Sets the employeeLogin UI here.
 	 * */
-	private EmployeeLogin employeeLogin = new EmployeeLogin();
 	private Error error = new Error();
 	private Home home = new Home();
 	private ErrorPane errorPaneHandler = new ErrorPane();
+	
+	@FXML
+	public AnchorPane menubarInclude;
 	
 	@FXML
 	public AnchorPane anchorPane;
@@ -55,33 +57,68 @@ public class EmployeeLoginController
 	@FXML
 	public ListView<String> errorPane;
 	
+	public void setButtonAction()
+	{
+		signIn.setOnAction(this::signUserIn);
+	}
+	
+	private void setLocale()
+	{
+		//set the properties of the user
+		Properties properties = new Properties();
+		String lang = "en", country = "US";
+		RadioButton radioButton = (RadioButton) languageRadio.getSelectedToggle();
+		if( !radioButton.getText().equalsIgnoreCase("english") )
+		{
+			lang = "ar";
+			country = "SA";
+			try
+			{
+				System.out.println("DOne bitch");
+				properties.setProperties("language", lang, Properties.PROPERTY_TYPE.user);
+				properties.setProperties("country", country, Properties.PROPERTY_TYPE.user);
+			} catch( Exception e )
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	/*When the user signs in, this method is triggered*/
-	@FXML
 	private void signUserIn(ActionEvent event)
 	{
+		setLocale();
 		//if input is invalid
-		if( !employeeLogin.validateInput(username.getText(), password.getText(), error) )
+		if( !validateInput(username.getText(), password.getText(), error) )
 		{
 			errorPaneHandler.handleErrorPane(errorPane, error);
 		} else
 		{
-			//if login was succesfull, popup a dialog and start the login code
+			//if input was succesfull, popup a dialog and start the login code
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setHeaderText("Signing In");
 			alert.setContentText("Please wait while I sign you in");
 			alert.setResizable(false);
 			alert.initStyle(StageStyle.UTILITY);
 			alert.show();
+			
 			//The login was a success
+			
 			Employee empl = null;
 			try
 			{
-				empl = employeeLogin.userExists(username.getText(), password.getText());
+				try
+				{
+					empl = userExists(username.getText(), password.getText());
+				} catch( GeneralSecurityException|URISyntaxException e )
+				{
+					e.printStackTrace();
+				}
 			} catch( IOException|SQLException e )
 			{
 				e.printStackTrace();
 			}
-
+			
 			//if the employee exists
 			if( empl != null )
 			{
@@ -112,15 +149,7 @@ public class EmployeeLoginController
 				alert.close();
 				noUser.showAndWait();
 			}
-			
 		}
-	}
-	
-	public EmployeeLoginController()
-	{
-		if(menubarInclude==null) System.out.println(0);
-		
-		menubarInclude.getChildren();
 	}
 }
 

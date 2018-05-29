@@ -1,22 +1,27 @@
 package authentication;
 
+import controllers.EmployeeLoginController;
 import controllers.MenuBarController;
+import crypto.Crypto;
 import errors.Error;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.Employee;
 import properties.Properties;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.GeneralSecurityException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.ResourceBundle;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 03/05/18 Time : 3:30 PM Project Name: inc.sarhad.CMS Class Name:
@@ -25,11 +30,12 @@ import java.sql.Statement;
 public class EmployeeLogin extends Application
 {
 	
+	
 	/*
 	 * Responsible for validating inputs, checks for username, password and sets the error messages.
 	 * */
 	
-	public boolean validateInput(String username, String password, Error error)
+	public static boolean validateInput(String username, String password, Error error)
 	{
 		boolean noInputIsWrong = true;
 		if( username.length()<3 )
@@ -78,23 +84,42 @@ public class EmployeeLogin extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
+		
+		EmployeeLoginController employeeLoginController = new EmployeeLoginController();
+		MenuBarController menuBarController = new MenuBarController();
+		
 		//Load Layouts
 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
 		
+		//load the language
+		ResourceBundle rs = new i18n.i18n().getResourceBundle("en", "US");
+		
 		//Set the scenes
-		Parent root = FXMLLoader.load(cl.getResource("layout/EmployeeLogin.fxml"));
+		FXMLLoader login = new FXMLLoader(cl.getResource("layout/EmployeeLogin.fxml"));
+		FXMLLoader menu = new FXMLLoader(cl.getResource("layout/Menubar.fxml"));
 		
+		login.setController(employeeLoginController);
+		menu.setController(menuBarController);
 		
-		primaryStag
+		login.setResources(rs);
 		
-		primaryStage.setTitle("Specialized Hijama");
-		primaryStage.setScene(new Scene(root, 600, 400));
+		BorderPane borderPane = new BorderPane();
+		borderPane.setTop(menu.load());
+		borderPane.setCenter(login.load());
+		
+		primaryStage.setTitle(rs.getString("title_login_screen"));
+		primaryStage.setScene(new Scene(borderPane, 600, 400));
 		primaryStage.setResizable(false);
 		primaryStage.getIcons().add(new Image(cl.getResourceAsStream("img/logo.png")));
+		
+		employeeLoginController.setButtonAction();
+		menuBarController.setUpMenuBar();
+		menuBarController.setMenuItemOptions(primaryStage);
+		
 		primaryStage.show();
 	}
 	
-	public boolean getEmployee(String username, Connection c, Employee empl) throws SQLException
+	private static boolean getEmployee(String username, Connection c, Employee empl) throws SQLException
 	{
 		String query = "select first_name, last_name,password, username from employee where username='"+username+"'";
 		Statement statement = c.createStatement();
@@ -114,7 +139,7 @@ public class EmployeeLogin extends Application
 		return false;
 	}
 	
-	public Employee userExists(String username, String password) throws IOException, SQLException
+	public static Employee userExists(String username, String password) throws IOException, SQLException, GeneralSecurityException, URISyntaxException
 	{
 		Properties prop = new Properties();
 		Employee empl = new Employee();
@@ -124,7 +149,9 @@ public class EmployeeLogin extends Application
 		if( getEmployee(username, c, empl) )
 		{
 			c.close();
-			return empl;
+			Crypto crypto = new Crypto();
+			if(password.equals(new String(crypto.decrypt(empl.getPassword()), "UTF-8"))) return empl;
+			else return null;
 		}
 		c.close();
 		return null;
