@@ -37,7 +37,6 @@ public class AddPatient
 		
 		childStage.initOwner(parent);
 		childStage.initModality(Modality.WINDOW_MODAL);
-		
 		childStage.setTitle("Specialized Hijama - Add Patient");
 		childStage.setScene(new Scene(root, 600, 400));
 		childStage.setResizable(false);
@@ -52,7 +51,6 @@ public class AddPatient
 		Properties prop = new Properties();
 		DatabaseConnection databaseConnection = new DatabaseConnection();
 		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
-		
 		
 		String statement = "INSERT INTO patients (name, age, sex, govid, phone, employee_entered) values (?,?,?,?,?,?)";
 		
@@ -81,25 +79,25 @@ public class AddPatient
 	{
 		boolean isCorrect = true;
 		
-		if( !name.matches("^[.,;/a-zA-Z\\s]*$") )
+		if( name == null || name.equals("") || !name.matches("^[.,;/a-zA-Z\\s]*$") )
 		{
 			error.getErrors().add("Name can only contain letters, comma, semicolon and slash.");
 			isCorrect = false;
 		}
 		
-		if( !age.matches("^[0-9]*$") )
+		if( age == null || age.equals("") || !age.matches("^[0-9]*$") )
 		{
 			error.getErrors().add("Age can only contain numbers.");
 			isCorrect = false;
 		}
 		
-		if( !phone.matches("^[0-9]*$") )
+		if( phone == null || phone.equals("") || !phone.matches("^[0-9]*$") )
 		{
 			error.getErrors().add("Phone can only contain numbers.");
 			isCorrect = false;
 		}
 		
-		if( !id.matches("^[a-zA-Z0-9]*$") )
+		if( id == null || id.equals("") || !id.matches("^[a-zA-Z0-9]*$") )
 		{
 			error.getErrors().add("ID can only be alphanumeric.");
 			isCorrect = false;

@@ -12,13 +12,16 @@ import models.Employee;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.GeneralSecurityException;
+
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 06/05/18 Time : 11:32 PM Project Name: ClientMS Class Name: Home
  */
 
 public class Home
 {
-	
 	private Employee empl;
 	private HomeController homeController = new HomeController();
 	private MenuBarController menuBarController = new MenuBarController();

@@ -1,8 +1,9 @@
 package properties;
 
-import javax.security.auth.login.Configuration;
-import java.io.IOException;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.File;
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 04/05/18 Time : 9:32 PM Project Name: ClientMS Class Name:
  * Properties
@@ -31,17 +32,5 @@ public class Properties
 		}
 		properties.load(cl.getResourceAsStream(res));
 		return properties.getProperty(prop);
-	}
-	
-	public void setProperties(String key, String val, PROPERTY_TYPE type) throws Exception
-	{
-		
-		String res = "user.properties";
-		if( type == PROPERTY_TYPE.env )
-		{
-			res = "env.properties";
-		}
-		properties.load(cl.getResourceAsStream(res));
-		properties.setProperty(key, val);
 	}
 }

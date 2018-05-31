@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <MenuBar layoutX="199.0" layoutY="49.0" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.leftAnchor="0.0"
-             AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" fx:id="menubar">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
+    <MenuBar fx:id="menubar" layoutX="199.0" layoutY="49.0" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
             <Menu text="_Session">
                 <items>
-                    <MenuItem fx:id="closeItem" text="_Close"/>
+                    <MenuItem fx:id="closeItem" text="_Close" />
                 </items>
             </Menu>
-            <Menu text="_User" fx:id="userMenu">
+            <Menu fx:id="userMenu" text="_User">
                 <items>
-                    <MenuItem fx:id="signOutItem" text="_Sign Out"/>
+                    <MenuItem fx:id="signOutItem" text="_Sign Out" />
                 </items>
             </Menu>
             <Menu text="_Help">
                 <items>
-                    <MenuItem text="File a _bug report" fx:id="fileBugItem"/>
-                    <MenuItem text="_About" fx:id="aboutItem"/>
+                    <MenuItem fx:id="fileBugItem" text="File a _bug report" />
+                    <MenuItem fx:id="aboutItem" text="_About" />
                 </items>
             </Menu>
+         <Menu disable="true" fx:id="timeLabel" mnemonicParsing="false" text="Time" />
         </menus>
     </MenuBar>
 </AnchorPane>

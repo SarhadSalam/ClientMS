@@ -1,15 +1,18 @@
 package controllers;
 
 import authentication.EmployeeLogin;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import models.Employee;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.security.GeneralSecurityException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 19/05/18 Time : 11:24 AM Project Name: ClientMS Class Name:
@@ -17,6 +20,7 @@ import java.security.GeneralSecurityException;
  */
 public class MenuBarController
 {
+	
 	private Employee empl;
 	private boolean userInfoAvailable = false;
 	
@@ -24,17 +28,28 @@ public class MenuBarController
 	public MenuBar menubar;
 	
 	@FXML
-	public Menu userMenu;
+	public Menu userMenu, timeLabel;
 	
 	@FXML
 	public MenuItem closeItem, signOutItem, restartItem, fileBugItem, aboutItem;
 	
-	public void setUpMenuBar(){
+	public void setUpMenuBar()
+	{
 		//if there is no user available, dont show user options.
-		if(empl==null)
+		if( empl == null )
 		{
 			menubar.getMenus().remove(userMenu);
 		}
+		
+		DateFormat timeFormat = new SimpleDateFormat("EEE, d MMM yyyy hh:mm:ss a");
+		final Timeline timeline = new Timeline(
+				new KeyFrame(
+						Duration.millis(1000),
+						event -> timeLabel.setText(timeFormat.format(System.currentTimeMillis()))
+				)
+		);
+		timeline.setCycleCount(Animation.INDEFINITE);
+		timeline.play();
 	}
 	
 	public void setMenuItemOptions(Stage stage)
@@ -60,18 +75,21 @@ public class MenuBarController
 		});
 		
 		aboutItem.setOnAction(event -> {
-			//todo: open an about screen
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setHeaderText("Specialized Hijama - Client Management System");
-			//todo: insert license
-			alert.setContentText("The following software is used to maintain the clients of the Hijama clinic. \n The software is developed by Sarhad Maisoon Salam. MIT LICENSE ");
-			alert.setResizable(false);
+			alert.setHeaderText("Specialized Hijama - Client Management System - 1.0.0");
+			
+			alert.setContentText("The following software is used to maintain the clients of the Hijama clinic. \n The software is developed by Sarhad Maisoon Salam.+\n"+
+					"Copyright (c) [2018] [Sarhad Salam] Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n"+
+					"The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n"+
+					"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.");
+			alert.setTitle("About");
 			alert.initStyle(StageStyle.UTILITY);
 			alert.showAndWait();
 		});
 	}
+	
 	public void setEmployee(Employee empl)
 	{
-		this.empl=empl;
+		this.empl = empl;
 	}
 }

@@ -30,48 +30,48 @@ import java.util.ResourceBundle;
 public class EmployeeLogin extends Application
 {
 	
-	
 	/*
 	 * Responsible for validating inputs, checks for username, password and sets the error messages.
 	 * */
 	
 	public static boolean validateInput(String username, String password, Error error)
 	{
+		ResourceBundle rs = new i18n.i18n().getResourceBundle("en", "US");
 		boolean noInputIsWrong = true;
 		if( username.length()<3 )
 		{
-			error.getErrors().add("Username has to be larger than 3 characters.");
+			error.getErrors().add(rs.getString("username_min_char"));
 			noInputIsWrong = false;
 		}
 		
 		//if username or password is longer
 		if( username.length() >= 10 )
 		{
-			error.getErrors().add("Username has to be smaller than 10 characters.");
+			error.getErrors().add(rs.getString("username_max_char"));
 			noInputIsWrong = false;
 		}
 		
 		if( password.length()<6 )
 		{
-			error.getErrors().add("Password has to be larger than 6 characters.");
+			error.getErrors().add(rs.getString("password_min_char"));
 			noInputIsWrong = false;
 		}
 		
 		if( password.length() >= 12 )
 		{
-			error.getErrors().add("Password has to be smaller than 12 characters.");
+			error.getErrors().add(rs.getString("password_max_char"));
 			noInputIsWrong = false;
 		}
 		
 		if( !username.matches("^[a-zA-Z0-9]*$") )
 		{
-			error.getErrors().add("Username has to be alphanumeric.");
+			error.getErrors().add(rs.getString("username_alphanum"));
 			noInputIsWrong = false;
 		}
 		
 		if( !password.matches("^[a-zA-Z0-9]*$") )
 		{
-			error.getErrors().add("Password has to be alphanumeric.");
+			error.getErrors().add(rs.getString("password_alphanum"));
 			noInputIsWrong = false;
 		}
 		
@@ -121,17 +121,19 @@ public class EmployeeLogin extends Application
 	
 	private static boolean getEmployee(String username, Connection c, Employee empl) throws SQLException
 	{
-		String query = "select first_name, last_name,password, username from employee where username='"+username+"'";
+		String query = "select first_name, last_name,password, username, role from employee where username='"+username+"'";
 		Statement statement = c.createStatement();
 		ResultSet rs = statement.executeQuery(query);
 		
-		//employee found
+		//employee foundP
 		if( rs.next() )
 		{
 			empl.setFirst_name(rs.getString("first_name"));
 			empl.setLast_name(rs.getString("last_name"));
 			empl.setPassword(rs.getBytes("password"));
 			empl.setUsername(rs.getString("username"));
+			empl.setRole(Employee.USER_ROLE.valueOf(rs.getString("role")));
+			
 			return true;
 		}
 		

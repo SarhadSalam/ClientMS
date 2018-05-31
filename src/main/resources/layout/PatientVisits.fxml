@@ -4,50 +4,92 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane prefHeight="588.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="173.0" layoutY="33.0" text="Record Patient Information">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="75.0" layoutY="74.0" text="Services Rendered To Patient:" />
-      <TextArea fx:id="servicesText" layoutX="86.0" layoutY="102.0" prefHeight="74.0" prefWidth="434.0" promptText="Max: 500" />
-      <Label disable="true" layoutX="379.0" layoutY="179.0" prefHeight="16.0" prefWidth="107.0" text="Characters Left:" />
-      <Label fx:id="characterCount" disable="true" layoutX="489.0" layoutY="179.0" text="500" />
-      <Label layoutX="74.0" layoutY="200.0" text="Amount to be paid (Riyals):" />
-      <TextField fx:id="amount" layoutX="271.0" layoutY="195.0" prefHeight="26.0" prefWidth="98.0" promptText="Without VAT" />
-      <Label disable="true" layoutX="74.0" layoutY="234.0" text="Total (with VAT):" />
-      <Label fx:id="totalVat" disable="true" layoutX="275.0" layoutY="233.0" prefHeight="16.0" prefWidth="95.0" text="Total" />
-      <Label disable="true" layoutX="143.0" layoutY="375.0" text="Existing Information about Patient:" underline="true" />
-      <Label disable="true" layoutX="143.0" layoutY="406.0" text="Patient File No.:" />
-      <Label disable="true" layoutX="143.0" layoutY="430.0" text="Name:" />
-      <Label disable="true" layoutX="144.0" layoutY="455.0" text="Age:" />
-      <Label fx:id="name" disable="true" layoutX="288.0" layoutY="430.0" text="Name" />
-      <Label fx:id="fileNo" disable="true" layoutX="289.0" layoutY="406.0" text="Patient File No" />
-      <Label fx:id="age" disable="true" layoutX="288.0" layoutY="455.0" text="Age" />
-      <Label disable="true" layoutX="145.0" layoutY="481.0" text="Gender:" />
-      <Label disable="true" layoutX="145.0" layoutY="508.0" text="Iqama/National ID:" />
-      <Label disable="true" layoutX="147.0" layoutY="539.0" text="Phone:" />
-      <Label fx:id="gender" disable="true" layoutX="289.0" layoutY="481.0" text="Gender" />
-      <Label fx:id="id" disable="true" layoutX="290.0" layoutY="508.0" text="ID" />
-      <Label fx:id="phone" disable="true" layoutX="290.0" layoutY="539.0" text="Phone" />
-      <Label disable="true" layoutX="87.0" layoutY="570.0" text="*To edit patient information, please contact manager." textFill="#c30e0e" />
-      <Button fx:id="cancelButton" layoutX="114.0" layoutY="340.0" mnemonicParsing="false" text="Cancel" />
-      <Button fx:id="recordButton" layoutX="217.0" layoutY="340.0" mnemonicParsing="false" text="Record" />
-      <Button fx:id="recordAndPrintButton" layoutX="308.0" layoutY="340.0" mnemonicParsing="false" text="Record and Print" />
-      <CheckBox fx:id="printCustomerCheck" layoutX="156.0" layoutY="264.0" mnemonicParsing="false" selected="true" text="Print Customer Copy" />
-      <CheckBox fx:id="printHospitalCheck" layoutX="156.0" layoutY="295.0" mnemonicParsing="false" selected="true" text="Print Hospital Copy" />
-      <TextField fx:id="printCustomerAmount" layoutX="361.0" layoutY="260.0" prefHeight="26.0" prefWidth="63.0" text="1" />
-      <TextField fx:id="printHospitalAmount" layoutX="361.0" layoutY="291.0" prefHeight="26.0" prefWidth="63.0" text="1" />
-      <ListView fx:id="errorPane" layoutX="29.0" layoutY="593.0" prefHeight="143.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <TabPane fx:id="tabPane" prefHeight="588.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <tabs>
+          <Tab fx:id="addTab" text="Add a new visit">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="188.0" prefWidth="600.0">
+                     <children>
+                        <Label layoutX="172.0" layoutY="14.0" text="Record Patient Information">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="65.0" layoutY="53.0" text="Services Rendered To Patient:" />
+                        <TextArea fx:id="servicesText" layoutX="65.0" layoutY="75.0" prefHeight="98.0" prefWidth="434.0" promptText="Max: 500" />
+                        <Label disable="true" layoutX="361.0" layoutY="177.0" prefHeight="16.0" prefWidth="107.0" text="Characters Left:" />
+                        <Label fx:id="characterCount" disable="true" layoutX="468.0" layoutY="177.0" text="500" />
+                        <Label layoutX="131.0" layoutY="225.0" text="Amount to be paid (Riyals):" />
+                        <TextField fx:id="amount" layoutX="351.0" layoutY="220.0" prefHeight="26.0" prefWidth="98.0" promptText="Without VAT" />
+                        <Label disable="true" layoutX="130.0" layoutY="259.0" text="Total (with VAT):" />
+                        <Label fx:id="totalVat" disable="true" layoutX="350.0" layoutY="259.0" prefHeight="16.0" prefWidth="95.0" text="Total" />
+                        <CheckBox fx:id="printCustomerCheck" layoutX="130.0" layoutY="327.0" mnemonicParsing="false" selected="true" text="Print Customer Copy" />
+                        <CheckBox fx:id="printHospitalCheck" layoutX="130.0" layoutY="296.0" mnemonicParsing="false" selected="true" text="Print Hospital Copy" />
+                        <TextField fx:id="printCustomerAmount" layoutX="349.0" layoutY="323.0" prefHeight="26.0" prefWidth="63.0" text="1" />
+                        <TextField fx:id="printHospitalAmount" layoutX="349.0" layoutY="292.0" prefHeight="26.0" prefWidth="63.0" text="1" />
+                        <Button fx:id="cancelButton" layoutX="115.0" layoutY="371.0" mnemonicParsing="false" text="Cancel" />
+                        <Button fx:id="recordButton" layoutX="216.0" layoutY="371.0" mnemonicParsing="false" text="Record" />
+                        <Button fx:id="recordAndPrintButton" layoutX="314.0" layoutY="371.0" mnemonicParsing="false" text="Record and Print" />
+                        <ListView fx:id="errorPane" prefHeight="143.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="previousTab" text="Previous Visits">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="prevTable" layoutX="5.0" layoutY="14.0" prefHeight="342.0" prefWidth="583.0">
+                          <columns>
+                            <TableColumn fx:id="visitCol" prefWidth="75.0" text="File No." />
+                              <TableColumn fx:id="serviceCol" prefWidth="75.0" text="Services" />
+                              <TableColumn fx:id="employeeCol" prefWidth="123.0" text="Employee" />
+                              <TableColumn fx:id="amountCol" prefWidth="104.0" text="Amount Paid" />
+                            <TableColumn fx:id="dateCol" prefWidth="204.0" text="Date" />
+                          </columns>
+                        </TableView>
+                        <TextField disable="true" layoutX="283.0" layoutY="367.0" prefHeight="26.0" prefWidth="116.0" promptText="Enter Visit No." />
+                        <Label disable="true" layoutX="171.0" layoutY="366.0" prefHeight="29.0" prefWidth="71.0" text="Edit Visit:" />
+                        <Button disable="true" layoutX="255.0" layoutY="407.0" mnemonicParsing="false" text="Edit" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab fx:id="infoTab" text="Patient Information">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label disable="true" layoutX="170.0" layoutY="14.0" text="Existing Information about Patient:" underline="true" />
+                        <Label disable="true" layoutX="152.0" layoutY="49.0" text="Patient File No.:" />
+                        <Label disable="true" layoutX="153.0" layoutY="77.0" text="Name:" />
+                        <Label disable="true" layoutX="151.0" layoutY="194.0" text="Age:" />
+                        <Label fx:id="name" disable="true" layoutX="302.0" layoutY="77.0" text="Name" />
+                        <Label fx:id="fileNo" disable="true" layoutX="301.0" layoutY="49.0" text="Patient File No" />
+                        <Label fx:id="age" disable="true" layoutX="303.0" layoutY="194.0" prefWidth="26.0" text="Age" />
+                        <Label disable="true" layoutX="151.0" layoutY="165.0" text="Gender:" />
+                        <Label disable="true" layoutX="152.0" layoutY="135.0" text="Iqama/National ID:" />
+                        <Label disable="true" layoutX="152.0" layoutY="105.0" text="Phone:" />
+                        <Label fx:id="gender" disable="true" layoutX="301.0" layoutY="165.0" text="Gender" />
+                        <Label fx:id="id" disable="true" layoutX="302.0" layoutY="135.0" text="ID" />
+                        <Label fx:id="phone" disable="true" layoutX="302.0" layoutY="105.0" text="Phone" />
+                        <Label disable="true" layoutX="108.0" layoutY="223.0" text="*To edit patient information, please contact manager." textFill="#c30e0e" />
+                        <Button disable="true" layoutX="223.0" layoutY="264.0" mnemonicParsing="false" text="Edit Information" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

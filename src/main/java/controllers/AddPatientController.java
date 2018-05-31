@@ -1,6 +1,7 @@
 package controllers;
 
 import customers.AddPatient;
+import customers.PatientVisits;
 import errors.Error;
 import errors.ErrorPane;
 import javafx.event.ActionEvent;
@@ -47,9 +48,7 @@ public class AddPatientController
 	
 	public void setButtonAction(Stage childStage, Patient p)
 	{
-		cancelButton.setOnAction(event -> {
-			childStage.close();
-		});
+		cancelButton.setOnAction(event -> childStage.close());
 		
 		addButton.setOnAction(event -> {
 			Error error = new Error();
@@ -71,7 +70,6 @@ public class AddPatientController
 					if( !addPatient.searchForPatient(phoneField.getText(), null, p) && !addPatient.searchForPatient(idField.getText(), null, p) )
 					{
 						AddPatient.addPatientToDatabase(p);
-						System.out.println("Patient found");
 					} else
 					{
 						Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -79,17 +77,25 @@ public class AddPatientController
 						alert.setResizable(false);
 						alert.setHeaderText("ID/Phone duplicate.");
 						alert.setContentText("The patient with the following phone/id number already exists. Search for the patient again.");
-						childStage.close();
 						alert.showAndWait();
 					}
 				} catch( IOException|SQLException e )
 				{
-					//todo add constructive feedback about how it failed
 					//oops failed
 					e.printStackTrace();
 				}
 				
+				Stage stage = (Stage) childStage.getScene().getWindow();
+				PatientVisits visits = new PatientVisits(p, empl);
+				try
+				{
+					visits.start(stage);
+				} catch( IOException e )
+				{
+					e.printStackTrace();
+				}
 				childStage.close();
+				
 			} else
 			{
 				errorPaneHandler.handleErrorPane(errorPane, error);

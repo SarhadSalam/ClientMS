@@ -17,11 +17,17 @@ import java.security.GeneralSecurityException;
  */
 public class Employee
 {
+	public enum USER_ROLE{
+		USER,
+		MANAGER,
+		ADMIN
+	}
 	
 	private String first_name;
 	private String last_name;
 	private String username;
 	private byte[] password;
+	private USER_ROLE role;
 	
 	public String getFirst_name()
 	{
@@ -67,14 +73,25 @@ public class Employee
 	{
 		if( password == null )
 		{
-			System.out.println("NULL");
+			System.out.println("NULL - EMPLOYEE");
 			return;
 		}
 		Crypto c = new Crypto();
 		String decrypt = c.byteArrToString(c.decrypt(password));
-		System.out.println("Employee First Name:"+first_name);
-		System.out.println("Employee Last Name:"+last_name);
-		System.out.println("Employee Username:"+username);
-		System.out.println("Employee Password:"+decrypt);
+		System.out.println("Employee First Name: "+first_name);
+		System.out.println("Employee Last Name: "+last_name);
+		System.out.println("Employee Username: "+username);
+		System.out.println("Employee Password: "+decrypt);
+		System.out.println("Employee Role: "+role.name());
+	}
+	
+	public USER_ROLE getRole()
+	{
+		return role;
+	}
+	
+	public void setRole(USER_ROLE role)
+	{
+		this.role = role;
 	}
 }

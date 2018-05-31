@@ -1,10 +1,13 @@
 package controllers;
 
+import customers.PatientVisits;
 import errors.Error;
 import errors.ErrorPane;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
@@ -17,6 +20,7 @@ import print.PrintAndVisit;
 import java.awt.print.PrinterException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 08/05/18 Time : 10:40 PM Project Name: ClientMS Class Name:
@@ -51,6 +55,15 @@ public class PatientVisitsController
 	
 	@FXML
 	public ListView errorPane;
+	
+	@FXML
+	public TabPane tabPane;
+	
+	@FXML
+	public TableView prevTable;
+	
+	@FXML
+	public TableColumn visitCol, dateCol, serviceCol, employeeCol, amountCol;
 	
 	public void setPatient(Patient patient)
 	{
@@ -187,5 +200,38 @@ public class PatientVisitsController
 				errorPaneHandler.handleErrorPane(errorPane, error);
 			}
 		} ) ));
+	}
+	
+	public void setPreviousPatientsListener()
+	{
+		AtomicBoolean firstTime = new AtomicBoolean(false);
+		tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			if( newValue.getText().equals("Previous Visits") && !firstTime.get() )
+			{
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setTitle("Loading");
+				alert.setHeaderText("Loading previous visits.");
+				alert.setContentText("Please wait while the visits are being loaded.");
+				alert.getButtonTypes().removeAll();
+				alert.initStyle(StageStyle.UTILITY);
+				alert.setResizable(false);
+				alert.show();
+				firstTime.set(true);
+				visitCol.setCellValueFactory(new PropertyValueFactory<>("visitId"));
+				dateCol.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
+				serviceCol.setCellValueFactory(new PropertyValueFactory<>("services"));
+				employeeCol.setCellValueFactory(new PropertyValueFactory<>("employeeEntered"));
+				amountCol.setCellValueFactory(new PropertyValueFactory<>("amount_paid"));
+				try
+				{
+					ObservableList<Visits> data = PatientVisits.getPreviousVisits(patient);
+					prevTable.setItems(data);
+				} catch( IOException|SQLException e )
+				{
+					e.printStackTrace();
+				}
+				alert.close();
+			}
+		});
 	}
 }

@@ -12,13 +12,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
 import org.greenrobot.eventbus.EventBus;
-import properties.Properties;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static authentication.EmployeeLogin.validateInput;
 import static authentication.EmployeeLogin.userExists;
@@ -39,7 +40,8 @@ public class EmployeeLoginController
 	
 	@FXML
 	public AnchorPane menubarInclude;
-	
+	@FXML
+	public ResourceBundle resources;
 	@FXML
 	public AnchorPane anchorPane;
 	@FXML
@@ -65,22 +67,10 @@ public class EmployeeLoginController
 	private void setLocale()
 	{
 		//set the properties of the user
-		Properties properties = new Properties();
-		String lang = "en", country = "US";
 		RadioButton radioButton = (RadioButton) languageRadio.getSelectedToggle();
 		if( !radioButton.getText().equalsIgnoreCase("english") )
 		{
-			lang = "ar";
-			country = "SA";
-			try
-			{
-				System.out.println("DOne bitch");
-				properties.setProperties("language", lang, Properties.PROPERTY_TYPE.user);
-				properties.setProperties("country", country, Properties.PROPERTY_TYPE.user);
-			} catch( Exception e )
-			{
-				e.printStackTrace();
-			}
+			global.Global.setLocale(new Locale("ar", "SA"));
 		}
 	}
 	
@@ -94,10 +84,10 @@ public class EmployeeLoginController
 			errorPaneHandler.handleErrorPane(errorPane, error);
 		} else
 		{
-			//if input was succesfull, popup a dialog and start the login code
+			//if input was successfull, popup a dialog and start the login code
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setHeaderText("Signing In");
-			alert.setContentText("Please wait while I sign you in");
+			alert.setHeaderText(resources.getString("signing_in"));
+			alert.setContentText(resources.getString("sign_in_wait"));
 			alert.setResizable(false);
 			alert.initStyle(StageStyle.UTILITY);
 			alert.show();
@@ -142,8 +132,8 @@ public class EmployeeLoginController
 			} else //if employee does not exist
 			{
 				Alert noUser = new Alert(Alert.AlertType.ERROR);
-				noUser.setHeaderText("No such user exists. Oops");
-				noUser.setContentText("Sign in failed. Try Again.");
+				noUser.setHeaderText(resources.getString("no_user"));
+				noUser.setContentText(resources.getString("sign_in_fail"));
 				noUser.initStyle(StageStyle.UTILITY);
 				noUser.setResizable(false);
 				alert.close();

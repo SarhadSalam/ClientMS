@@ -89,7 +89,6 @@ public class HomeController
 							{
 								alert.close();
 								addPatient.start((Stage) searchBar.getScene().getWindow(), empl, patient);
-								resultOfSearch = true;
 							} catch( IOException e )
 							{
 								patient = null;
