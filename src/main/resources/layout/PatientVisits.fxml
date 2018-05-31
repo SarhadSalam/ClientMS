@@ -4,16 +4,18 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="588.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="588.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane fx:id="tabPane" prefHeight="588.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <tabs>
@@ -50,7 +52,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="prevTable" layoutX="5.0" layoutY="14.0" prefHeight="342.0" prefWidth="583.0">
+                        <TableView fx:id="prevTable" editable="true" layoutX="5.0" layoutY="14.0" prefHeight="533.0" prefWidth="583.0" tableMenuButtonVisible="true">
                           <columns>
                             <TableColumn fx:id="visitCol" prefWidth="75.0" text="File No." />
                               <TableColumn fx:id="serviceCol" prefWidth="75.0" text="Services" />
@@ -59,9 +61,6 @@
                             <TableColumn fx:id="dateCol" prefWidth="204.0" text="Date" />
                           </columns>
                         </TableView>
-                        <TextField disable="true" layoutX="283.0" layoutY="367.0" prefHeight="26.0" prefWidth="116.0" promptText="Enter Visit No." />
-                        <Label disable="true" layoutX="171.0" layoutY="366.0" prefHeight="29.0" prefWidth="71.0" text="Edit Visit:" />
-                        <Button disable="true" layoutX="255.0" layoutY="407.0" mnemonicParsing="false" text="Edit" />
                      </children>
                   </AnchorPane>
               </content>
@@ -74,17 +73,22 @@
                         <Label disable="true" layoutX="152.0" layoutY="49.0" text="Patient File No.:" />
                         <Label disable="true" layoutX="153.0" layoutY="77.0" text="Name:" />
                         <Label disable="true" layoutX="151.0" layoutY="194.0" text="Age:" />
-                        <Label fx:id="name" disable="true" layoutX="302.0" layoutY="77.0" text="Name" />
-                        <Label fx:id="fileNo" disable="true" layoutX="301.0" layoutY="49.0" text="Patient File No" />
-                        <Label fx:id="age" disable="true" layoutX="303.0" layoutY="194.0" prefWidth="26.0" text="Age" />
+                        <Label fx:id="fileNo" disable="true" layoutX="296.0" layoutY="49.0" text="Patient File No" />
                         <Label disable="true" layoutX="151.0" layoutY="165.0" text="Gender:" />
                         <Label disable="true" layoutX="152.0" layoutY="135.0" text="Iqama/National ID:" />
                         <Label disable="true" layoutX="152.0" layoutY="105.0" text="Phone:" />
-                        <Label fx:id="gender" disable="true" layoutX="301.0" layoutY="165.0" text="Gender" />
-                        <Label fx:id="id" disable="true" layoutX="302.0" layoutY="135.0" text="ID" />
-                        <Label fx:id="phone" disable="true" layoutX="302.0" layoutY="105.0" text="Phone" />
                         <Label disable="true" layoutX="108.0" layoutY="223.0" text="*To edit patient information, please contact manager." textFill="#c30e0e" />
-                        <Button disable="true" layoutX="223.0" layoutY="264.0" mnemonicParsing="false" text="Edit Information" />
+                        <Button fx:id="updateInformation" disable="true" layoutX="223.0" layoutY="264.0" mnemonicParsing="false" text="Update Information" />
+                        <TextField fx:id="name" disable="true" layoutX="296.0" layoutY="72.0" />
+                        <TextField fx:id="phone" disable="true" layoutX="296.0" layoutY="100.0" />
+                        <TextField fx:id="id" disable="true" layoutX="296.0" layoutY="130.0" />
+                        <TextField fx:id="age" disable="true" layoutX="296.0" layoutY="189.0" />
+                        <RadioButton fx:id="maleRadio" disable="true" layoutX="338.0" layoutY="164.0" mnemonicParsing="false" selected="true" text="M">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="genderToggle" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="femaleRadio" disable="true" layoutX="394.0" layoutY="164.0" mnemonicParsing="false" text="F" toggleGroup="$genderToggle" />
                      </children>
                   </AnchorPane>
             </content>

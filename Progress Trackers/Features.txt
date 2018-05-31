@@ -1,6 +1,8 @@
-3. For supervisors/managers show the options for things such as:
+1. Unavailable internet
+2. For supervisors/managers show the options for things such as:
 a. Patients in the following month
 b. Total earned
 c. Earning by day
 d. Earning from a custom period to another
-4. Design
+3. Design
+4. Enter button

@@ -64,6 +64,7 @@ public class PatientVisits
 		patientVisitsController.setButtonAction(childStage);
 		patientVisitsController.setTextChangeListener(childStage);
 		patientVisitsController.setPreviousPatientsListener();
+		patientVisitsController.setUpdatePatientsListener(childStage);
 		
 		childStage.showAndWait();
 		

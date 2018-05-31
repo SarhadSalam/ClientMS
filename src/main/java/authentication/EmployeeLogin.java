@@ -152,7 +152,7 @@ public class EmployeeLogin extends Application
 		{
 			c.close();
 			Crypto crypto = new Crypto();
-			if(password.equals(new String(crypto.decrypt(empl.getPassword()), "UTF-8"))) return empl;
+			if( password.equals(new String(crypto.decrypt(empl.getPassword()), "UTF-8")) ) return empl;
 			else return null;
 		}
 		c.close();

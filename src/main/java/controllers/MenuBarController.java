@@ -1,6 +1,7 @@
 package controllers;
 
 import authentication.EmployeeLogin;
+import authentication.Privileges;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -31,7 +32,7 @@ public class MenuBarController
 	public Menu userMenu, timeLabel;
 	
 	@FXML
-	public MenuItem closeItem, signOutItem, restartItem, fileBugItem, aboutItem;
+	public MenuItem closeItem, signOutItem, statItem, fileBugItem, aboutItem;
 	
 	public void setUpMenuBar()
 	{
@@ -39,6 +40,15 @@ public class MenuBarController
 		if( empl == null )
 		{
 			menubar.getMenus().remove(userMenu);
+		}
+		
+		if( empl != null )
+		{
+			Privileges privileges = new Privileges(empl);
+			if( privileges.hasUserStatus() )
+			{
+				userMenu.getItems().remove(statItem);
+			}
 		}
 		
 		DateFormat timeFormat = new SimpleDateFormat("EEE, d MMM yyyy hh:mm:ss a");

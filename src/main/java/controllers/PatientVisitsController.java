@@ -1,24 +1,31 @@
 package controllers;
 
+import authentication.Privileges;
+import customers.AddPatient;
 import customers.PatientVisits;
 import errors.Error;
 import errors.ErrorPane;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.StringConverter;
 import models.Employee;
 import models.Patient;
 import models.Visits;
 import print.CreateInvoice;
 import print.Print;
 import print.PrintAndVisit;
+import toasts.Toast;
 
 import java.awt.print.PrinterException;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -37,18 +44,25 @@ public class PatientVisitsController
 	private Employee empl;
 	private ErrorPane errorPaneHandler = new ErrorPane();
 	private Visits visits = new Visits();
+	private Privileges privileges;
+	
+	@FXML
+	public RadioButton maleRadio, femaleRadio;
 	
 	@FXML
 	public TextArea servicesText;
 	
 	@FXML
-	public Label characterCount, totalVat, fileNo, name, age, gender, id, phone;
+	public Label characterCount, totalVat, fileNo;
 	
 	@FXML
-	public TextField amount, printCustomerAmount, printHospitalAmount;
+	public TextField amount, printCustomerAmount, printHospitalAmount, age, id, phone, name;
 	
 	@FXML
-	public Button cancelButton, recordButton, recordAndPrintButton;
+	public ToggleGroup genderToggle;
+	
+	@FXML
+	public Button cancelButton, recordButton, recordAndPrintButton, updateInformation;
 	
 	@FXML
 	public CheckBox printCustomerCheck, printHospitalCheck;
@@ -70,7 +84,7 @@ public class PatientVisitsController
 		this.patient = patient;
 		fileNo.setText(String.valueOf(patient.getId()));
 		name.setText(patient.getName());
-		gender.setText(String.valueOf(patient.getGender()));
+		if( String.valueOf(patient.getGender()).equals("F") ) genderToggle.selectToggle(femaleRadio);
 		age.setText(String.valueOf(patient.getAge()));
 		id.setText(( patient.getGovid() != null ) ? patient.getGovid() : "Not available");
 		phone.setText(( patient.getPhone() != null ) ? patient.getPhone() : "Not available");
@@ -222,6 +236,13 @@ public class PatientVisitsController
 				serviceCol.setCellValueFactory(new PropertyValueFactory<>("services"));
 				employeeCol.setCellValueFactory(new PropertyValueFactory<>("employeeEntered"));
 				amountCol.setCellValueFactory(new PropertyValueFactory<>("amount_paid"));
+				
+				privileges = new Privileges(empl);
+				
+				if( privileges.hasMoreThanUserStatus() )
+				{
+					setEditableCells();
+				}
 				try
 				{
 					ObservableList<Visits> data = PatientVisits.getPreviousVisits(patient);
@@ -233,5 +254,110 @@ public class PatientVisitsController
 				alert.close();
 			}
 		});
+	}
+	
+	private void setEditableCells()
+	{
+		PrintAndVisit printAndVisit = new PrintAndVisit(patient, empl);
+		amountCol.setCellFactory(TextFieldTableCell.forTableColumn(new StringConverter<BigDecimal>()
+		{
+			@Override
+			public String toString(BigDecimal object)
+			{
+				return object.toString();
+			}
+			
+			@Override
+			public BigDecimal fromString(String string)
+			{
+				return new BigDecimal(string);
+			}
+		}));
+		amountCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>()
+		{
+			@Override
+			public void handle(TableColumn.CellEditEvent event)
+			{
+				Visits visits = (Visits) prevTable.getSelectionModel().getSelectedItem();
+				BigDecimal newValue = (BigDecimal) event.getNewValue();
+				
+				visits.setAmount_paid(newValue);
+				( (Visits) event.getTableView().getItems().get(
+						event.getTablePosition().getRow()) ).setAmount_paid(newValue);
+				event.getTableView().refresh();
+				//todo update the field
+				try
+				{
+					printAndVisit.updateVisit(visits);
+				} catch( IOException|SQLException e )
+				{
+					e.printStackTrace();
+				}
+			}
+		});
+		serviceCol.setCellFactory(TextFieldTableCell.forTableColumn());
+		serviceCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>()
+		{
+			@Override
+			public void handle(TableColumn.CellEditEvent event)
+			{
+				Visits visits = (Visits) prevTable.getSelectionModel().getSelectedItem();
+				
+				( (Visits) event.getTableView().getItems().get(
+						event.getTablePosition().getRow()) ).setServices((String) event.getNewValue());
+				visits.setServices((String) event.getNewValue());
+				event.getTableView().refresh();
+				try
+				{
+					printAndVisit.updateVisit(visits);
+				} catch( IOException|SQLException e )
+				{
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	}
+	
+	public void setUpdatePatientsListener(Stage childStage)
+	{
+		AtomicBoolean firstTime = new AtomicBoolean(false);
+		tabPane.getSelectionModel().selectedItemProperty().addListener(( (observable, oldValue, newValue) -> {
+			if( newValue.getText().equals("Patient Information") && !firstTime.get() )
+			{
+				privileges = new Privileges(empl);
+				if( privileges.hasMoreThanUserStatus() )
+				{
+					firstTime.set(true);
+					name.setDisable(false);
+					age.setDisable(false);
+					maleRadio.setDisable(false);
+					femaleRadio.setDisable(false);
+					id.setDisable(false);
+					phone.setDisable(false);
+					updateInformation.setDisable(false);
+					
+					updateInformation.setOnAction(event -> {
+						Patient patient = new Patient();
+						patient.setId(this.patient.getId());
+						patient.setGovid(id.getText());
+						patient.setPhone(phone.getText());
+						patient.setAge(Integer.valueOf(age.getText()));
+						patient.setName(name.getText());
+						patient.setGender(( (RadioButton) genderToggle.getSelectedToggle() ).getText().charAt(0));
+						
+						AddPatient addPatient = new AddPatient();
+						try
+						{
+							addPatient.updatePatientToDatabase(patient);
+							Toast.makeText(childStage, "Updated!", 3000, 500, 500);
+						} catch( IOException|SQLException e )
+						{
+							e.printStackTrace();
+						}
+					});
+				}
+			}
+		} ));
 	}
 }

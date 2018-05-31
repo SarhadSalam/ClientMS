@@ -2,22 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c85994a2-5f62-41c1-9fce-f9aaf5b92f43" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/27ab97b3-0997-456e-9e01-55e5e70134f5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/27ab97b3-0997-456e-9e01-55e5e70134f5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Progress Trackers/Bugs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Progress Trackers/Bugs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Progress Trackers/Features.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Progress Trackers/Features.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/authentication/EmployeeLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/authentication/EmployeeLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AddPatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AddPatientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/EmployeeLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/EmployeeLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/MenuBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MenuBarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/PatientVisitsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/PatientVisitsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/customers/AddPatient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customers/AddPatient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/customers/PatientVisits.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customers/PatientVisits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/home/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/home/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/properties/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/properties/Properties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/i18n/MessageBundle_ar_SA.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/i18n/MessageBundle_ar_SA.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/i18n/MessageBundle_en_US.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/i18n/MessageBundle_en_US.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/print/PrintAndVisit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/print/PrintAndVisit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/layout/Menubar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layout/Menubar.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/layout/PatientVisits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layout/PatientVisits.fxml" afterDir="false" />
     </list>
@@ -69,6 +62,20 @@
         <item name="hijama_cms@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="hijama_cms: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="employee: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="hijama_cms@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="hijama_cms: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="patient_visit_details: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="hijama_cms@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="hijama_cms: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="patients: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
@@ -112,114 +119,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AddPatientController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controllers/AddPatientController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Features.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Progress Trackers/Features.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+            <state relative-caret-position="126">
+              <caret line="7" column="15" lean-forward="true" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Employee.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/models/Employee.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-              <folding>
-                <element signature="e#533#534#0" expanded="true" />
-                <element signature="e#557#558#0" expanded="true" />
-                <element signature="e#608#609#0" expanded="true" />
-                <element signature="e#643#644#0" expanded="true" />
-                <element signature="e#678#679#0" expanded="true" />
-                <element signature="e#701#702#0" expanded="true" />
-                <element signature="e#750#751#0" expanded="true" />
-                <element signature="e#783#784#0" expanded="true" />
-                <element signature="e#817#818#0" expanded="true" />
-                <element signature="e#839#840#0" expanded="true" />
-                <element signature="e#886#887#0" expanded="true" />
-                <element signature="e#917#918#0" expanded="true" />
-                <element signature="e#951#952#0" expanded="true" />
-                <element signature="e#973#974#0" expanded="true" />
-                <element signature="e#1020#1021#0" expanded="true" />
-                <element signature="e#1051#1052#0" expanded="true" />
-                <element signature="e#1569#1570#0" expanded="true" />
-                <element signature="e#1587#1588#0" expanded="true" />
-                <element signature="e#1629#1630#0" expanded="true" />
-                <element signature="e#1652#1653#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PatientVisitsController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/controllers/PatientVisitsController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="222" column="12" lean-forward="true" selection-start-line="222" selection-start-column="12" selection-end-line="222" selection-end-column="12" />
-              <folding>
-                <element signature="method#setPatient#0;class#PatientVisitsController#0" />
-                <element signature="e#1881#1918#0" />
-                <element signature="e#4109#4717#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PatientVisits.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/customers/PatientVisits.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmployeeLogin.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EmployeeLogin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/authentication/EmployeeLogin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="139" column="28" lean-forward="true" selection-start-line="139" selection-start-column="28" selection-end-line="139" selection-end-column="28" />
+            <state relative-caret-position="308">
+              <caret line="115" column="61" selection-start-line="115" selection-start-column="61" selection-end-line="115" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmployeeLoginController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EmployeeLoginController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/controllers/EmployeeLoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="75" column="4" lean-forward="true" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+            <state relative-caret-position="182">
+              <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#EmployeeLoginController#0" expanded="true" />
+                <element signature="e#1489#1490#0" expanded="true" />
+                <element signature="e#1532#1533#0" expanded="true" />
+                <element signature="method#setLocale#0;class#EmployeeLoginController#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Visits.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/models/Visits.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Home.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/home/Home.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="58" column="4" lean-forward="true" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -231,15 +163,13 @@
       <list>
         <option value="JUnit4 Test Class" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Singleton" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fx:id</find>
-      <find>empl.print</find>
       <find>.matches</find>
       <find>print</find>
       <find>errorPane</find>
@@ -254,7 +184,6 @@
       <find>noUser</find>
       <find>sys</find>
       <find>todo</find>
-      <find>0-9</find>
       <find>addPatientToDatabase</find>
       <find>sear</find>
       <find>alert</find>
@@ -268,6 +197,9 @@
       <find>getEmpl</find>
       <find>Patient Fou</find>
       <find>System.out.println</find>
+      <find>addVis</find>
+      <find>0-9</find>
+      <find>empl.prin</find>
     </findStrings>
     <replaceStrings>
       <replace>fx:id</replace>
@@ -642,8 +574,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/out/production/classes/crypto/keyset.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/crypto/keyset.json" />
         <option value="$PROJECT_DIR$/src/main/java/crypto/Crypto.java" />
         <option value="$PROJECT_DIR$/runtime.txt" />
         <option value="$PROJECT_DIR$/out/production/classes/layout/Home.fxml" />
@@ -668,31 +598,33 @@
         <option value="$PROJECT_DIR$/src/main/java/dev/scratch.java" />
         <option value="$PROJECT_DIR$/src/main/java/i18n/i18n.java" />
         <option value="$PROJECT_DIR$/src/main/java/print/CreateInvoice.java" />
-        <option value="$PROJECT_DIR$/src/main/java/print/PrintAndVisit.java" />
         <option value="$PROJECT_DIR$/src/main/java/print/Print.java" />
         <option value="$PROJECT_DIR$/src/main/resources/user.properties" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/dev/Developer.java" />
         <option value="$PROJECT_DIR$/src/main/java/global.java" />
         <option value="$PROJECT_DIR$/src/main/java/Global.java" />
-        <option value="$PROJECT_DIR$/Progress Trackers/Bugs.txt" />
         <option value="$PROJECT_DIR$/src/main/java/properties/Properties.java" />
         <option value="$PROJECT_DIR$/src/main/resources/layout/Menubar.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/controllers/MenuBarController.java" />
         <option value="$PROJECT_DIR$/src/main/java/k.java" />
         <option value="$PROJECT_DIR$/src/main/java/k.form" />
         <option value="$PROJECT_DIR$/src/main/resources/i18n/MessageBundle_ar_SA.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/controllers/EmployeeLoginController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/customers/AddPatient.java" />
         <option value="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/layout/PatientVisits.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/customers/PatientVisits.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controllers/PatientVisitsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/controllers/AddPatientController.java" />
-        <option value="$PROJECT_DIR$/Progress Trackers/Features.txt" />
         <option value="$PROJECT_DIR$/src/main/java/models/Employee.java" />
         <option value="$PROJECT_DIR$/src/main/java/home/Home.java" />
+        <option value="$PROJECT_DIR$/Progress Trackers/Bugs.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/controllers/AddPatientController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/layout/PatientVisits.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/print/PrintAndVisit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/toasts/Toast.java" />
+        <option value="$PROJECT_DIR$/src/main/java/customers/PatientVisits.java" />
+        <option value="$PROJECT_DIR$/src/main/java/customers/AddPatient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controllers/PatientVisitsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/authentication/Privileges.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controllers/MenuBarController.java" />
+        <option value="$PROJECT_DIR$/Progress Trackers/Features.txt" />
         <option value="$PROJECT_DIR$/src/main/java/authentication/EmployeeLogin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/controllers/EmployeeLoginController.java" />
       </list>
     </option>
   </component>
@@ -731,48 +663,6 @@
             <path>
               <item name="ClientMS" type="b2602c69:ProjectViewProjectNode" />
               <item name="ClientMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="print_dump" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ClientMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ClientMS" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="Progress Trackers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ClientMS" type="b2602c69:ProjectViewProjectNode" />
@@ -852,7 +742,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="home&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/home/Home.java&#10;Employee&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/models/Employee.java&#10;fxml&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/PatientVisits.fxml&#10;controller&#9;PSI&#9;JAVA://controllers.PatientVisitsController&#10;patient&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/AddPatientController.java&#10;visi&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/customers/PatientVisits.java&#10;visit&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/models/Visits.java&#10;Home Con&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;Progress&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/Progress Trackers&#10;men&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/MenuBarController.java&#10;Pr&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/properties/Properties.java&#10;Emplo&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/authentication/EmployeeLogin.java&#10;HomeCon&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;add&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/customers/AddPatient.java&#10;Menu&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/MenuBarController.java&#10;HomeCo&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;Home.&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/Home.fxml&#10;Men&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/Menubar.fxml&#10;Menuba&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/Menubar.fxml&#10;employ&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/EmployeeLogin.fxml&#10;empl&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/authentication/EmployeeLogin.java&#10;EmployeeL&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/EmployeeLogin.fxml&#10;Invoice&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/print/CreateInvoice.java&#10;menu&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/Menubar.fxml&#10;Emplcon&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/EmployeeLoginController.java&#10;emplo&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/EmployeeLogin.fxml&#10;pat&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/PatientVisits.fxml&#10;PatientVisits&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/PatientVisits.fxml&#10;Home&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;Patie&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/models/Patient.java&#10;Patient&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/models/Patient.java&#10;AddPatient&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/AddPatient.fxml&#10;hoco&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;Empl&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/EmployeeLogin.fxml&#10;getConn&#9;PSI&#9;JAVA://authentication.DatabaseConnection#getConnection&#10;env.pro&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/env.properties&#10;getConnection&#9;PSI&#9;JAVA://authentication.DatabaseConnection#getConnection&#10;Emp&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/authentication/EmployeeLogin.java&#10;Login&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/EmployeeLoginController.java" />
+    <property name="SearchEverywhereHistoryKey" value="Emplo&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/authentication/EmployeeLogin.java&#10;fea&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/Progress Trackers/Features.txt&#10;menu&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/MenuBarController.java&#10;Add&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/AddPatientController.java&#10;Patient&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/PatientVisitsController.java&#10;add&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/customers/AddPatient.java&#10;fxml&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/PatientVisits.fxml&#10;control&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/PatientVisitsController.java&#10;bugs&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/Progress Trackers/Bugs.txt&#10;feat&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/Progress Trackers/Features.txt&#10;home&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/home/Home.java&#10;Employee&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/models/Employee.java&#10;controller&#9;PSI&#9;JAVA://controllers.PatientVisitsController&#10;patient&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/AddPatientController.java&#10;visi&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/customers/PatientVisits.java&#10;visit&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/models/Visits.java&#10;Home Con&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;Progress&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/Progress Trackers&#10;men&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/MenuBarController.java&#10;Pr&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/properties/Properties.java&#10;HomeCon&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;Menu&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/MenuBarController.java&#10;HomeCo&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;Home.&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/Home.fxml&#10;Men&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/Menubar.fxml&#10;Menuba&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/Menubar.fxml&#10;employ&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/EmployeeLogin.fxml&#10;empl&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/authentication/EmployeeLogin.java&#10;EmployeeL&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/EmployeeLogin.fxml&#10;Invoice&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/print/CreateInvoice.java&#10;Emplcon&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/EmployeeLoginController.java&#10;emplo&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/EmployeeLogin.fxml&#10;pat&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/PatientVisits.fxml&#10;PatientVisits&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/PatientVisits.fxml&#10;Home&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;Patie&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/models/Patient.java&#10;AddPatient&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/AddPatient.fxml&#10;hoco&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/HomeController.java&#10;Empl&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/layout/EmployeeLogin.fxml&#10;getConn&#9;PSI&#9;JAVA://authentication.DatabaseConnection#getConnection&#10;env.pro&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/resources/env.properties&#10;getConnection&#9;PSI&#9;JAVA://authentication.DatabaseConnection#getConnection&#10;Emp&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/authentication/EmployeeLogin.java&#10;Login&#9;FILE&#9;file:///home/sarhad/Projects/ClientMS/src/main/java/controllers/EmployeeLoginController.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/src/main/resources/env.properties&#10;/home/sarhad/Projects/ClientMS/out/production/classes/crypto/keyset.json" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -1042,12 +932,12 @@
       <workItem from="1527571352426" duration="12535000" />
       <workItem from="1527584143573" duration="11759000" />
       <workItem from="1527652352921" duration="2621000" />
-      <workItem from="1527745653642" duration="7135000" />
+      <workItem from="1527745653642" duration="22790000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140744000" />
+    <option name="totallyTimeSpent" value="156399000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1073,9 +963,9 @@
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3508772" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32928476" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49932525" weight="0.29648608" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49932525" visible="true" weight="0.29648608" />
       <window_info anchor="bottom" id="Problems" order="7" />
-      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.329429" />
+      <window_info anchor="right" id="Database" order="3" weight="0.329429" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32928476" />
       <window_info anchor="right" id="Gradle" order="3" weight="0.329429" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -1134,20 +1024,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/Scene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="2505" column="37" lean-forward="true" selection-start-line="2505" selection-start-column="37" selection-end-line="2505" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/event/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="197" selection-start-line="197" selection-end-line="197" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/scene/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -1212,13 +1088,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
           <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/print/PrintAndVisit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1295,13 +1164,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Progress Trackers/Bugs.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/stage/Stage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -1341,23 +1203,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/MenuBarController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ok.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/k.form" />
     <entry file="file://$PROJECT_DIR$/src/main/java/k.java" />
-    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/event/EventHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/i18n/MessageBundle_en_US.properties">
       <provider editor-type-id="ResourceBundle" />
       <provider selected="true" editor-type-id="text-editor">
@@ -1370,17 +1218,13 @@
       <provider selected="true" editor-type-id="ResourceBundle" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/customers/AddPatient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
-        </state>
-      </provider>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/27ab97b3-0997-456e-9e01-55e5e70134f5/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/HomeController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/home/Home.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="89" column="46" lean-forward="true" selection-start-line="89" selection-start-column="46" selection-end-line="89" selection-end-column="46" />
+        <state relative-caret-position="56">
+          <caret line="49" column="41" lean-forward="true" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1388,47 +1232,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/layout/PatientVisits.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="80" lean-forward="true" selection-start-line="15" selection-start-column="80" selection-end-line="15" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/PatientVisitsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="222" column="12" lean-forward="true" selection-start-line="222" selection-start-column="12" selection-end-line="222" selection-end-column="12" />
-          <folding>
-            <element signature="method#setPatient#0;class#PatientVisitsController#0" />
-            <element signature="e#1881#1918#0" />
-            <element signature="e#4109#4717#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/AddPatientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Progress Trackers/Features.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/customers/PatientVisits.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
         </state>
       </provider>
     </entry>
@@ -1461,31 +1264,142 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/home/Home.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/layout/PatientVisits.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="80" lean-forward="true" selection-start-line="15" selection-start-column="80" selection-end-line="15" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/javafx-src.zip!/javafx/event/EventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="44" column="9" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/print/PrintAndVisit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/HomeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="101" column="36" lean-forward="true" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/AddPatientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="66" column="17" lean-forward="true" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/MenuBarController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3461#3462#0" expanded="true" />
+            <element signature="e#3484#3485#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/toasts/Toast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/customers/AddPatient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
-          <caret line="58" column="4" lean-forward="true" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
+          <caret line="61" column="18" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/authentication/Privileges.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+          <folding>
+            <element signature="e#297#298#0" expanded="true" />
+            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#370#371#0" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#470#471#0" expanded="true" />
+            <element signature="e#532#533#0" expanded="true" />
+            <element signature="e#549#550#0" expanded="true" />
+            <element signature="e#578#579#0" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#635#636#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/customers/PatientVisits.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="66" column="68" selection-start-line="66" selection-start-column="68" selection-end-line="66" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/controllers/PatientVisitsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="341" column="58" selection-start-line="341" selection-start-column="58" selection-end-line="341" selection-end-column="58" />
+          <folding>
+            <element signature="e#2356#2578#0" />
+            <element signature="e#2582#4557#0" />
+            <element signature="e#4561#5864#0" />
+            <element signature="e#6032#7267#0" />
+            <element signature="e#7276#9030#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Progress Trackers/Bugs.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Progress Trackers/Features.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="15" lean-forward="true" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/authentication/EmployeeLogin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="115" column="61" selection-start-line="115" selection-start-column="61" selection-end-line="115" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controllers/EmployeeLoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="75" column="4" lean-forward="true" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+        <state relative-caret-position="182">
+          <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#EmployeeLoginController#0" expanded="true" />
+            <element signature="e#1489#1490#0" expanded="true" />
+            <element signature="e#1532#1533#0" expanded="true" />
+            <element signature="method#setLocale#0;class#EmployeeLoginController#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/27ab97b3-0997-456e-9e01-55e5e70134f5/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/authentication/EmployeeLogin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="139" column="28" lean-forward="true" selection-start-line="139" selection-start-column="28" selection-end-line="139" selection-end-column="28" />
         </state>
       </provider>
     </entry>

@@ -46,6 +46,24 @@ public class AddPatient
 		childStage.showAndWait();
 	}
 	
+	public void updatePatientToDatabase(Patient patient) throws IOException, SQLException
+	{
+		Properties prop = new Properties();
+		DatabaseConnection databaseConnection = new DatabaseConnection();
+		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
+		
+		String statement = "UPDATE patients SET name = ?, age=?, sex=?, govid=?, phone=? where patient_id = ?";
+		PreparedStatement ps = c.prepareStatement(statement);
+		ps.setString(1, patient.getName());
+		ps.setInt(2, patient.getAge());
+		ps.setString(3, String.valueOf(patient.getGender()));
+		ps.setString(4, patient.getGovid());
+		ps.setString(5, patient.getPhone());
+		ps.setInt(6,patient.getId());
+		ps.executeUpdate();
+		c.close();
+	}
+	
 	public static void addPatientToDatabase(Patient patient) throws IOException, SQLException
 	{
 		Properties prop = new Properties();
@@ -90,7 +108,6 @@ public class AddPatient
 			error.getErrors().add("Age can only contain numbers.");
 			isCorrect = false;
 		}
-		
 		if( phone == null || phone.equals("") || !phone.matches("^[0-9]*$") )
 		{
 			error.getErrors().add("Phone can only contain numbers.");

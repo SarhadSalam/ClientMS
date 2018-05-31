@@ -29,6 +29,23 @@ public class PrintAndVisit
 		this.empl = empl;
 	}
 	
+	public void updateVisit(Visits visits) throws IOException, SQLException
+	{
+		Properties prop = new Properties();
+		DatabaseConnection databaseConnection = new DatabaseConnection();
+		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
+		
+		String statement = "UPDATE patient_visit_details SET amount_paid = ?, services = ? WHERE visit_id = ?";
+		
+		PreparedStatement ps = c.prepareStatement(statement);
+		ps.setBigDecimal(1, visits.getAmount_paid());
+		ps.setString(2, visits.getServices());
+		ps.setInt(3, visits.getVisitId());
+		ps.executeUpdate();
+		
+		c.close();
+	}
+	
 	//add to database
 	public Visits addVisit(String services, double amountPaid, Visits visits) throws SQLException, IOException
 	{
@@ -64,16 +81,15 @@ public class PrintAndVisit
 	{
 		boolean isCorrect = true;
 		
-		
-		if(services==null || services.equals(""))
+		if( services == null || services.equals("") )
 		{
-			isCorrect=false;
+			isCorrect = false;
 			error.getErrors().add("Services cannot be empty.");
 		}
 		
-		if(amountPaid==null || amountPaid.equals(""))
+		if( amountPaid == null || amountPaid.equals("") )
 		{
-			isCorrect=false;
+			isCorrect = false;
 			error.getErrors().add("Amount cannot be empty.");
 		}
 		
