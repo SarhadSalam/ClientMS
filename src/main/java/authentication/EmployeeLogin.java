@@ -20,7 +20,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
@@ -107,12 +106,16 @@ public class EmployeeLogin extends Application
 		borderPane.setTop(menu.load());
 		borderPane.setCenter(login.load());
 		
-		primaryStage.setTitle(rs.getString("title_login_screen"));
+		primaryStage.setTitle(rs.getString("title"));
 		primaryStage.setScene(new Scene(borderPane, 600, 400));
 		primaryStage.setResizable(false);
 		primaryStage.getIcons().add(new Image(cl.getResourceAsStream("img/logo.png")));
-		
-		employeeLoginController.setButtonAction();
+		primaryStage.setOnCloseRequest(event -> {
+			PreventClose preventClose = new PreventClose();
+			event.consume();
+			preventClose.createAlert(primaryStage);
+		});
+		employeeLoginController.setButtonAction(primaryStage);
 		menuBarController.setUpMenuBar();
 		menuBarController.setMenuItemOptions(primaryStage);
 		

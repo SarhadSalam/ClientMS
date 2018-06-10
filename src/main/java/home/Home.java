@@ -3,6 +3,7 @@ package home;
 import controllers.HomeController;
 import controllers.MenuBarController;
 import events.LoginEvent;
+import global.Global;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -15,6 +16,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
+import java.util.ResourceBundle;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 06/05/18 Time : 11:32 PM Project Name: ClientMS Class Name: Home
@@ -34,9 +36,14 @@ public class Home
 		//Load Layouts
 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
 		
+		ResourceBundle rs = new i18n.i18n().getResourceBundle(Global.getLocale());
+		
 		//Set the scenes
 		FXMLLoader mainScreen = new FXMLLoader(cl.getResource("layout/Home.fxml"));
 		FXMLLoader menu = new FXMLLoader(cl.getResource("layout/Menubar.fxml"));
+		
+		mainScreen.setResources(rs);
+		menu.setResources(rs);
 		
 		mainScreen.setController(homeController);
 		menu.setController(menuBarController);
@@ -45,7 +52,7 @@ public class Home
 		borderPane.setTop(menu.load());
 		borderPane.setCenter(mainScreen.load());
 		
-		primaryStage.setTitle("Specialized Hijama - Home");
+		primaryStage.setTitle(rs.getString("title")+" - "+rs.getString("home"));
 		primaryStage.setScene(new Scene(borderPane, 600, 400));
 		primaryStage.setResizable(false);
 		primaryStage.getIcons().add(new Image(cl.getResourceAsStream("img/logo.png")));

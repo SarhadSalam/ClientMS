@@ -7,6 +7,7 @@ import errors.ErrorPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
@@ -14,6 +15,7 @@ import models.Patient;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 07/05/18 Time : 11:57 AM Project Name: ClientMS Class Name:
@@ -24,6 +26,9 @@ public class AddPatientController
 	
 	private Employee empl;
 	private ErrorPane errorPaneHandler = new ErrorPane();
+	
+	@FXML
+	public ResourceBundle resources;
 	
 	@FXML
 	public TextField nameField;
@@ -73,10 +78,13 @@ public class AddPatientController
 					} else
 					{
 						Alert alert = new Alert(Alert.AlertType.ERROR);
-						alert.initStyle(StageStyle.UTILITY);
 						alert.setResizable(false);
-						alert.setHeaderText("ID/Phone duplicate.");
-						alert.setContentText("The patient with the following phone/id number already exists. Search for the patient again.");
+						alert.setHeaderText(resources.getString("id_phone_duplicate"));
+						alert.setContentText(resources.getString("duplicate_explanation"));
+						alert.setTitle(resources.getString("duplicate_found"));
+						alert.initOwner(addButton.getScene().getWindow());
+						alert.initModality(Modality.WINDOW_MODAL);
+						alert.getDialogPane().requestFocus();
 						alert.showAndWait();
 					}
 				} catch( IOException|SQLException e )

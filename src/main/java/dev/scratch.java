@@ -1,5 +1,7 @@
 package dev;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -13,7 +15,5 @@ public class scratch
 	
 	public static void main(String[] args)
 	{
-		ResourceBundle resourceBundle = new i18n().getResourceBundle("en", "US");
-		System.out.println(resourceBundle.getString("arabic"));
 	}
 }

@@ -59,7 +59,7 @@ public class AddPatient
 		ps.setString(3, String.valueOf(patient.getGender()));
 		ps.setString(4, patient.getGovid());
 		ps.setString(5, patient.getPhone());
-		ps.setInt(6,patient.getId());
+		ps.setInt(6, patient.getId());
 		ps.executeUpdate();
 		c.close();
 	}
@@ -130,6 +130,10 @@ public class AddPatient
 		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
 		
 		String query = "SELECT * FROM patients where phone"+"='"+identifier+"' OR govid"+"='"+identifier+"'";
+		
+		if( method!=null && method.equals("File No.") )
+			query = "SELECT * FROM patients where patient_id ='"+identifier+"'";
+		
 		ResultSet resultSet = c.createStatement().executeQuery(query);
 		
 		if( resultSet.next() )

@@ -9,24 +9,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="userNameLabel" layoutX="32.0" layoutY="42.0" text="Username">
+      <Label fx:id="userNameLabel" layoutX="32.0" layoutY="37.0" text="Username">
          <font>
             <Font size="21.0" />
          </font></Label>
-      <RadioButton layoutX="42.0" layoutY="165.0" mnemonicParsing="false" selected="true" text="Phone">
+      <RadioButton layoutX="140.0" layoutY="109.0" mnemonicParsing="false" selected="true" text="%method_of_search_id">
          <toggleGroup>
             <ToggleGroup fx:id="searchMethod" />
          </toggleGroup></RadioButton>
-      <RadioButton layoutX="42.0" layoutY="191.0" mnemonicParsing="false" text="National ID/ Iqama" toggleGroup="$searchMethod" />
-      <TextField fx:id="searchBar" layoutX="197.0" layoutY="170.0" prefHeight="26.0" prefWidth="207.0" promptText="Phone/National ID/Iqama No." />
-      <Button fx:id="searchButton" layoutX="412.0" layoutY="170.0" mnemonicParsing="false" text="Search" />
-      <Label layoutX="197.0" layoutY="115.0" text="Search for patient:">
+      <RadioButton layoutX="378.0" layoutY="109.0" mnemonicParsing="false" text="%file_no" toggleGroup="$searchMethod" />
+      <TextField fx:id="searchBar" layoutX="152.0" layoutY="142.0" prefHeight="26.0" prefWidth="207.0" promptText="%method_of_search_id" />
+      <Button fx:id="searchButton" layoutX="377.0" layoutY="142.0" mnemonicParsing="false" text="%search" />
+      <Label layoutX="192.0" layoutY="68.0" text="%search_patient">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <ListView fx:id="errorPane" layoutX="188.0" layoutY="270.0" prefHeight="116.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Button layoutX="265.0" layoutY="187.0" mnemonicParsing="false" text="B" />
    </children>
 </AnchorPane>

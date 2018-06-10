@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
@@ -121,7 +122,7 @@ public class PatientVisitsController
 					e.printStackTrace();
 				}
 				childStage.close();
-				
+				Toast.makeText(null, "Recorded", 3000, 500, 500);
 				if( print )
 				{
 					String filename = null;
@@ -141,8 +142,10 @@ public class PatientVisitsController
 						alert.setResizable(false);
 						alert.setHeaderText("Printing in progress.");
 						alert.setContentText("Print job name: "+jobName);
-						alert.initStyle(StageStyle.UTILITY);
-						
+						alert.setTitle("Printing");
+						alert.initOwner(recordButton.getScene().getWindow());
+						alert.initModality(Modality.WINDOW_MODAL);
+						alert.getDialogPane().requestFocus();
 						Thread thread = new Thread(() -> {
 							try
 							{
@@ -227,10 +230,13 @@ public class PatientVisitsController
 				alert.setHeaderText("Loading previous visits.");
 				alert.setContentText("Please wait while the visits are being loaded.");
 				alert.getButtonTypes().removeAll();
-				alert.initStyle(StageStyle.UTILITY);
+				alert.initModality(Modality.WINDOW_MODAL);
+				alert.initOwner(recordButton.getScene().getWindow());
 				alert.setResizable(false);
+				alert.getDialogPane().requestFocus();
 				alert.show();
 				firstTime.set(true);
+				
 				visitCol.setCellValueFactory(new PropertyValueFactory<>("visitId"));
 				dateCol.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
 				serviceCol.setCellValueFactory(new PropertyValueFactory<>("services"));
@@ -285,10 +291,11 @@ public class PatientVisitsController
 				( (Visits) event.getTableView().getItems().get(
 						event.getTablePosition().getRow()) ).setAmount_paid(newValue);
 				event.getTableView().refresh();
-				//todo update the field
 				try
 				{
 					printAndVisit.updateVisit(visits);
+					Toast.makeText((Stage) recordButton.getScene().getWindow(), "Updated", 3000, 500, 500);
+					
 				} catch( IOException|SQLException e )
 				{
 					e.printStackTrace();
@@ -309,6 +316,7 @@ public class PatientVisitsController
 				event.getTableView().refresh();
 				try
 				{
+					Toast.makeText((Stage) recordButton.getScene().getWindow(), "Updated", 3000, 500, 500);
 					printAndVisit.updateVisit(visits);
 				} catch( IOException|SQLException e )
 				{
@@ -349,8 +357,14 @@ public class PatientVisitsController
 						AddPatient addPatient = new AddPatient();
 						try
 						{
-							addPatient.updatePatientToDatabase(patient);
-							Toast.makeText(childStage, "Updated!", 3000, 500, 500);
+							if( addPatient.searchForPatient(patient.getGovid(), null, patient) && addPatient.searchForPatient(patient.getPhone(), null, patient) )
+							{
+								addPatient.updatePatientToDatabase(patient);
+								Toast.makeText(childStage, "Updated!", 3000, 500, 500);
+							} else
+							{
+								Toast.makeText(childStage, "Record exists. Failed to update.", 3000, 500, 500);
+							}
 						} catch( IOException|SQLException e )
 						{
 							e.printStackTrace();

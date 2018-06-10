@@ -7,9 +7,6 @@ import java.util.Locale;
  */
 public class Global
 {
-	public void hoe(){
-	
-	}
 	private static Locale locale=new Locale("en", "US");
 	
 	public static Locale getLocale()
@@ -20,5 +17,11 @@ public class Global
 	public static void setLocale(Locale locale)
 	{
 		Global.locale = locale;
+	}
+	
+	public static String getVersion()
+	{
+		//todo add to env variable
+		return "1.0.0";
 	}
 }

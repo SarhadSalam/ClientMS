@@ -73,7 +73,6 @@ public class PatientVisits
 	
 	public static ObservableList<Visits> getPreviousVisits(Patient patient) throws IOException, SQLException
 	{
-		//todo get all the visits and add t the list
 		Properties prop = new Properties();
 		Employee empl = new Employee();
 		DatabaseConnection databaseConnection = new DatabaseConnection();

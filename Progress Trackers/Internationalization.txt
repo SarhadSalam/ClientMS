@@ -1,1 +1,1 @@
-1. Employee Login (java & fxml) is complete.
+1. Authentication package complete.

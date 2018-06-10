@@ -7,6 +7,8 @@ import errors.ErrorPane;
 import home.Home;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -16,6 +18,7 @@ import models.Patient;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 06/05/18 Time : 11:29 PM Project Name: ClientMS Class Name:
@@ -27,6 +30,9 @@ public class HomeController
 	private Employee empl;
 	private AddPatient addPatient = new AddPatient();
 	private ErrorPane errorPaneHandler = new ErrorPane();
+	
+	@FXML
+	public ResourceBundle resources;
 	
 	@FXML
 	private ToggleGroup searchMethod;
@@ -46,6 +52,13 @@ public class HomeController
 	//when button is clicked
 	public void setButtonAction()
 	{
+		( (Stage) searchButton.getScene().getWindow() ).addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+			if( ev.getCode() == KeyCode.ENTER )
+			{
+				searchButton.fire();
+			}
+		});
+		
 		searchButton.setOnAction(event -> {
 			RadioButton selectedButton = (RadioButton) searchMethod.getSelectedToggle();
 			
@@ -65,18 +78,21 @@ public class HomeController
 				//patient found
 				if( !resultOfSearch )
 				{
-					ButtonType addPatientButton = new ButtonType("Add Patient", ButtonBar.ButtonData.OK_DONE);
-					ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+					ButtonType addPatientButton = new ButtonType(resources.getString("add_patient"), ButtonBar.ButtonData.OK_DONE);
+					ButtonType cancel = new ButtonType(resources.getString("cancel"), ButtonBar.ButtonData.CANCEL_CLOSE);
 					
 					Alert alert = new Alert(Alert.AlertType.INFORMATION);
-					alert.setHeaderText("Patient Not Found.");
-					alert.setContentText("Please check your information is correct or \nadd a new patient.");
-					alert.initStyle(StageStyle.UTILITY);
+					alert.setHeaderText(resources.getString("patient_not_found"));
+					alert.setContentText(resources.getString("check_info_patient_not_found"));
+					alert.setTitle(resources.getString("add_patient"));
 					alert.setResizable(false);
 					alert.getButtonTypes().remove(ButtonType.OK);
-					alert.getButtonTypes().add(addPatientButton);
 					alert.getButtonTypes().add(cancel);
-					alert.initModality(Modality.APPLICATION_MODAL);
+					alert.getButtonTypes().add(addPatientButton);
+					alert.initOwner(searchBar.getScene().getWindow());
+					alert.initModality(Modality.WINDOW_MODAL);
+					alert.getDialogPane().requestFocus();
+					
 					Optional<ButtonType> userOption = alert.showAndWait();
 					
 					if( userOption.isPresent() )
@@ -126,6 +142,6 @@ public class HomeController
 	
 	public void setEmployeeInformation()
 	{
-		userNameLabel.setText("Hello, "+empl.getFirst_name()+" "+empl.getLast_name());
+		userNameLabel.setText(resources.getString("greeting_empl")+empl.getFirst_name()+" "+empl.getLast_name());
 	}
 }

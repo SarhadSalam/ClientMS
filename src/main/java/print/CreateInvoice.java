@@ -33,6 +33,7 @@ public class CreateInvoice
 			forms.get(i).setValue(customerDetails.get(i));
 		}
 		
+		//todo remove this
 		//set the patientNameField
 		String filename ="/home/sarhad/Projects/ClientMS/print_dump/Invoice"+System.currentTimeMillis()+".pdf";
 		pdDocument.save(filename);

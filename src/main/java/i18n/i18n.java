@@ -21,6 +21,12 @@ public class i18n
 		Locale locale = new Locale(lang, country);
 		return ResourceBundle.getBundle("i18n/MessageBundle", locale, new UTF8Control());
 	}
+	
+	public ResourceBundle getResourceBundle(Locale locale)
+	{
+		return ResourceBundle.getBundle("i18n/MessageBundle", locale, new UTF8Control());
+	}
+	
 	//loads the resource bundle as utf 8 instead of ascii
 	public class UTF8Control extends ResourceBundle.Control
 	{

@@ -4,16 +4,20 @@ import errors.Error;
 import errors.ErrorPane;
 import events.LoginEvent;
 import home.Home;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
 import org.greenrobot.eventbus.EventBus;
+import toasts.Toast;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -41,8 +45,6 @@ public class EmployeeLoginController
 	private ErrorPane errorPaneHandler = new ErrorPane();
 	
 	@FXML
-	public AnchorPane menubarInclude;
-	@FXML
 	public ResourceBundle resources;
 	@FXML
 	public AnchorPane anchorPane;
@@ -61,7 +63,7 @@ public class EmployeeLoginController
 	@FXML
 	public ListView<String> errorPane;
 	
-	public void setButtonAction()
+	public void setButtonAction(Stage primaryStage)
 	{
 		signIn.setOnAction(this::signUserIn);
 	}
@@ -91,7 +93,9 @@ public class EmployeeLoginController
 			alert.setHeaderText(resources.getString("signing_in"));
 			alert.setContentText(resources.getString("sign_in_wait"));
 			alert.setResizable(false);
-			alert.initStyle(StageStyle.UTILITY);
+			alert.initOwner(username.getScene().getWindow());
+			alert.initModality(Modality.WINDOW_MODAL);
+			alert.getDialogPane().requestFocus();
 			alert.show();
 			
 			//The login was a success
@@ -99,15 +103,10 @@ public class EmployeeLoginController
 			Employee empl = null;
 			try
 			{
-				try
-				{
-					empl = userExists(username.getText(), password.getText());
-				} catch( GeneralSecurityException|URISyntaxException e )
-				{
-					e.printStackTrace();
-				}
-			} catch( IOException|SQLException e )
+				empl = userExists(username.getText(), password.getText());
+			} catch( IOException|SQLException|GeneralSecurityException|URISyntaxException e )
 			{
+				Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
 				e.printStackTrace();
 			}
 			
@@ -136,9 +135,13 @@ public class EmployeeLoginController
 				Alert noUser = new Alert(Alert.AlertType.ERROR);
 				noUser.setHeaderText(resources.getString("no_user"));
 				noUser.setContentText(resources.getString("sign_in_fail"));
-				noUser.initStyle(StageStyle.UTILITY);
+				noUser.initOwner(username.getScene().getWindow());
 				noUser.setResizable(false);
+				noUser.initOwner(username.getScene().getWindow());
 				alert.close();
+				noUser.getButtonTypes().clear();
+				noUser.getButtonTypes().addAll(ButtonType.OK);
+				noUser.getDialogPane().requestFocus();
 				noUser.showAndWait();
 			}
 		}

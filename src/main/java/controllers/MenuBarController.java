@@ -1,19 +1,27 @@
 package controllers;
 
 import authentication.EmployeeLogin;
+import authentication.PreventClose;
 import authentication.Privileges;
+import global.Global;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import models.Employee;
+import statistics.PatientStatistics;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ResourceBundle;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 19/05/18 Time : 11:24 AM Project Name: ClientMS Class Name:
@@ -24,6 +32,9 @@ public class MenuBarController
 	
 	private Employee empl;
 	private boolean userInfoAvailable = false;
+	
+	@FXML
+	public ResourceBundle resources;
 	
 	@FXML
 	public MenuBar menubar;
@@ -55,9 +66,7 @@ public class MenuBarController
 		final Timeline timeline = new Timeline(
 				new KeyFrame(
 						Duration.millis(1000),
-						event -> timeLabel.setText(timeFormat.format(System.currentTimeMillis()))
-				)
-		);
+						event -> timeLabel.setText(timeFormat.format(System.currentTimeMillis()))));
 		timeline.setCycleCount(Animation.INDEFINITE);
 		timeline.play();
 	}
@@ -65,7 +74,9 @@ public class MenuBarController
 	public void setMenuItemOptions(Stage stage)
 	{
 		closeItem.setOnAction(event -> {
-			stage.close();
+			PreventClose preventClose = new PreventClose();
+			event.consume();
+			preventClose.createAlert(stage);
 		});
 		
 		signOutItem.setOnAction(event -> {
@@ -86,15 +97,26 @@ public class MenuBarController
 		
 		aboutItem.setOnAction(event -> {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setHeaderText("Specialized Hijama - Client Management System - 1.0.0");
+			alert.setHeaderText(resources.getString("title")+" - "+ resources.getString("software_name")+Global.getVersion());
 			
-			alert.setContentText("The following software is used to maintain the clients of the Hijama clinic. \n The software is developed by Sarhad Maisoon Salam.+\n"+
-					"Copyright (c) [2018] [Sarhad Salam] Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n"+
-					"The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n"+
-					"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.");
-			alert.setTitle("About");
-			alert.initStyle(StageStyle.UTILITY);
+			alert.setContentText(resources.getString("about_license"));
+			alert.setTitle(resources.getString("about"));
+			alert.initModality(Modality.WINDOW_MODAL);
+			alert.initOwner(stage);
+			alert.setResizable(true);
+			alert.getDialogPane().requestFocus();
 			alert.showAndWait();
+		});
+		
+		statItem.setOnAction(event -> {
+			PatientStatistics ps = new PatientStatistics();
+			try
+			{
+				ps.start((Stage) menubar.getScene().getWindow(), empl);
+			} catch( IOException e )
+			{
+				e.printStackTrace();
+			}
 		});
 	}
 	
