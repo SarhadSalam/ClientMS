@@ -3,6 +3,7 @@ package home;
 import controllers.HomeController;
 import controllers.MenuBarController;
 import events.LoginEvent;
+import events.MessageEvent;
 import global.Global;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class Home
 {
+	
 	private Employee empl;
 	private HomeController homeController = new HomeController();
 	private MenuBarController menuBarController = new MenuBarController();
@@ -64,12 +66,19 @@ public class Home
 	}
 	
 	@Subscribe
+	public void onMessageEvent(MessageEvent event)
+	{
+		menuBarController.showToast(event.message);
+	}
+	
+	@Subscribe
 	public void onLoginEvent(LoginEvent event)
 	{
 		empl = event.employee;
 		homeController.setEmpl(empl);
 		homeController.setEmployeeInformation();
 		menuBarController.setEmployee(empl);
+		homeController.handleAmountRefresh();
 		menuBarController.setUpMenuBar();
 	}
 }

@@ -16,7 +16,6 @@
             <Menu fx:id="userMenu" text="_User">
                 <items>
                     <MenuItem fx:id="signOutItem" text="_Sign Out" />
-               <MenuItem fx:id="statItem" text="_View Statistic" />
                 </items>
             </Menu>
             <Menu text="_Help">
@@ -25,6 +24,13 @@
                     <MenuItem fx:id="aboutItem" text="_About" />
                 </items>
             </Menu>
+         <Menu fx:id="managementMenu" mnemonicParsing="false" text="_Management">
+           <items>
+               <MenuItem fx:id="statItem" text="_Patient Stats" />
+               <MenuItem fx:id="employeeStatsItem" mnemonicParsing="false" text="_Employee Stats" />
+               <MenuItem mnemonicParsing="false" text="_Employees" />
+           </items>
+         </Menu>
          <Menu fx:id="timeLabel" disable="true" mnemonicParsing="false" text="Time" />
         </menus>
     </MenuBar>

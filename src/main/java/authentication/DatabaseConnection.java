@@ -18,7 +18,6 @@ public class DatabaseConnection
 	* */
 	public Connection getConnection(String username, String password) throws SQLException, IOException
 	{
-		
 		Properties p = new Properties();
 		//get the data source driver
 		MysqlDataSource dataSource = new MysqlDataSource();

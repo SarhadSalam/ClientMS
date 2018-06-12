@@ -2,7 +2,6 @@ package controllers;
 
 import errors.Error;
 import errors.ErrorPane;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -10,15 +9,13 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import statistics.StatisticsAlgorithm;
+import statistics.PatientStatisticsAlgorithm;
 import toasts.Toast;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 03/06/18 Time : 5:08 PM Project Name: ClientMS Class Name:
@@ -84,10 +81,10 @@ public class PatientStatisticsController
 			{
 				long numberOfDays = getNumberOfDays();
 				
-				StatisticsAlgorithm statisticsAlgorithm = new StatisticsAlgorithm();
+				PatientStatisticsAlgorithm patientStatisticsAlgorithm = new PatientStatisticsAlgorithm();
 				try
 				{
-					HashMap<String, StatisticsAlgorithm.VisitGroupType> map = statisticsAlgorithm.getList(numberOfDays, toDate.getEditor().getText(), fromDate.getEditor().getText());
+					HashMap<String, PatientStatisticsAlgorithm.VisitGroupType> map = patientStatisticsAlgorithm.getList(numberOfDays, toDate.getEditor().getText(), fromDate.getEditor().getText());
 					if( map == null )
 					{
 						Toast.makeText((Stage) submitButton.getScene().getWindow(), "No patients in that period.", 3000, 500, 500);
@@ -123,9 +120,9 @@ public class PatientStatisticsController
 		return true;
 	}
 	
-	private void setTable(HashMap<String, StatisticsAlgorithm.VisitGroupType> map)
+	private void setTable(HashMap<String, PatientStatisticsAlgorithm.VisitGroupType> map)
 	{
-		ArrayList<StatisticsAlgorithm.VisitGroupType> values = new ArrayList<>(map.values());
+		ArrayList<PatientStatisticsAlgorithm.VisitGroupType> values = new ArrayList<>(map.values());
 		patientCountTable.getItems().clear();
 		patientViewsTable.getItems().clear();
 		
@@ -138,7 +135,7 @@ public class PatientStatisticsController
 		patientCountTable.setItems(FXCollections.observableArrayList(values));
 	}
 	
-	private void setChart(HashMap<String, StatisticsAlgorithm.VisitGroupType> map)
+	private void setChart(HashMap<String, PatientStatisticsAlgorithm.VisitGroupType> map)
 	{
 		String from = fromDate.getEditor().getText();
 		String to = toDate.getEditor().getText();

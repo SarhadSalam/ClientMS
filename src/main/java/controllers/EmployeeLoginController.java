@@ -90,13 +90,14 @@ public class EmployeeLoginController
 		{
 			//if input was successfull, popup a dialog and start the login code
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setTitle(resources.getString("signing_in"));
 			alert.setHeaderText(resources.getString("signing_in"));
 			alert.setContentText(resources.getString("sign_in_wait"));
 			alert.setResizable(false);
 			alert.initOwner(username.getScene().getWindow());
 			alert.initModality(Modality.WINDOW_MODAL);
-			alert.getDialogPane().requestFocus();
 			alert.show();
+			alert.getDialogPane().requestFocus();
 			
 			//The login was a success
 			

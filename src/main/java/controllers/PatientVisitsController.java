@@ -5,6 +5,7 @@ import customers.AddPatient;
 import customers.PatientVisits;
 import errors.Error;
 import errors.ErrorPane;
+import events.MessageEvent;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -19,6 +20,7 @@ import javafx.util.StringConverter;
 import models.Employee;
 import models.Patient;
 import models.Visits;
+import org.greenrobot.eventbus.EventBus;
 import print.CreateInvoice;
 import print.Print;
 import print.PrintAndVisit;
@@ -28,6 +30,7 @@ import java.awt.print.PrinterException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -46,6 +49,9 @@ public class PatientVisitsController
 	private ErrorPane errorPaneHandler = new ErrorPane();
 	private Visits visits = new Visits();
 	private Privileges privileges;
+	
+	@FXML
+	public ResourceBundle resources;
 	
 	@FXML
 	public RadioButton maleRadio, femaleRadio;
@@ -87,16 +93,16 @@ public class PatientVisitsController
 		name.setText(patient.getName());
 		if( String.valueOf(patient.getGender()).equals("F") ) genderToggle.selectToggle(femaleRadio);
 		age.setText(String.valueOf(patient.getAge()));
-		id.setText(( patient.getGovid() != null ) ? patient.getGovid() : "Not available");
-		phone.setText(( patient.getPhone() != null ) ? patient.getPhone() : "Not available");
+		id.setText(( patient.getGovid() != null ) ? patient.getGovid() : resources.getString("not_available"));
+		phone.setText(( patient.getPhone() != null ) ? patient.getPhone() : resources.getString("not_available"));
 	}
 	
 	public void setEmpl(Employee empl)
 	{
 		this.empl = empl;
 	}
-	
 	public void setButtonAction(Stage childStage)
+	
 	{
 		cancelButton.setOnAction(event -> {
 			childStage.close();
@@ -122,7 +128,7 @@ public class PatientVisitsController
 					e.printStackTrace();
 				}
 				childStage.close();
-				Toast.makeText(null, "Recorded", 3000, 500, 500);
+				EventBus.getDefault().post(new MessageEvent(resources.getString("recorded")));
 				if( print )
 				{
 					String filename = null;
@@ -140,9 +146,9 @@ public class PatientVisitsController
 						
 						Alert alert = new Alert(Alert.AlertType.INFORMATION);
 						alert.setResizable(false);
-						alert.setHeaderText("Printing in progress.");
-						alert.setContentText("Print job name: "+jobName);
-						alert.setTitle("Printing");
+						alert.setHeaderText(resources.getString("printing_job_header"));
+						alert.setContentText(resources.getString("print_job_name")+jobName);
+						alert.setTitle(resources.getString("print_title"));
 						alert.initOwner(recordButton.getScene().getWindow());
 						alert.initModality(Modality.WINDOW_MODAL);
 						alert.getDialogPane().requestFocus();

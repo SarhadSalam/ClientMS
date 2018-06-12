@@ -1,6 +1,7 @@
 package statistics;
 
 import authentication.DatabaseConnection;
+import database.GetResultSet;
 import models.Visits;
 import properties.Properties;
 
@@ -15,9 +16,9 @@ import java.util.LinkedHashMap;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 04/06/18 Time : 12:31 PM Project Name: ClientMS Class Name:
- * StatisticsAlgorithm
+ * PatientStatisticsAlgorithm
  */
-public class StatisticsAlgorithm
+public class PatientStatisticsAlgorithm
 {
 	
 	public class VisitGroupType{
@@ -94,26 +95,6 @@ public class StatisticsAlgorithm
 		//todo: alternate query is remove DATE cast and se >= and < instead of between
 		String query = "SELECT visit_id, patient_id, employee_entered, services, amount_paid, creation_date FROM patient_visit_details where DATE(creation_date) BETWEEN STR_TO_DATE('"+from+"', '%d/%m/%Y') AND STR_TO_DATE('"+to+"', '%d/%m/%Y') ORDER BY creation_date asc";
 		
-		Properties prop = new Properties();
-		DatabaseConnection databaseConnection = new DatabaseConnection();
-		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
-		
-		ResultSet resultSet = c.createStatement().executeQuery(query);
-		
-		ArrayList<Visits> visitsInTime = new ArrayList<>();
-		
-		while(resultSet.next())
-		{
-			Visits visits = new Visits();
-			visits.setEmployeeEntered(resultSet.getString("employee_entered"));
-			visits.setAmount_paid(resultSet.getBigDecimal("amount_paid"));
-			visits.setPatientId(resultSet.getInt("patient_id"));
-			visits.setServices(resultSet.getString("services"));
-			visits.setTimestamp(resultSet.getTimestamp("creation_date"));
-			visits.setVisitId(resultSet.getInt("visit_id"));
-			
-			visitsInTime.add(visits);
-		}
-		return visitsInTime;
+		return new GetResultSet().getVisits(query);
 	}
 }

@@ -1,6 +1,1 @@
-1. Print the receipt after a visit is added
-2. Handle when enter/esc is pressed
-3. Make the menu bar workable
-4. Implement logout
-5. Implement inactivity counter to log out
 6. Make it pretty

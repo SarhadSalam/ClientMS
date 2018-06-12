@@ -81,6 +81,28 @@
     <orderEntry type="module-library" scope="PROVIDED">
       <library>
         <CLASSES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4/1aa1579ae5ecd41920c4f355b0a9ef40b68315dd/mail-1.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4/fdd508f19a5075196138c94b341120e917c10e8a/mail-1.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1.1/485de3a253e23f645037828c07f1d7f1af40763a/activation-1.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1.1/159e45688875fdabff19c9ceb7335aefe4df8339/activation-1.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
           <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.11.166/33a4c0d5c26c4ab6bb14c1d80cdec435f837d887/aws-java-sdk-kms-1.11.166.jar!/"/>
         </CLASSES>
         <JAVADOC/>
@@ -464,6 +486,28 @@
     <orderEntry type="module-library" scope="RUNTIME">
       <library>
         <CLASSES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4/1aa1579ae5ecd41920c4f355b0a9ef40b68315dd/mail-1.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4/fdd508f19a5075196138c94b341120e917c10e8a/mail-1.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="RUNTIME">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1.1/485de3a253e23f645037828c07f1d7f1af40763a/activation-1.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1.1/159e45688875fdabff19c9ceb7335aefe4df8339/activation-1.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="RUNTIME">
+      <library>
+        <CLASSES>
           <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.11.166/33a4c0d5c26c4ab6bb14c1d80cdec435f837d887/aws-java-sdk-kms-1.11.166.jar!/"/>
         </CLASSES>
         <JAVADOC/>
@@ -841,6 +885,28 @@
         <JAVADOC/>
         <SOURCES>
           <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.6/2566800dc841d9d2c5a0d34d807e45d4107dbbdf/commons-io-2.6-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4/1aa1579ae5ecd41920c4f355b0a9ef40b68315dd/mail-1.4.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.mail/mail/1.4/fdd508f19a5075196138c94b341120e917c10e8a/mail-1.4-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" scope="TEST">
+      <library>
+        <CLASSES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1.1/485de3a253e23f645037828c07f1d7f1af40763a/activation-1.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///home/sarhad/.gradle/caches/modules-2/files-2.1/javax.activation/activation/1.1.1/159e45688875fdabff19c9ceb7335aefe4df8339/activation-1.1.1-sources.jar!/"/>
         </SOURCES>
       </library>
     </orderEntry>

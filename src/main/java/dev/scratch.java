@@ -1,19 +1,28 @@
 package dev;
 
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.security.Security;
+import java.util.Properties;
 
-/**
- * Class Details:- Author: Sarhad User: sarhad Date: 29/05/18 Time : 12:09 PM Project Name: ClientMS Class Name:
- * scratch
- */
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
-import i18n.i18n;
 public class scratch
 {
 	
-	public static void main(String[] args)
+	private static final String SMTP_HOST_NAME = "smtp.gmail.com";
+	private static final String SMTP_PORT = "465";
+	private static final String emailMsgTxt = "Test Message Contents";
+	private static final String emailSubjectTxt = "A test from gmail";
+	private static final String emailFromAddress = "";
+	private static final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+	private static final String sendTo = "sarhadmaisoon18@gmail.com";
+	
+	public static void main(String args[]) throws Exception
 	{
 	}
 }

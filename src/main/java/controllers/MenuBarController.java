@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import models.Employee;
 import statistics.PatientStatistics;
+import toasts.Toast;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -40,10 +41,10 @@ public class MenuBarController
 	public MenuBar menubar;
 	
 	@FXML
-	public Menu userMenu, timeLabel;
+	public Menu userMenu, timeLabel, managementMenu;
 	
 	@FXML
-	public MenuItem closeItem, signOutItem, statItem, fileBugItem, aboutItem;
+	public MenuItem closeItem, signOutItem, statItem, fileBugItem, aboutItem, emploteeStatesItem;
 	
 	public void setUpMenuBar()
 	{
@@ -51,6 +52,7 @@ public class MenuBarController
 		if( empl == null )
 		{
 			menubar.getMenus().remove(userMenu);
+			menubar.getMenus().remove(managementMenu);
 		}
 		
 		if( empl != null )
@@ -58,7 +60,7 @@ public class MenuBarController
 			Privileges privileges = new Privileges(empl);
 			if( privileges.hasUserStatus() )
 			{
-				userMenu.getItems().remove(statItem);
+				menubar.getMenus().remove(managementMenu);
 			}
 		}
 		
@@ -123,5 +125,11 @@ public class MenuBarController
 	public void setEmployee(Employee empl)
 	{
 		this.empl = empl;
+	}
+	
+	public void showToast(String message)
+	{
+		Toast.makeText((Stage) menubar.getScene().getWindow(), message, 3000, 500, 500);
+		
 	}
 }

@@ -14,9 +14,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
 import models.Patient;
+import statistics.EmployeeStatisticsAlgorithm;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -38,10 +41,10 @@ public class HomeController
 	private ToggleGroup searchMethod;
 	
 	@FXML
-	private Label userNameLabel;
+	private Label userNameLabel, amountEarnedLabel;
 	
 	@FXML
-	private Button searchButton;
+	private Button searchButton, refreshAmountButton;
 	
 	@FXML
 	private TextField searchBar;
@@ -60,79 +63,109 @@ public class HomeController
 		});
 		
 		searchButton.setOnAction(event -> {
-			RadioButton selectedButton = (RadioButton) searchMethod.getSelectedToggle();
-			
-			Patient patient = new Patient();
-			boolean resultOfSearch = false;
-			Error error = new Error();
-			if( addPatient.validateSearchPatientInput(searchBar.getText(), error) )
+			handleSearch();
+		});
+		
+		refreshAmountButton.setOnAction(event -> {
+			handleAmountRefresh();
+		});
+	}
+	
+	public void handleAmountRefresh()
+	{
+		EmployeeStatisticsAlgorithm employeeStatisticsAlgorithm = new EmployeeStatisticsAlgorithm();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		try
+		{
+			String total = employeeStatisticsAlgorithm.getEarning(empl, simpleDateFormat.format(date), simpleDateFormat.format(date));
+			if( total != null && !total.equals("") ) {
+				amountEarnedLabel.setText(total+" SAR");
+				amountEarnedLabel.setStyle("-fx-color: green");
+			} else {
+				amountEarnedLabel.setText("No earnings today");
+				amountEarnedLabel.setStyle("-fx-color: red");
+			}
+		} catch( IOException|SQLException e )
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	private void handleSearch()
+	{
+		RadioButton selectedButton = (RadioButton) searchMethod.getSelectedToggle();
+		
+		Patient patient = new Patient();
+		boolean resultOfSearch = false;
+		Error error = new Error();
+		if( addPatient.validateSearchPatientInput(searchBar.getText(), error) )
+		{
+			try
 			{
-				try
-				{
-					resultOfSearch = addPatient.searchForPatient(searchBar.getText(), selectedButton.getText(), patient);
-				} catch( IOException|SQLException e )
-				{
-					e.printStackTrace();
-				}
+				resultOfSearch = addPatient.searchForPatient(searchBar.getText(), selectedButton.getText(), patient);
+			} catch( IOException|SQLException e )
+			{
+				e.printStackTrace();
+			}
+			
+			//patient found
+			if( !resultOfSearch )
+			{
+				ButtonType addPatientButton = new ButtonType(resources.getString("add_patient"), ButtonBar.ButtonData.OK_DONE);
+				ButtonType cancel = new ButtonType(resources.getString("cancel"), ButtonBar.ButtonData.CANCEL_CLOSE);
 				
-				//patient found
-				if( !resultOfSearch )
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setHeaderText(resources.getString("patient_not_found"));
+				alert.setContentText(resources.getString("check_info_patient_not_found"));
+				alert.setTitle(resources.getString("add_patient"));
+				alert.setResizable(false);
+				alert.getButtonTypes().remove(ButtonType.OK);
+				alert.getButtonTypes().add(cancel);
+				alert.getButtonTypes().add(addPatientButton);
+				alert.initOwner(searchBar.getScene().getWindow());
+				alert.initModality(Modality.WINDOW_MODAL);
+				alert.getDialogPane().requestFocus();
+				
+				Optional<ButtonType> userOption = alert.showAndWait();
+				
+				if( userOption.isPresent() )
 				{
-					ButtonType addPatientButton = new ButtonType(resources.getString("add_patient"), ButtonBar.ButtonData.OK_DONE);
-					ButtonType cancel = new ButtonType(resources.getString("cancel"), ButtonBar.ButtonData.CANCEL_CLOSE);
-					
-					Alert alert = new Alert(Alert.AlertType.INFORMATION);
-					alert.setHeaderText(resources.getString("patient_not_found"));
-					alert.setContentText(resources.getString("check_info_patient_not_found"));
-					alert.setTitle(resources.getString("add_patient"));
-					alert.setResizable(false);
-					alert.getButtonTypes().remove(ButtonType.OK);
-					alert.getButtonTypes().add(cancel);
-					alert.getButtonTypes().add(addPatientButton);
-					alert.initOwner(searchBar.getScene().getWindow());
-					alert.initModality(Modality.WINDOW_MODAL);
-					alert.getDialogPane().requestFocus();
-					
-					Optional<ButtonType> userOption = alert.showAndWait();
-					
-					if( userOption.isPresent() )
+					if( userOption.get().getButtonData() == ButtonBar.ButtonData.OK_DONE )
 					{
-						if( userOption.get().getButtonData() == ButtonBar.ButtonData.OK_DONE )
+						//start a new scene to add a patient, the old scene should become unclickable on addition of new one
+						AddPatient addPatient = new AddPatient();
+						try
 						{
-							//start a new scene to add a patient, the old scene should become unclickable on addition of new one
-							AddPatient addPatient = new AddPatient();
-							try
-							{
-								alert.close();
-								addPatient.start((Stage) searchBar.getScene().getWindow(), empl, patient);
-							} catch( IOException e )
-							{
-								patient = null;
-								//in case cannot be inserted
-								resultOfSearch = false;
-								e.printStackTrace();
-							}
+							alert.close();
+							addPatient.start((Stage) searchBar.getScene().getWindow(), empl, patient);
+						} catch( IOException e )
+						{
+							patient = null;
+							//in case cannot be inserted
+							resultOfSearch = false;
+							e.printStackTrace();
 						}
 					}
 				}
-				if( resultOfSearch )
-				{
-					//start a service screen
-					Stage stage = (Stage) searchButton.getScene().getWindow();
-					PatientVisits visits = new PatientVisits(patient, empl);
-					try
-					{
-						visits.start(stage);
-					} catch( IOException e )
-					{
-						e.printStackTrace();
-					}
-				}
-			} else
-			{
-				errorPaneHandler.handleErrorPane(errorPane, error);
 			}
-		});
+			if( resultOfSearch )
+			{
+				//start a service screen
+				Stage stage = (Stage) searchButton.getScene().getWindow();
+				PatientVisits visits = new PatientVisits(patient, empl);
+				try
+				{
+					visits.start(stage);
+				} catch( IOException e )
+				{
+					e.printStackTrace();
+				}
+			}
+		} else
+		{
+			errorPaneHandler.handleErrorPane(errorPane, error);
+		}
 	}
 	
 	public void setEmpl(Employee empl)

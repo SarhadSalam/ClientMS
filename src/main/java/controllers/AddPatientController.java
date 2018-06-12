@@ -4,6 +4,7 @@ import customers.AddPatient;
 import customers.PatientVisits;
 import errors.Error;
 import errors.ErrorPane;
+import events.MessageEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
 import models.Patient;
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -103,7 +105,6 @@ public class AddPatientController
 					e.printStackTrace();
 				}
 				childStage.close();
-				
 			} else
 			{
 				errorPaneHandler.handleErrorPane(errorPane, error);
