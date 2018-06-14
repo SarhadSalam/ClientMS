@@ -107,7 +107,7 @@ public class PatientStatisticsController
 	
 	private boolean validateEntry(String from, String to, Error error)
 	{
-		if( from==null || from.equals("") || to==null || to.equals(""))
+		if( from == null || from.equals("") || to == null || to.equals("") )
 		{
 			error.getErrors().add("From and To cannot be empty.");
 			return false;
@@ -142,6 +142,7 @@ public class PatientStatisticsController
 		
 		if( dateKeeper.containsKey(from) && dateKeeper.get(from).equals(to) )
 		{
+			Toast.makeText((Stage) clearButton.getScene().getWindow(), "Already added", 3000, 500, 500);
 			return;
 		}
 		dateKeeper.put(from, to);

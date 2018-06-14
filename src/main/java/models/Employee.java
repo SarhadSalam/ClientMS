@@ -13,10 +13,32 @@ import java.security.GeneralSecurityException;
  * Date: 04/05/18
  * Time : 10:52 PM
  * Project Name: ClientMS
- * Class Name: Employee
+ * Class Name: employee
  */
 public class Employee
 {
+	
+	public boolean isDisabled()
+	{
+		return disabled;
+	}
+	
+	public void setDisabled(boolean disabled)
+	{
+		this.disabled = disabled;
+	}
+	
+	public void setDisabled(byte disabled)
+	{
+		this.disabled = disabled != 0;
+		
+	}
+	
+	public void setDisabled(String disabled)
+	{
+		this.disabled = Integer.valueOf(disabled) != 0;
+	}
+	
 	public enum USER_ROLE{
 		USER,
 		MANAGER,
@@ -28,6 +50,7 @@ public class Employee
 	private String username;
 	private byte[] password;
 	private USER_ROLE role;
+	private boolean disabled=false;
 	
 	public String getFirst_name()
 	{
@@ -78,11 +101,11 @@ public class Employee
 		}
 		Crypto c = new Crypto();
 		String decrypt = c.byteArrToString(c.decrypt(password));
-		System.out.println("Employee First Name: "+first_name);
-		System.out.println("Employee Last Name: "+last_name);
-		System.out.println("Employee Username: "+username);
-		System.out.println("Employee Password: "+decrypt);
-		System.out.println("Employee Role: "+role.name());
+		System.out.println("employee First Name: "+first_name);
+		System.out.println("employee Last Name: "+last_name);
+		System.out.println("employee Username: "+username);
+		System.out.println("employee Password: "+decrypt);
+		System.out.println("employee Role: "+role.name());
 	}
 	
 	public USER_ROLE getRole()

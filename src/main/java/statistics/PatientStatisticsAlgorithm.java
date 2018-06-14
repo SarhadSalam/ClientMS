@@ -20,7 +20,6 @@ import java.util.LinkedHashMap;
  */
 public class PatientStatisticsAlgorithm
 {
-	
 	public class VisitGroupType{
 		private BigDecimal totalAmountPaid;
 		private String date;
@@ -61,6 +60,11 @@ public class PatientStatisticsAlgorithm
 	{
 		ArrayList<Visits> visits = getVisits(from, to);
 		
+		return getPatientVisitMap(visits);
+	}
+	
+	public LinkedHashMap<String, VisitGroupType> getPatientVisitMap(ArrayList<Visits> visits)
+	{
 		LinkedHashMap<String, VisitGroupType> map = new LinkedHashMap<>();
 		
 		if(visits.isEmpty())

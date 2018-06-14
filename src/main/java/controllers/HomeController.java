@@ -9,12 +9,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Employee;
 import models.Patient;
 import statistics.EmployeeStatisticsAlgorithm;
+import toasts.Toast;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 06/05/18 Time : 11:29 PM Project Name: ClientMS Class Name:
@@ -52,6 +55,8 @@ public class HomeController
 	@FXML
 	private ListView<String> errorPane;
 	
+	private AtomicBoolean firstTimeLoad = new AtomicBoolean(false);
+	
 	//when button is clicked
 	public void setButtonAction()
 	{
@@ -79,13 +84,18 @@ public class HomeController
 		try
 		{
 			String total = employeeStatisticsAlgorithm.getEarning(empl, simpleDateFormat.format(date), simpleDateFormat.format(date));
-			if( total != null && !total.equals("") ) {
+			if( total != null && !total.equals("") )
+			{
+				amountEarnedLabel.setTextFill(Color.GREEN);
 				amountEarnedLabel.setText(total+" SAR");
-				amountEarnedLabel.setStyle("-fx-color: green");
-			} else {
+			} else
+			{
+				amountEarnedLabel.setTextFill(Color.RED);
 				amountEarnedLabel.setText("No earnings today");
-				amountEarnedLabel.setStyle("-fx-color: red");
 			}
+			if( firstTimeLoad.get() )
+				Toast.makeText((Stage) refreshAmountButton.getScene().getWindow(), "Refreshed!", 1000, 500, 500);
+			else firstTimeLoad.set(true);
 		} catch( IOException|SQLException e )
 		{
 			e.printStackTrace();

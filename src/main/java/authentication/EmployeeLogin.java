@@ -1,16 +1,20 @@
 package authentication;
 
+import com.sun.javafx.stage.StageHelper;
 import controllers.EmployeeLoginController;
 import controllers.MenuBarController;
 import crypto.Crypto;
 import errors.Error;
+import events.LogoutEvent;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import models.Employee;
+import org.greenrobot.eventbus.Subscribe;
 import properties.Properties;
 
 import java.io.IOException;
@@ -28,6 +32,8 @@ import java.util.ResourceBundle;
  */
 public class EmployeeLogin extends Application
 {
+	
+	private Stage primaryStage;
 	
 	/*
 	 * Responsible for validating inputs, checks for username, password and sets the error messages.
@@ -83,7 +89,7 @@ public class EmployeeLogin extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
-		
+		this.primaryStage = primaryStage;
 		EmployeeLoginController employeeLoginController = new EmployeeLoginController();
 		MenuBarController menuBarController = new MenuBarController();
 		
@@ -101,7 +107,7 @@ public class EmployeeLogin extends Application
 		menu.setController(menuBarController);
 		
 		login.setResources(rs);
-		
+		menu.setResources(rs);
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(menu.load());
 		borderPane.setCenter(login.load());
@@ -122,9 +128,13 @@ public class EmployeeLogin extends Application
 		primaryStage.show();
 	}
 	
-	private static boolean getEmployee(String username, Connection c, Employee empl) throws SQLException
+	@Deprecated
+	/*
+	* The method is public because it is required. However, avoid using it explicitly, because it returns a user even if the user is disabled.
+	* */
+	public static boolean getEmployee(String username, Connection c, Employee empl) throws SQLException
 	{
-		String query = "select first_name, last_name,password, username, role from employee where username='"+username+"'";
+		String query = "select first_name, last_name,password, username, role, disabled from employee where username='"+username+"'";
 		Statement statement = c.createStatement();
 		ResultSet rs = statement.executeQuery(query);
 		
@@ -136,7 +146,7 @@ public class EmployeeLogin extends Application
 			empl.setPassword(rs.getBytes("password"));
 			empl.setUsername(rs.getString("username"));
 			empl.setRole(Employee.USER_ROLE.valueOf(rs.getString("role")));
-			
+			empl.setDisabled(rs.getByte("disabled"));
 			return true;
 		}
 		
@@ -155,7 +165,7 @@ public class EmployeeLogin extends Application
 		{
 			c.close();
 			Crypto crypto = new Crypto();
-			if( password.equals(new String(crypto.decrypt(empl.getPassword()), "UTF-8")) ) return empl;
+			if( password.equals(new String(crypto.decrypt(empl.getPassword()), "UTF-8")) && !empl.isDisabled() ) return empl;
 			else return null;
 		}
 		c.close();

@@ -1,1 +1,4 @@
-6. Make it pretty
+1. Create online database and update it
+2. Update the receipt, and add visits controller to save without vat, but print with vat.
+3. Complete internationalization
+4. Publish

@@ -1,5 +1,6 @@
 package authentication;
 
+import events.LogoutEvent;
 import global.Global;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -9,6 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import models.Employee;
+import org.greenrobot.eventbus.EventBus;
+import org.w3c.dom.events.EventException;
 import toasts.Toast;
 
 import java.io.IOException;
@@ -95,11 +98,16 @@ public class PreventClose
 				
 				if( privileges.hasMoreThanUserStatus() )
 				{
-					primaryStage.close();
+					if( !EventBus.getDefault().hasSubscriberForEvent(LogoutEvent.class) )
+					{
+						primaryStage.close();
+					} else
+					{
+						EventBus.getDefault().post(new LogoutEvent(true));
+					}
 				} else
 				{
 					Toast.makeText(primaryStage, rs.getString("not_enough_permission"), 3000, 500, 500);
-					
 				}
 			} catch( IOException|SQLException|GeneralSecurityException|URISyntaxException e )
 			{

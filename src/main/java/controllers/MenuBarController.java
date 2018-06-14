@@ -3,10 +3,14 @@ package controllers;
 import authentication.EmployeeLogin;
 import authentication.PreventClose;
 import authentication.Privileges;
+import com.sun.javafx.stage.StageHelper;
+import employee.EmployeeManagementScreen;
+import events.LogoutEvent;
 import global.Global;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +20,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import models.Employee;
+import org.greenrobot.eventbus.EventBus;
+import statistics.EmployeeStatistics;
 import statistics.PatientStatistics;
 import toasts.Toast;
 
@@ -41,10 +47,10 @@ public class MenuBarController
 	public MenuBar menubar;
 	
 	@FXML
-	public Menu userMenu, timeLabel, managementMenu;
+	public Menu userMenu, timeLabel, managementMenu, sessionMenu;
 	
 	@FXML
-	public MenuItem closeItem, signOutItem, statItem, fileBugItem, aboutItem, emploteeStatesItem;
+	public MenuItem closeItem, signOutItem, statItem, fileBugItem, aboutItem, employeeStatsItem, employeeItem;
 	
 	public void setUpMenuBar()
 	{
@@ -62,8 +68,12 @@ public class MenuBarController
 			{
 				menubar.getMenus().remove(managementMenu);
 			}
+			
+			if( !privileges.hasAdminStatus() )
+			{
+				managementMenu.getItems().remove(employeeItem);
+			}
 		}
-		
 		DateFormat timeFormat = new SimpleDateFormat("EEE, d MMM yyyy hh:mm:ss a");
 		final Timeline timeline = new Timeline(
 				new KeyFrame(
@@ -82,8 +92,9 @@ public class MenuBarController
 		});
 		
 		signOutItem.setOnAction(event -> {
-			stage.close();
+			EventBus.getDefault().post(new LogoutEvent(true));
 			EmployeeLogin employeeLogin = new EmployeeLogin();
+			
 			try
 			{
 				employeeLogin.start(stage);
@@ -95,11 +106,12 @@ public class MenuBarController
 		
 		fileBugItem.setOnAction(event -> {
 			//todo: create a modal and allow for filing bug
+			showToast("Coming soon!");
 		});
 		
 		aboutItem.setOnAction(event -> {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setHeaderText(resources.getString("title")+" - "+ resources.getString("software_name")+Global.getVersion());
+			alert.setHeaderText(resources.getString("title")+" - "+resources.getString("software_name")+Global.getVersion());
 			
 			alert.setContentText(resources.getString("about_license"));
 			alert.setTitle(resources.getString("about"));
@@ -120,6 +132,28 @@ public class MenuBarController
 				e.printStackTrace();
 			}
 		});
+		
+		employeeItem.setOnAction(event -> {
+			EmployeeManagementScreen ems = new EmployeeManagementScreen();
+			try
+			{
+				ems.start((Stage) menubar.getScene().getWindow(), empl);
+			} catch( IOException e )
+			{
+				e.printStackTrace();
+			}
+		});
+		
+		employeeStatsItem.setOnAction(event -> {
+			EmployeeStatistics employeeStatistics = new EmployeeStatistics();
+			try
+			{
+				employeeStatistics.start((Stage) menubar.getScene().getWindow(), empl);
+			} catch( IOException e )
+			{
+				e.printStackTrace();
+			}
+		});
 	}
 	
 	public void setEmployee(Employee empl)
@@ -130,6 +164,5 @@ public class MenuBarController
 	public void showToast(String message)
 	{
 		Toast.makeText((Stage) menubar.getScene().getWindow(), message, 3000, 500, 500);
-		
 	}
 }

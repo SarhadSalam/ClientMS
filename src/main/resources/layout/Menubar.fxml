@@ -5,10 +5,10 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
     <MenuBar fx:id="menubar" layoutX="199.0" layoutY="49.0" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-            <Menu text="_Session">
+            <Menu text="_Session" fx:id="sessionMenu">
                 <items>
                     <MenuItem fx:id="closeItem" text="_Close" />
                 </items>
@@ -24,14 +24,14 @@
                     <MenuItem fx:id="aboutItem" text="_About" />
                 </items>
             </Menu>
-         <Menu fx:id="managementMenu" mnemonicParsing="false" text="_Management">
+         <Menu fx:id="managementMenu" text="_Management">
            <items>
                <MenuItem fx:id="statItem" text="_Patient Stats" />
-               <MenuItem fx:id="employeeStatsItem" mnemonicParsing="false" text="_Employee Stats" />
-               <MenuItem mnemonicParsing="false" text="_Employees" />
+               <MenuItem fx:id="employeeStatsItem" text="_Employee Stats" />
+               <MenuItem fx:id="employeeItem" text="E_mployees" />
            </items>
          </Menu>
-         <Menu fx:id="timeLabel" disable="true" mnemonicParsing="false" text="Time" />
+         <Menu fx:id="timeLabel" disable="true" text="Time" />
         </menus>
     </MenuBar>
 </AnchorPane>

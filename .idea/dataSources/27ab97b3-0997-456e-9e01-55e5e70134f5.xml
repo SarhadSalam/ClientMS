@@ -1158,105 +1158,113 @@
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="287" parent="277" name="PRIMARY">
+    <column id="287" parent="277" name="disabled">
+      <Position>8</Position>
+      <Comment>0=false</Comment>
+      <DataType>varchar(45)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="288" parent="277" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="288" parent="278" name="visit_id">
+    <column id="289" parent="278" name="visit_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="278" name="patient_id">
+    <column id="290" parent="278" name="patient_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="278" name="employee_entered">
+    <column id="291" parent="278" name="employee_entered">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="278" name="services">
+    <column id="292" parent="278" name="services">
       <Position>4</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="278" name="amount_paid">
+    <column id="293" parent="278" name="amount_paid">
       <Position>5</Position>
       <DataType>decimal(10,4 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="278" name="creation_date">
+    <column id="294" parent="278" name="creation_date">
       <Position>6</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="294" parent="278" name="PRIMARY">
+    <key id="295" parent="278" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>visit_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="295" parent="279" name="patient_id">
+    <column id="296" parent="279" name="patient_id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="279" name="name">
+    <column id="297" parent="279" name="name">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="279" name="age">
+    <column id="298" parent="279" name="age">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="279" name="sex">
+    <column id="299" parent="279" name="sex">
       <Position>4</Position>
       <DataType>char(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="279" name="govid">
+    <column id="300" parent="279" name="govid">
       <Position>5</Position>
       <DataType>varchar(45)|0s</DataType>
       <DefaultExpression>&apos;N/A&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="279" name="phone">
+    <column id="301" parent="279" name="phone">
       <Position>6</Position>
       <DataType>varchar(45)|0s</DataType>
       <DefaultExpression>&apos;N/A&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="279" name="employee_entered">
+    <column id="302" parent="279" name="employee_entered">
       <Position>7</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="279" name="creation_date">
+    <column id="303" parent="279" name="creation_date">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="303" parent="279" name="PRIMARY">
+    <key id="304" parent="279" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>patient_id</ColNames>
       <Primary>1</Primary>

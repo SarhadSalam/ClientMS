@@ -88,7 +88,7 @@ public class EmployeeLoginController
 			errorPaneHandler.handleErrorPane(errorPane, error);
 		} else
 		{
-			//if input was successfull, popup a dialog and start the login code
+			//if input was successful, popup a dialog and start the login code
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle(resources.getString("signing_in"));
 			alert.setHeaderText(resources.getString("signing_in"));

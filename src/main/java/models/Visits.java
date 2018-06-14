@@ -17,7 +17,7 @@ public class Visits
 	@Override
 	public String toString()
 	{
-		System.out.printf("Patient ID: %d\n Visit ID: %d\n Employee Entered: %s\n Services: %s\n Amount Paid: %s\n Timestamp: %s", patientId, visitId, employeeEntered, services,amount_paid.toString(), timestamp.toString());
+		System.out.printf("Patient ID: %d\n Visit ID: %d\n employee Entered: %s\n Services: %s\n Amount Paid: %s\n Timestamp: %s", patientId, visitId, employeeEntered, services,amount_paid.toString(), timestamp.toString());
 		return null;
 	}
 	

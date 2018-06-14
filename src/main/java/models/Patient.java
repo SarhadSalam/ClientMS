@@ -104,7 +104,7 @@ public class Patient
 		System.out.println("Sex: "+gender);
 		System.out.println("GovId: "+govid);
 		System.out.println("Phone: "+phone);
-		System.out.println("Employee Entered: "+employee_entered);
+		System.out.println("employee Entered: "+employee_entered);
 		System.out.println("``````````````````");
 	}
 	

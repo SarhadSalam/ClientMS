@@ -1,37 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageEmployeeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane layoutX="43.0" layoutY="55.0" prefHeight="184.0" prefWidth="387.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="tabPane" layoutX="43.0" layoutY="55.0" prefHeight="184.0" prefWidth="387.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Add Employee">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="202.0" layoutY="30.0" text="Add an Employee">
+                        <Label layoutX="202.0" layoutY="13.0" text="Add an Employee">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label layoutX="158.0" layoutY="80.0" text="First Name:" />
-                        <Label layoutX="157.0" layoutY="119.0" text="Last Name:" />
-                        <Label layoutX="158.0" layoutY="163.0" text="Username:" />
-                        <Label layoutX="158.0" layoutY="204.0" text="Password:" />
-                        <Label layoutX="158.0" layoutY="241.0" text="Confirm Password:" />
-                        <TextField fx:id="firstNameInput" layoutX="318.0" layoutY="70.0" />
-                        <TextField fx:id="lastNameInput" layoutX="318.0" layoutY="114.0" />
-                        <TextField fx:id="usernameInput" layoutX="318.0" layoutY="158.0" />
-                        <PasswordField fx:id="passwordInput" layoutX="318.0" layoutY="199.0" />
-                        <PasswordField fx:id="confirmPasswordInput" layoutX="318.0" layoutY="236.0" />
-                        <Button fx:id="addButton" layoutX="259.0" layoutY="269.0" mnemonicParsing="false" text="Add" />
+                        <Label layoutX="135.0" layoutY="55.0" text="First Name:" />
+                        <Label layoutX="134.0" layoutY="94.0" text="Last Name:" />
+                        <Label layoutX="135.0" layoutY="138.0" text="Username:" />
+                        <Label layoutX="135.0" layoutY="179.0" text="Password:" />
+                        <Label layoutX="135.0" layoutY="216.0" text="Confirm Password:" />
+                        <TextField fx:id="firstNameInput" layoutX="295.0" layoutY="45.0" />
+                        <TextField fx:id="lastNameInput" layoutX="295.0" layoutY="89.0" />
+                        <TextField fx:id="usernameInput" layoutX="295.0" layoutY="133.0" />
+                        <PasswordField fx:id="passwordInput" layoutX="295.0" layoutY="174.0" />
+                        <PasswordField fx:id="confirmPasswordInput" layoutX="295.0" layoutY="211.0" />
+                        <Button fx:id="addButton" layoutX="260.0" layoutY="300.0" mnemonicParsing="false" text="Add" />
+                        <ListView fx:id="errorPane" layoutX="57.0" layoutY="182.0" prefHeight="214.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                        <Label layoutX="135.0" layoutY="253.0" prefHeight="16.0" prefWidth="122.0" text="Employee Role:" />
+                        <ChoiceBox fx:id="roleDropbox" layoutX="295.0" layoutY="248.0" prefHeight="26.0" prefWidth="171.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -44,14 +51,15 @@
                         <Label layoutX="152.0" layoutY="96.0" text="New Password:" />
                         <Label layoutX="152.0" layoutY="131.0" text="Confirm New Password:" />
                         <TextField fx:id="usernameUpdateField" layoutX="332.0" layoutY="58.0" />
-                        <TextField fx:id="newPasswordField" layoutX="332.0" layoutY="91.0" />
-                        <TextField fx:id="confirmNewPasswordField" layoutX="332.0" layoutY="126.0" />
+                        <PasswordField fx:id="newPasswordField" layoutX="332.0" layoutY="91.0" />
+                        <PasswordField fx:id="confirmNewPasswordField" layoutX="332.0" layoutY="126.0" />
                         <Button fx:id="updateButton" layoutX="267.0" layoutY="171.0" mnemonicParsing="false" text="Update" />
                         <Label layoutX="212.0" layoutY="14.0" text="Update Password">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
+                        <ListView fx:id="errorPaneUpdate" layoutX="200.0" layoutY="197.0" prefHeight="151.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -61,7 +69,24 @@
                      <children>
                         <Label layoutX="160.0" layoutY="39.0" text="Username:" />
                         <TextField fx:id="usernameDisableField" layoutX="270.0" layoutY="34.0" />
-                        <Button layoutX="237.0" layoutY="84.0" mnemonicParsing="false" text="Disable" fx:id="disableButton"/>
+                        <Button fx:id="disableButton" layoutX="237.0" layoutY="84.0" mnemonicParsing="false" text="Disable/Enable" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="allEmployeesTab" text="All Employees">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="employeeTable" layoutX="49.0" layoutY="24.0" prefHeight="368.0" prefWidth="600.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="firstnameCol" prefWidth="150.0" text="First Name" />
+                            <TableColumn fx:id="lastnameCol" minWidth="0.0" prefWidth="125.0" text="Last Name" />
+                              <TableColumn fx:id="usernameCol" minWidth="0.0" prefWidth="119.0" text="Username" />
+                              <TableColumn fx:id="roleCol" prefWidth="79.0" text="Role" />
+                              <TableColumn fx:id="disabledCol" prefWidth="89.0" text="Disabled" />
+                          </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
               </content>

@@ -29,7 +29,9 @@ import toasts.Toast;
 import java.awt.print.PrinterException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -206,6 +208,8 @@ public class PatientVisitsController
 		
 		amount.textProperty().addListener(( ( (observable, oldValue, newValue) ->
 		{
+			DecimalFormat df = new DecimalFormat("#.##");
+			df.setRoundingMode(RoundingMode.CEILING);
 			boolean cont = true;
 			if( amount.getText().equals("") || amount.getText() == null )
 			{
@@ -214,12 +218,12 @@ public class PatientVisitsController
 			}
 			if( amount.getText().matches("^[0-9.]*$") && cont )
 			{
-				totalVat.setText(String.valueOf(Double.valueOf(amount.getText())*vatAmount));
+				totalVat.setText(String.valueOf(df.format(Double.valueOf(amount.getText())*vatAmount)));
 			} else
 			{
 				error.getErrors().add("Amount paid can only be numbers.");
-				amount.setText("0");
-				totalVat.setText("0");
+				amount.setText("0.00");
+				totalVat.setText("0.00");
 				errorPaneHandler.handleErrorPane(errorPane, error);
 			}
 		} ) ));

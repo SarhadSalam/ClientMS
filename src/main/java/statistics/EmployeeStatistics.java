@@ -1,6 +1,6 @@
 package statistics;
 
-import authentication.PreventClose;
+import controllers.EmployeeStatisticsController;
 import controllers.MenuBarController;
 import controllers.PatientStatisticsController;
 import javafx.fxml.FXMLLoader;
@@ -9,22 +9,23 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import models.Employee;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
 
 /**
- * Class Details:- Author: Sarhad User: sarhad Date: 01/06/18 Time : 10:43 AM Project Name: ClientMS Class Name:
- * PatientStatisticsController
+ * Class Details:- Author: Sarhad User: sarhad Date: 13/06/18 Time : 6:00 PM Project Name: ClientMS Class Name:
+ * EmployeeStatistics
  */
-public class PatientStatistics
+public class EmployeeStatistics
 {
 	
 	public void start(Stage parent, Employee empl) throws IOException
 	{
 		MenuBarController menuBarController = new MenuBarController();
-		PatientStatisticsController patientStatisticsController = new PatientStatisticsController();
+		EmployeeStatisticsController employeeStatisticsController = new EmployeeStatisticsController();
 		//Load Layouts
 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
 		
@@ -32,13 +33,13 @@ public class PatientStatistics
 		ResourceBundle rs = new i18n.i18n().getResourceBundle("en", "US");
 		
 		//Set the scenes
-		FXMLLoader statScreen = new FXMLLoader(cl.getResource("layout/PatientStatistics.fxml"));
+		FXMLLoader statScreen = new FXMLLoader(cl.getResource("layout/EmployeeStatistics.fxml"));
 		FXMLLoader menu = new FXMLLoader(cl.getResource("layout/Menubar.fxml"));
 		
 		//add stat screen controller
 		menu.setController(menuBarController);
 		menu.setResources(rs);
-		statScreen.setController(patientStatisticsController);
+		statScreen.setController(employeeStatisticsController);
 		statScreen.setResources(rs);
 		
 		BorderPane borderPane = new BorderPane();
@@ -47,17 +48,18 @@ public class PatientStatistics
 		
 		Stage primaryStage = new Stage();
 		primaryStage.setTitle(rs.getString("title_login_screen_stat"));
-		primaryStage.setScene(new Scene(borderPane, 800, 800));
+		primaryStage.setScene(new Scene(borderPane, 800, 600));
 		primaryStage.getIcons().add(new Image(cl.getResourceAsStream("img/logo.png")));
-		primaryStage.initModality(Modality.WINDOW_MODAL);
+		primaryStage.initModality(Modality.APPLICATION_MODAL);
 		primaryStage.initOwner(parent);
 		
 		primaryStage.setResizable(true);
 		
-		patientStatisticsController.setButtonAction();
+		employeeStatisticsController.setAction();
 		menuBarController.setEmployee(empl);
 		menuBarController.setUpMenuBar();
 		menuBarController.setMenuItemOptions(primaryStage);
 		primaryStage.showAndWait();
+		
 	}
 }

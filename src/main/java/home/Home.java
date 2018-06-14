@@ -1,10 +1,13 @@
 package home;
 
+import com.sun.javafx.stage.StageHelper;
 import controllers.HomeController;
 import controllers.MenuBarController;
 import events.LoginEvent;
+import events.LogoutEvent;
 import events.MessageEvent;
 import global.Global;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -13,6 +16,7 @@ import javafx.stage.Stage;
 import models.Employee;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import toasts.Toast;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -80,5 +84,16 @@ public class Home
 		menuBarController.setEmployee(empl);
 		homeController.handleAmountRefresh();
 		menuBarController.setUpMenuBar();
+	}
+	
+	@Subscribe
+	public void onLogoutEvent(LogoutEvent event)
+	{
+		ObservableList<Stage> stages = StageHelper.getStages();
+	
+		for(int i=stages.size()-1; i>=0; i--)
+		{
+			stages.get(i).close();
+		}
 	}
 }
