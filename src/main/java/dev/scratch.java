@@ -15,7 +15,6 @@ public class scratch
 {
 	public static void main(String args[]) throws Exception
 	{
-		byte x = 0;
-		System.out.println(x);
+		System.out.println(System.getProperty("user.dir")+"/print_dump/invoice_"+System.currentTimeMillis()+".pdf");
 	}
 }

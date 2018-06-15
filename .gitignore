@@ -1,3 +1,5 @@
 out/
 build/
 src/main/resources/env.properties
+src/main/resources/dev.env.properties
+key/

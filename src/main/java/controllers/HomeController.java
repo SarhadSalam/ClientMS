@@ -185,6 +185,6 @@ public class HomeController
 	
 	public void setEmployeeInformation()
 	{
-		userNameLabel.setText(resources.getString("greeting_empl")+empl.getFirst_name()+" "+empl.getLast_name());
+		userNameLabel.setText(resources.getString("greeting_empl")+empl.getFirst_name()+" "+empl.getLast_name()+": ");
 	}
 }

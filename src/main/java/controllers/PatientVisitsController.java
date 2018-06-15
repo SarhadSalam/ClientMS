@@ -124,7 +124,7 @@ public class PatientVisitsController
 			{
 				try
 				{
-					printAndVisit.addVisit(servicesText.getText(), Double.valueOf(totalVat.getText()), visits);
+					printAndVisit.addVisit(servicesText.getText(), Double.valueOf(amount.getText()), visits);
 				} catch( SQLException|IOException e )
 				{
 					e.printStackTrace();

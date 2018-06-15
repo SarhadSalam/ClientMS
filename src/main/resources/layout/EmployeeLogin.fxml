@@ -20,7 +20,7 @@
             <ToggleGroup fx:id="languageRadio" />
         </toggleGroup>
     </RadioButton>
-    <RadioButton id="arabicRadio" layoutX="265.0" layoutY="244.0" mnemonicParsing="false" text="%arabic" toggleGroup="$languageRadio" />
+    <RadioButton id="arabicRadio" disable="true" layoutX="265.0" layoutY="244.0" mnemonicParsing="false" text="%arabic" toggleGroup="$languageRadio" />
     <Label layoutX="166.0" layoutY="216.0" text="%language" />
     <Label layoutX="211.0" layoutY="82.0" text="%sign_in">
         <font>

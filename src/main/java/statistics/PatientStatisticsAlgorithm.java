@@ -96,7 +96,6 @@ public class PatientStatisticsAlgorithm
 	
 	private ArrayList<Visits> getVisits(String from, String to) throws IOException, SQLException
 	{
-		//todo: alternate query is remove DATE cast and se >= and < instead of between
 		String query = "SELECT visit_id, patient_id, employee_entered, services, amount_paid, creation_date FROM patient_visit_details where DATE(creation_date) BETWEEN STR_TO_DATE('"+from+"', '%d/%m/%Y') AND STR_TO_DATE('"+to+"', '%d/%m/%Y') ORDER BY creation_date asc";
 		
 		return new GetResultSet().getVisits(query);

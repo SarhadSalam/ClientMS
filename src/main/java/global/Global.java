@@ -1,13 +1,18 @@
 package global;
 
+import properties.Properties;
+
+import java.io.IOException;
 import java.util.Locale;
 
 /**
- * Class Details:- Author: Sarhad User: sarhad Date: 29/05/18 Time : 5:09 PM Project Name: ClientMS Class Name: global.Global
+ * Class Details:- Author: Sarhad User: sarhad Date: 29/05/18 Time : 5:09 PM Project Name: ClientMS Class Name:
+ * global.Global
  */
 public class Global
 {
-	private static Locale locale=new Locale("en", "US");
+	
+	private static Locale locale = new Locale("en", "US");
 	
 	public static Locale getLocale()
 	{
@@ -19,9 +24,9 @@ public class Global
 		Global.locale = locale;
 	}
 	
-	public static String getVersion()
+	public static String getVersion() throws IOException
 	{
-		//todo add to env variable
-		return "1.0.0";
+		Properties p = new Properties();
+		return p.getProperty("version", Properties.PROPERTY_TYPE.env);
 	}
 }

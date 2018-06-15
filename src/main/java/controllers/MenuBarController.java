@@ -111,7 +111,13 @@ public class MenuBarController
 		
 		aboutItem.setOnAction(event -> {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
-			alert.setHeaderText(resources.getString("title")+" - "+resources.getString("software_name")+Global.getVersion());
+			try
+			{
+				alert.setHeaderText(resources.getString("title")+" - "+resources.getString("software_name")+Global.getVersion());
+			} catch( IOException e )
+			{
+				e.printStackTrace();
+			}
 			
 			alert.setContentText(resources.getString("about_license"));
 			alert.setTitle(resources.getString("about"));

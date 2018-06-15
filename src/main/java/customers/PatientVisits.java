@@ -2,6 +2,7 @@ package customers;
 
 import authentication.DatabaseConnection;
 import controllers.PatientVisitsController;
+import global.Global;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 08/05/18 Time : 10:24 PM Project Name: ClientMS Class Name:
@@ -44,8 +46,12 @@ public class PatientVisits
 	{
 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
 		
+		ResourceBundle rs = new i18n.i18n().getResourceBundle(Global.getLocale());
+		
+		
 		FXMLLoader loader = new FXMLLoader(cl.getResource("layout/PatientVisits.fxml"));
 		loader.setController(patientVisitsController);
+		loader.setResources(rs);
 		
 		Parent root = loader.load();
 		Stage childStage = new Stage();
