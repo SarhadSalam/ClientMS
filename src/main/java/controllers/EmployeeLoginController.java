@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import mail.SendMail;
 import models.Employee;
 import org.greenrobot.eventbus.EventBus;
 import toasts.Toast;
@@ -24,6 +25,7 @@ import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -108,7 +110,8 @@ public class EmployeeLoginController
 			} catch( IOException|SQLException|GeneralSecurityException|URISyntaxException e )
 			{
 				Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
-				e.printStackTrace();
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 			
 			//if the employee exists
@@ -128,7 +131,9 @@ public class EmployeeLoginController
 				} catch( Exception e )
 				{
 					stage.show();
-					e.printStackTrace();
+					Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 				}
 				
 			} else //if employee does not exist

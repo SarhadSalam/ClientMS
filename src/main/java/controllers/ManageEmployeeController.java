@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import mail.SendMail;
 import models.Employee;
 import properties.Properties;
 import toasts.Toast;
@@ -20,6 +21,7 @@ import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 12/06/18 Time : 9:46 PM Project Name: ClientMS Class Name:
@@ -93,7 +95,9 @@ public class ManageEmployeeController
 			employeeTable.setItems(employeeManagement.getAllEmployees());
 		} catch( IOException|SQLException e )
 		{
-			e.printStackTrace();
+			Toast.makeText(null, "Failed", 5000, 500, 500);
+			SendMail sendMail = new SendMail();
+			sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 		}
 	}
 	
@@ -118,7 +122,9 @@ public class ManageEmployeeController
 			
 		} catch( SQLException|IOException e )
 		{
-			e.printStackTrace();
+			Toast.makeText(null, "Failed", 5000, 500, 500);
+			SendMail sendMail = new SendMail();
+			sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 		}
 	}
 	
@@ -145,7 +151,9 @@ public class ManageEmployeeController
 				}
 			} catch( IOException|SQLException|URISyntaxException|GeneralSecurityException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, "Failed", 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 		} else
 		{
@@ -176,7 +184,9 @@ public class ManageEmployeeController
 				}
 			} catch( IOException|SQLException|URISyntaxException|GeneralSecurityException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, "Failed", 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 		} else
 		{

@@ -19,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import mail.SendMail;
 import models.Employee;
 import org.greenrobot.eventbus.EventBus;
 import statistics.EmployeeStatistics;
@@ -28,6 +29,7 @@ import toasts.Toast;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
@@ -100,7 +102,9 @@ public class MenuBarController
 				employeeLogin.start(stage);
 			} catch( Exception e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 		});
 		
@@ -116,7 +120,9 @@ public class MenuBarController
 				alert.setHeaderText(resources.getString("title")+" - "+resources.getString("software_name")+Global.getVersion());
 			} catch( IOException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 			
 			alert.setContentText(resources.getString("about_license"));
@@ -135,7 +141,9 @@ public class MenuBarController
 				ps.start((Stage) menubar.getScene().getWindow(), empl);
 			} catch( IOException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 		});
 		
@@ -146,7 +154,9 @@ public class MenuBarController
 				ems.start((Stage) menubar.getScene().getWindow(), empl);
 			} catch( IOException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 		});
 		
@@ -157,7 +167,9 @@ public class MenuBarController
 				employeeStatistics.start((Stage) menubar.getScene().getWindow(), empl);
 			} catch( IOException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 		});
 	}

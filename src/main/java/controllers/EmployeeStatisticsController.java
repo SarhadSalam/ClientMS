@@ -12,6 +12,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import mail.SendMail;
 import models.Employee;
 import statistics.EmployeeStatistics;
 import statistics.EmployeeStatisticsAlgorithm;
@@ -21,10 +22,7 @@ import toasts.Toast;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -84,7 +82,9 @@ public class EmployeeStatisticsController
 			employeeDropbox.setItems(FXCollections.observableArrayList(username));
 		} catch( IOException|SQLException e )
 		{
-			e.printStackTrace();
+			Toast.makeText(null, "Failed", 5000, 500, 500);
+			SendMail sendMail = new SendMail();
+			sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 		}
 	}
 	
@@ -125,7 +125,9 @@ public class EmployeeStatisticsController
 				setPieCharts(earningsMap);
 			} catch( IOException|SQLException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, "Failed", 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 			
 		} else
@@ -183,7 +185,9 @@ public class EmployeeStatisticsController
 				
 			} catch( IOException|SQLException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, "Failed", 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 		} else
 		{

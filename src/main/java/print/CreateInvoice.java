@@ -31,6 +31,7 @@ public class CreateInvoice
 		
 		for( int i = 0; i<forms.size(); i++ )
 		{
+//			System.out.println(forms.get(i).getFullyQualifiedName());
 			forms.get(i).setValue(customerDetails.get(i));
 		}
 		
@@ -53,15 +54,18 @@ public class CreateInvoice
 		customerDetails.add(patient.getName());
 		customerDetails.add(String.valueOf(patient.getAge()));
 		customerDetails.add(String.valueOf(patient.getGender()));
+		customerDetails.add(patientVisits.getServices());
+		customerDetails.add(String.valueOf(patientVisits.getVisitId()));
+		customerDetails.add(simpleDateFormat.format(new Date(System.currentTimeMillis())));
+		
+		customerDetails.add(patientVisits.getAmount_paid().multiply(new BigDecimal(1.05).setScale(2, RoundingMode.CEILING)).toPlainString());
 		customerDetails.add(patient.getGovid());
 		customerDetails.add(patient.getPhone());
 		customerDetails.add(patient.getEmployee_entered());
 		customerDetails.add(simpleDateFormat.format(patientVisits.getTimestamp()));
-		customerDetails.add(patientVisits.getServices());
+		customerDetails.add(patientVisits.getAmount_paid().multiply(new BigDecimal(0.05).setScale(2, RoundingMode.CEILING)).toPlainString());
 		customerDetails.add(patientVisits.getAmount_paid().toString());
 		customerDetails.add(String.valueOf(patientVisits.getVisitId()));
-		customerDetails.add(( simpleDateFormat.format(new Date(System.currentTimeMillis())) ));
-		customerDetails.add(patientVisits.getAmount_paid().multiply(new BigDecimal(1.05).setScale(2, RoundingMode.CEILING)).toPlainString());
 		
 		return createInvoice(customerDetails);
 	}

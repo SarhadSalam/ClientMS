@@ -4,12 +4,15 @@ import com.google.crypto.tink.*;
 import com.google.crypto.tink.aead.AeadFactory;
 import com.google.crypto.tink.aead.AeadKeyTemplates;
 import com.google.crypto.tink.config.TinkConfig;
+import mail.SendMail;
 import properties.Properties;
+import toasts.Toast;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
+import java.util.Arrays;
 
 /**
  * Class Details:-
@@ -41,7 +44,7 @@ public class Crypto
 	
 	private ClassLoader cl = ClassLoader.getSystemClassLoader();
 	//the keyset handle contains the code to encrypt
-	private KeysetHandle keysetHandle = CleartextKeysetHandle.read(JsonKeysetReader.withFile(new File(cl.getResource("crypto/keyset.json").toURI())));
+	private KeysetHandle keysetHandle = CleartextKeysetHandle.read(JsonKeysetReader.withInputStream(cl.getResourceAsStream("crypto/keyset.json")));
 	
 	//needed to ensure which code the class throws
 	public Crypto() throws GeneralSecurityException, IOException, URISyntaxException
@@ -61,7 +64,8 @@ public class Crypto
 			return aead.encrypt(str, key.getBytes());
 		} catch( GeneralSecurityException e )
 		{
-			e.printStackTrace();
+			SendMail sendMail = new SendMail();
+			sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 		}
 		return null;
 	}
@@ -74,7 +78,8 @@ public class Crypto
 			return aead.decrypt(encrypted, key.getBytes());
 		} catch( GeneralSecurityException e )
 		{
-			e.printStackTrace();
+			SendMail sendMail = new SendMail();
+			sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 		}
 		return null;
 	}

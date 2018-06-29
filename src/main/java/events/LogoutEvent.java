@@ -20,7 +20,6 @@ public class LogoutEvent
 	@Subscribe
 	public void onLogoutEvent(LogoutEvent event)
 	{
-		System.out.println("Logout: "+logout);
 	}
 	
 }

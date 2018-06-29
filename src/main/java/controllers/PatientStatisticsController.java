@@ -9,12 +9,14 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import mail.SendMail;
 import statistics.PatientStatisticsAlgorithm;
 import toasts.Toast;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -95,7 +97,9 @@ public class PatientStatisticsController
 					
 				} catch( IOException|SQLException e )
 				{
-					e.printStackTrace();
+					Toast.makeText(null, "Failed", 5000, 500, 500);
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 				}
 			} else
 			{

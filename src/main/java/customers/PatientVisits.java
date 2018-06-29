@@ -17,11 +17,14 @@ import models.Visits;
 import properties.Properties;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -40,6 +43,12 @@ public class PatientVisits
 		this.empl = empl;
 	}
 	
+	@Deprecated
+	public PatientVisits()
+	{
+	
+	}
+	
 	private PatientVisitsController patientVisitsController = new PatientVisitsController();
 	
 	public void start(Stage primaryStage) throws IOException
@@ -47,7 +56,6 @@ public class PatientVisits
 		ClassLoader cl = Thread.currentThread().getContextClassLoader();
 		
 		ResourceBundle rs = new i18n.i18n().getResourceBundle(Global.getLocale());
-		
 		
 		FXMLLoader loader = new FXMLLoader(cl.getResource("layout/PatientVisits.fxml"));
 		loader.setController(patientVisitsController);
@@ -77,15 +85,18 @@ public class PatientVisits
 		//wait for the visit to complete
 	}
 	
-	public static ObservableList<Visits> getPreviousVisits(Patient patient) throws IOException, SQLException
+	public static ObservableList<Visits> getAllPreviousVisits(Patient patient) throws IOException, SQLException
 	{
-		Properties prop = new Properties();
-		Employee empl = new Employee();
-		DatabaseConnection databaseConnection = new DatabaseConnection();
-		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
-		
 		String query = "select visit_id, employee_entered, services, amount_paid, creation_date from patient_visit_details where patient_id='"+patient.getId()+"'";
 		
+		return getVisits(patient, query);
+	}
+	
+	private static ObservableList<Visits> getVisits(Patient patient, String query) throws SQLException, IOException
+	{
+		Properties prop = new Properties();
+		DatabaseConnection databaseConnection = new DatabaseConnection();
+		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
 		Statement statement = c.createStatement();
 		ResultSet rs = statement.executeQuery(query);
 		

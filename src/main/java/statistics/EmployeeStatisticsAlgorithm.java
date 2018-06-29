@@ -2,6 +2,8 @@ package statistics;
 
 import database.GetResultSet;
 import errors.Error;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Employee;
 import models.Visits;
 
@@ -18,6 +20,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class EmployeeStatisticsAlgorithm
 {
+	public ObservableList<Visits> getPatientList(Employee employee, String from, String to) throws IOException, SQLException
+	{
+		return FXCollections.observableArrayList(getVisits(employee, from, to));
+	}
 	
 	public String getEarning(Employee employee, String from, String to) throws IOException, SQLException
 	{
@@ -38,9 +44,11 @@ public class EmployeeStatisticsAlgorithm
 		return null;
 	}
 	
+	
+	///yyyy mm dd
 	private ArrayList<Visits> getVisits(Employee employee, String from, String to) throws IOException, SQLException
 	{
-		String query = "SELECT visit_id, patient_id, employee_entered, services, amount_paid, creation_date FROM patient_visit_details where employee_entered='"+employee.getUsername()+"' AND DATE(creation_date) BETWEEN STR_TO_DATE('"+from+"', '%d/%m/%Y') AND STR_TO_DATE('"+to+"', '%d/%m/%Y') ORDER BY creation_date asc";
+		String query = "SELECT visit_id, patient_id, employee_entered, services, amount_paid, creation_date FROM patient_visit_details where employee_entered='"+employee.getUsername()+"' AND creation_date BETWEEN '"+from+"' AND '"+to+"' ORDER BY creation_date asc";
 		
 		return new GetResultSet().getVisits(query);
 	}

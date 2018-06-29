@@ -30,7 +30,7 @@
       <ListView fx:id="errorPane" layoutX="188.0" layoutY="270.0" prefHeight="116.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Label layoutX="243.0" layoutY="193.0" text="Today's Finances:" />
       <Label layoutX="183.0" layoutY="224.0" text="Total Earned:" />
-      <Button layoutX="230.0" layoutY="258.0" mnemonicParsing="false" text="View Today's Visits" />
+      <Button fx:id="viewVisitsButton" layoutX="230.0" layoutY="258.0" mnemonicParsing="false" text="View Today's Visits" />
       <Label fx:id="amountEarnedLabel" layoutX="282.0" layoutY="224.0" text="xxxx" />
       <Button fx:id="refreshAmountButton" layoutX="387.0" layoutY="219.0" mnemonicParsing="false" text="Refresh" />
    </children>

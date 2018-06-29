@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import mail.SendMail;
 import models.Employee;
 import org.greenrobot.eventbus.EventBus;
 import org.w3c.dom.events.EventException;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -111,9 +113,10 @@ public class PreventClose
 				}
 			} catch( IOException|SQLException|GeneralSecurityException|URISyntaxException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, "Failed", 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
-			
 		});
 		
 	}

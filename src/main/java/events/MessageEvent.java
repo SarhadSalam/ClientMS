@@ -25,6 +25,5 @@ public class MessageEvent
 	public void onMessageEvent(MessageEvent event) throws GeneralSecurityException, IOException, URISyntaxException
 	{
 		//what does event contain?
-		System.out.println(event.message);
 	}
 }

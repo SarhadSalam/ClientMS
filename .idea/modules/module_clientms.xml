@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_clientms" default="compile.module.clientms">
+  <dirname property="module.clientms.basedir" file="${ant.file.module_clientms}"/>
+  
+  <property name="module.jdk.home.clientms" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.clientms" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.clientms" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.clientms" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="clientms.output.dir" value="${module.clientms.basedir}/../../out/production/ClientMS"/>
+  <property name="clientms.testoutput.dir" value="${module.clientms.basedir}/../../out/test/ClientMS"/>
+  
+  <path id="clientms.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="clientms.module.production.classpath">
+    <path refid="${module.jdk.classpath.clientms}"/>
+    <path refid="library.gradle:_com.google.crypto.tink:tink:1.1.0.classpath"/>
+    <path refid="library.gradle:_com.google.cloud.sql:mysql-socket-factory:1.0.9.classpath"/>
+    <path refid="library.gradle:_com.google.cloud.sql:jdbc-socket-factory-core:1.0.9.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:8.0.11.classpath"/>
+    <path refid="library.gradle:_com.github.javafaker:javafaker:0.15.classpath"/>
+    <path refid="library.gradle:_org.greenrobot:eventbus:3.1.1.classpath"/>
+    <path refid="library.gradle:_org.apache.pdfbox:pdfbox:2.0.9.classpath"/>
+    <path refid="library.gradle:_commons-io:commons-io:2.6.classpath"/>
+    <path refid="library.gradle:_javax.mail:mail:1.4.classpath"/>
+    <path refid="library.gradle:_javax.activation:activation:1.1.1.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:aws-java-sdk-kms:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:aws-java-sdk-core:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-sqladmin:v1beta4-rev56-1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-cloudkms:v1-rev9-1.22.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.auto.service:auto-service:1.0-rc4.classpath"/>
+    <path refid="library.gradle:_com.google.protobuf:protobuf-java:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.json:json:20170516.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-lang3:3.5.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.20:android.classpath"/>
+    <path refid="library.gradle:_com.github.mifmif:generex:1.0.2.classpath"/>
+    <path refid="library.gradle:_org.apache.pdfbox:fontbox:2.0.9.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jackson2:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.gradle:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-unixsocket:0.18.classpath"/>
+    <path refid="library.gradle:_software.amazon.ion:ion-java:1.0.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.6.7.classpath"/>
+    <path refid="library.gradle:_joda-time:joda-time:2.8.1.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:jmespath-java:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.google.auto:auto-common:0.8.classpath"/>
+    <path refid="library.gradle:_dk.brics.automaton:automaton:1.11-8.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava:20.0.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-enxio:0.16.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-posix:3.0.35.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-ffi:2.1.4.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-constants:0.9.8.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.6.7.1.classpath"/>
+    <path refid="library.gradle:_com.google.code.findbugs:jsr305:1.3.9.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.1.3.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava-jdk5:17.0.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jffi:1.2.15.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jffi:1.2.15:native.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-commons:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-analysis:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-util:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-tree:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.3.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-x86asm:1.0.2.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.6.0.classpath"/>
+  </path>
+  
+  <path id="clientms.runtime.production.module.classpath">
+    <pathelement location="${clientms.output.dir}"/>
+    <path refid="library.gradle:_com.google.crypto.tink:tink:1.1.0.classpath"/>
+    <path refid="library.gradle:_com.google.cloud.sql:mysql-socket-factory:1.0.9.classpath"/>
+    <path refid="library.gradle:_com.google.cloud.sql:jdbc-socket-factory-core:1.0.9.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:8.0.11.classpath"/>
+    <path refid="library.gradle:_com.github.javafaker:javafaker:0.15.classpath"/>
+    <path refid="library.gradle:_org.greenrobot:eventbus:3.1.1.classpath"/>
+    <path refid="library.gradle:_org.apache.pdfbox:pdfbox:2.0.9.classpath"/>
+    <path refid="library.gradle:_commons-io:commons-io:2.6.classpath"/>
+    <path refid="library.gradle:_javax.mail:mail:1.4.classpath"/>
+    <path refid="library.gradle:_javax.activation:activation:1.1.1.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:aws-java-sdk-kms:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:aws-java-sdk-core:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-cloudkms:v1-rev9-1.22.0.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-sqladmin:v1beta4-rev56-1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.auto.service:auto-service:1.0-rc4.classpath"/>
+    <path refid="library.gradle:_com.google.protobuf:protobuf-java:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.json:json:20170516.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-lang3:3.5.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.20:android.classpath"/>
+    <path refid="library.gradle:_com.github.mifmif:generex:1.0.2.classpath"/>
+    <path refid="library.gradle:_org.apache.pdfbox:fontbox:2.0.9.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jackson2:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.gradle:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-unixsocket:0.18.classpath"/>
+    <path refid="library.gradle:_software.amazon.ion:ion-java:1.0.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.6.7.classpath"/>
+    <path refid="library.gradle:_joda-time:joda-time:2.8.1.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:jmespath-java:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.google.auto:auto-common:0.8.classpath"/>
+    <path refid="library.gradle:_dk.brics.automaton:automaton:1.11-8.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava:20.0.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-enxio:0.16.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-posix:3.0.35.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-ffi:2.1.4.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-constants:0.9.8.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.6.7.1.classpath"/>
+    <path refid="library.gradle:_com.google.code.findbugs:jsr305:1.3.9.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.1.3.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava-jdk5:17.0.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jffi:1.2.15.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jffi:1.2.15:native.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-commons:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-analysis:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-util:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-tree:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.3.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-x86asm:1.0.2.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.6.0.classpath"/>
+  </path>
+  
+  <path id="clientms.module.classpath">
+    <path refid="${module.jdk.classpath.clientms}"/>
+    <pathelement location="${clientms.output.dir}"/>
+    <path refid="library.gradle:_com.google.crypto.tink:tink:1.1.0.classpath"/>
+    <path refid="library.gradle:_com.google.cloud.sql:mysql-socket-factory:1.0.9.classpath"/>
+    <path refid="library.gradle:_com.google.cloud.sql:jdbc-socket-factory-core:1.0.9.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:8.0.11.classpath"/>
+    <path refid="library.gradle:_com.github.javafaker:javafaker:0.15.classpath"/>
+    <path refid="library.gradle:_org.greenrobot:eventbus:3.1.1.classpath"/>
+    <path refid="library.gradle:_org.apache.pdfbox:pdfbox:2.0.9.classpath"/>
+    <path refid="library.gradle:_commons-io:commons-io:2.6.classpath"/>
+    <path refid="library.gradle:_javax.mail:mail:1.4.classpath"/>
+    <path refid="library.gradle:_javax.activation:activation:1.1.1.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:aws-java-sdk-kms:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:aws-java-sdk-core:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-sqladmin:v1beta4-rev56-1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-cloudkms:v1-rev9-1.22.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.auto.service:auto-service:1.0-rc4.classpath"/>
+    <path refid="library.gradle:_com.google.protobuf:protobuf-java:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.json:json:20170516.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-lang3:3.5.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.20:android.classpath"/>
+    <path refid="library.gradle:_com.github.mifmif:generex:1.0.2.classpath"/>
+    <path refid="library.gradle:_org.apache.pdfbox:fontbox:2.0.9.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jackson2:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.gradle:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-unixsocket:0.18.classpath"/>
+    <path refid="library.gradle:_software.amazon.ion:ion-java:1.0.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.6.7.classpath"/>
+    <path refid="library.gradle:_joda-time:joda-time:2.8.1.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:jmespath-java:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.google.auto:auto-common:0.8.classpath"/>
+    <path refid="library.gradle:_dk.brics.automaton:automaton:1.11-8.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava:20.0.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-enxio:0.16.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-posix:3.0.35.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-ffi:2.1.4.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-constants:0.9.8.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.6.7.1.classpath"/>
+    <path refid="library.gradle:_com.google.code.findbugs:jsr305:1.3.9.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.1.3.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava-jdk5:17.0.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jffi:1.2.15.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jffi:1.2.15:native.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-commons:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-analysis:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-util:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-tree:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.3.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-x86asm:1.0.2.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.6.0.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+  </path>
+  
+  <path id="clientms.runtime.module.classpath">
+    <pathelement location="${clientms.testoutput.dir}"/>
+    <pathelement location="${clientms.output.dir}"/>
+    <path refid="library.gradle:_com.google.crypto.tink:tink:1.1.0.classpath"/>
+    <path refid="library.gradle:_com.google.cloud.sql:mysql-socket-factory:1.0.9.classpath"/>
+    <path refid="library.gradle:_com.google.cloud.sql:jdbc-socket-factory-core:1.0.9.classpath"/>
+    <path refid="library.gradle:_mysql:mysql-connector-java:8.0.11.classpath"/>
+    <path refid="library.gradle:_com.github.javafaker:javafaker:0.15.classpath"/>
+    <path refid="library.gradle:_org.greenrobot:eventbus:3.1.1.classpath"/>
+    <path refid="library.gradle:_org.apache.pdfbox:pdfbox:2.0.9.classpath"/>
+    <path refid="library.gradle:_commons-io:commons-io:2.6.classpath"/>
+    <path refid="library.gradle:_javax.mail:mail:1.4.classpath"/>
+    <path refid="library.gradle:_javax.activation:activation:1.1.1.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:aws-java-sdk-kms:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:aws-java-sdk-core:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-sqladmin:v1beta4-rev56-1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.apis:google-api-services-cloudkms:v1-rev9-1.22.0.classpath"/>
+    <path refid="library.gradle:_com.google.api-client:google-api-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.auto.service:auto-service:1.0-rc4.classpath"/>
+    <path refid="library.gradle:_com.google.protobuf:protobuf-java:3.3.0.classpath"/>
+    <path refid="library.gradle:_org.json:json:20170516.classpath"/>
+    <path refid="library.gradle:_org.apache.commons:commons-lang3:3.5.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.20:android.classpath"/>
+    <path refid="library.gradle:_com.github.mifmif:generex:1.0.2.classpath"/>
+    <path refid="library.gradle:_org.apache.pdfbox:fontbox:2.0.9.classpath"/>
+    <path refid="library.gradle:_com.google.oauth-client:google-oauth-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client-jackson2:1.23.0.classpath"/>
+    <path refid="library.gradle:_com.google.http-client:google-http-client:1.23.0.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.gradle:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-unixsocket:0.18.classpath"/>
+    <path refid="library.gradle:_software.amazon.ion:ion-java:1.0.2.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.6.7.classpath"/>
+    <path refid="library.gradle:_joda-time:joda-time:2.8.1.classpath"/>
+    <path refid="library.gradle:_com.amazonaws:jmespath-java:1.11.166.classpath"/>
+    <path refid="library.gradle:_com.google.auto:auto-common:0.8.classpath"/>
+    <path refid="library.gradle:_dk.brics.automaton:automaton:1.11-8.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava:20.0.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-enxio:0.16.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-posix:3.0.35.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-ffi:2.1.4.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-constants:0.9.8.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.6.7.1.classpath"/>
+    <path refid="library.gradle:_com.google.code.findbugs:jsr305:1.3.9.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.1.3.classpath"/>
+    <path refid="library.gradle:_com.google.guava:guava-jdk5:17.0.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jffi:1.2.15.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jffi:1.2.15:native.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-commons:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-analysis:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-util:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm-tree:5.0.3.classpath"/>
+    <path refid="library.gradle:_org.ow2.asm:asm:5.0.3.classpath"/>
+    <path refid="library.gradle:_com.github.jnr:jnr-x86asm:1.0.2.classpath"/>
+    <path refid="library.gradle:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.gradle:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.6.0.classpath"/>
+    <path refid="library.gradle:_junit:junit:4.12.classpath"/>
+    <path refid="library.gradle:_org.hamcrest:hamcrest-core:1.3.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.clientms">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.clientms">
+    <patternset refid="excluded.from.module.clientms"/>
+  </patternset>
+  
+  <path id="clientms.module.sourcepath">
+    <dirset dir="${module.clientms.basedir}/../../../ClientMS">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="clientms.module.test.sourcepath">
+    <dirset dir="${module.clientms.basedir}/../../../ClientMS">
+      <include name="src/test/java"/>
+      <include name="src/test/resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.clientms" depends="compile.module.clientms.production,compile.module.clientms.tests" description="Compile module ClientMS"/>
+  
+  <target name="compile.module.clientms.production" depends="register.custom.compilers" description="Compile module ClientMS; production classes">
+    <mkdir dir="${clientms.output.dir}"/>
+    <javac2 destdir="${clientms.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.clientms}/javac">
+      <compilerarg line="${compiler.args.clientms}"/>
+      <bootclasspath refid="clientms.module.bootclasspath"/>
+      <classpath refid="clientms.module.production.classpath"/>
+      <src refid="clientms.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.clientms"/>
+    </javac2>
+    
+    <copy todir="${clientms.output.dir}">
+      <fileset dir="${module.clientms.basedir}/../../src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.clientms.basedir}/../../src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.clientms.tests" depends="register.custom.compilers,compile.module.clientms.production" description="compile module ClientMS; test classes" unless="skip.tests">
+    <mkdir dir="${clientms.testoutput.dir}"/>
+    <javac2 destdir="${clientms.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.clientms}/javac">
+      <compilerarg line="${compiler.args.clientms}"/>
+      <bootclasspath refid="clientms.module.bootclasspath"/>
+      <classpath refid="clientms.module.classpath"/>
+      <src refid="clientms.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.clientms"/>
+    </javac2>
+    
+    <copy todir="${clientms.testoutput.dir}">
+      <fileset dir="${module.clientms.basedir}/../../src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.clientms.basedir}/../../src/test/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.clientms" description="cleanup module">
+    <delete dir="${clientms.output.dir}"/>
+    <delete dir="${clientms.testoutput.dir}"/>
+  </target>
+</project>

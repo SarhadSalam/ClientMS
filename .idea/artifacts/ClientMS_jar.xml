@@ -1,80 +1,77 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="ClientMS:jar">
+  <artifact type="jar" name="ClientMS:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/ClientMS_jar</output-path>
-    <root id="archive" name="ClientMS.jar">
+    <root id="archive" name="ClientMS_jar.jar">
       <element id="module-output" name="ClientMS" />
-      <element id="directory" name="layout">
-        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources/layout" />
-      </element>
-      <element id="directory" name="i18n">
-        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources/i18n" />
-      </element>
-      <element id="directory" name="img">
-        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources/img" />
-      </element>
-      <element id="directory" name="crypto">
-        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources/crypto" />
-      </element>
-      <element id="directory" name="invoice">
-        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources/invoice" />
-      </element>
-      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/dev.env.properties" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/env.properties" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/user.properties" />
-      <element id="library" level="project" name="Gradle: com.google.crypto.tink:tink:1.1.0" />
-      <element id="library" level="project" name="Gradle: com.google.cloud.sql:mysql-socket-factory:1.0.9" />
-      <element id="library" level="project" name="Gradle: com.google.cloud.sql:jdbc-socket-factory-core:1.0.9" />
-      <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:8.0.11" />
-      <element id="library" level="project" name="Gradle: com.github.javafaker:javafaker:0.15" />
-      <element id="library" level="project" name="Gradle: org.greenrobot:eventbus:3.1.1" />
-      <element id="library" level="project" name="Gradle: org.apache.pdfbox:pdfbox:2.0.9" />
-      <element id="library" level="project" name="Gradle: commons-io:commons-io:2.6" />
-      <element id="library" level="project" name="Gradle: javax.mail:mail:1.4" />
-      <element id="library" level="project" name="Gradle: javax.activation:activation:1.1.1" />
-      <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-kms:1.11.166" />
-      <element id="library" level="project" name="Gradle: com.amazonaws:aws-java-sdk-core:1.11.166" />
-      <element id="library" level="project" name="Gradle: com.google.apis:google-api-services-cloudkms:v1-rev9-1.22.0" />
-      <element id="library" level="project" name="Gradle: com.google.apis:google-api-services-sqladmin:v1beta4-rev56-1.23.0" />
-      <element id="library" level="project" name="Gradle: com.google.api-client:google-api-client:1.23.0" />
-      <element id="library" level="project" name="Gradle: com.google.auto.service:auto-service:1.0-rc4" />
-      <element id="library" level="project" name="Gradle: com.google.protobuf:protobuf-java:3.3.0" />
-      <element id="library" level="project" name="Gradle: org.json:json:20170516" />
-      <element id="library" level="project" name="Gradle: org.apache.commons:commons-lang3:3.5" />
-      <element id="library" level="project" name="Gradle: org.yaml:snakeyaml:1.20:android" />
-      <element id="library" level="project" name="Gradle: com.github.mifmif:generex:1.0.2" />
-      <element id="library" level="project" name="Gradle: org.apache.pdfbox:fontbox:2.0.9" />
-      <element id="library" level="project" name="Gradle: com.google.oauth-client:google-oauth-client:1.23.0" />
-      <element id="library" level="project" name="Gradle: com.google.http-client:google-http-client-jackson2:1.23.0" />
-      <element id="library" level="project" name="Gradle: com.google.http-client:google-http-client:1.23.0" />
-      <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.5.2" />
-      <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
-      <element id="library" level="project" name="Gradle: com.github.jnr:jnr-unixsocket:0.18" />
-      <element id="library" level="project" name="Gradle: software.amazon.ion:ion-java:1.0.2" />
-      <element id="library" level="project" name="Gradle: com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.6.7" />
-      <element id="library" level="project" name="Gradle: joda-time:joda-time:2.8.1" />
-      <element id="library" level="project" name="Gradle: com.amazonaws:jmespath-java:1.11.166" />
-      <element id="library" level="project" name="Gradle: com.google.auto:auto-common:0.8" />
-      <element id="library" level="project" name="Gradle: dk.brics.automaton:automaton:1.11-8" />
-      <element id="library" level="project" name="Gradle: com.google.guava:guava:20.0" />
-      <element id="library" level="project" name="Gradle: com.github.jnr:jnr-enxio:0.16" />
-      <element id="library" level="project" name="Gradle: com.github.jnr:jnr-posix:3.0.35" />
-      <element id="library" level="project" name="Gradle: com.github.jnr:jnr-ffi:2.1.4" />
-      <element id="library" level="project" name="Gradle: com.github.jnr:jnr-constants:0.9.8" />
-      <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.6.7.1" />
-      <element id="library" level="project" name="Gradle: com.google.code.findbugs:jsr305:1.3.9" />
-      <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.1.3" />
-      <element id="library" level="project" name="Gradle: com.google.guava:guava-jdk5:17.0" />
-      <element id="library" level="project" name="Gradle: com.github.jnr:jffi:1.2.15" />
-      <element id="library" level="project" name="Gradle: com.github.jnr:jffi:1.2.15:native" />
-      <element id="library" level="project" name="Gradle: org.ow2.asm:asm-commons:5.0.3" />
-      <element id="library" level="project" name="Gradle: org.ow2.asm:asm-analysis:5.0.3" />
-      <element id="library" level="project" name="Gradle: org.ow2.asm:asm-util:5.0.3" />
-      <element id="library" level="project" name="Gradle: org.ow2.asm:asm-tree:5.0.3" />
-      <element id="library" level="project" name="Gradle: org.ow2.asm:asm:5.0.3" />
-      <element id="library" level="project" name="Gradle: com.github.jnr:jnr-x86asm:1.0.2" />
-      <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.4.4" />
-      <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.9" />
-      <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.6.0" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.json/json/20170516/949abe1460757b8dc9902c562f83e49675444572/json-20170516.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.5.0-b30/5c6688a6bafcd2098bef4ca45226d5355b816647/hk2-api-2.5.0-b30.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/20.0/89507701249388e1ed5ddcf8c41f4ce1be7831ef/guava-20.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.6.0/a0990e2e812ac6639b6ce955c91b13228500476e/jackson-annotations-2.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/jmespath-java/1.11.166/39df5702edbe5ff79b21943d84eb3d41146ff8ef/jmespath-java-1.11.166.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.8.1/f5bfc718c95a7b1d3c371bb02a188a4df18361a9/joda-time-2.8.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/software.amazon.ion/ion-java/1.0.2/ee9dacea7726e495f8352b81c12c23834ffbc564/ion-java-1.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.pdfbox/pdfbox/2.0.9/d0425578218624388f2ec84a0b3a11efd55df0f5/pdfbox-2.0.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jvnet.mimepull/mimepull/1.9.6/41c913d791e16f93bc712a8c8a30bb64daa2e9bd/mimepull-1.9.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-unixsocket/0.18/d79a27db9eea25e2025d5278b66ad589b75a8263/jnr-unixsocket-0.18.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.25/b38e1a1af6ad75dd9037a767764b0d41801f1c9f/jersey-common-2.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.javafaker/javafaker/0.15/5c115daf9d1cc116642da3addbf47f723a4abd51/javafaker-0.15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-util/5.0.3/1512e5571325854b05fb1efce1db75fcced54389/asm-util-5.0.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/osgi-resource-locator/1.0.1/4ed2b2d4738aed5786cfa64cba5a332779c4c708/osgi-resource-locator-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.25/416a00562f25d7efdba015e5c21876d19163edd0/jersey-client-2.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jffi/1.2.15/53f344e9e60e16f648dc66ce7cb8b1e7499b2a9/jffi-1.2.15-native.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.5.0-b30/82056cbbd258647bbc6b80debe4e6b7121c61be9/hk2-locator-2.5.0-b30.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.6/815893df5f31da2ece4040fe0a12fd44b577afaf/commons-io-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-x86asm/1.0.2/6936bbd6c5b235665d87bd450f5e13b52d4b48/jnr-x86asm-1.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.auto.service/auto-service/1.0-rc4/44954d465f3b9065388bbd2fc08a3eb8fd07917c/auto-service-1.0-rc4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.23.0/522ea860eb48dee71dfe2c61a1fd09663539f556/google-api-client-1.23.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.auto/auto-common/0.8/c6f7af0e57b9d69d81b05434ef9f3c5610d498c4/auto-common-0.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/mysql/mysql-connector-java/8.0.11/2c3d25fe1dfdd6496e0bbe47d67809f67487cfba/mysql-connector-java-8.0.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.5.0-b30/54b36144fd2fb684f9cee73d96060bb82e4d363/javax.inject-2.5.0-b30.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.25/4439bddb870b210e40ca2e953813930be424dc0c/jersey-guava-2.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.4/b31526a230871fbe285fbcbe2813f9c0839ae9b0/httpcore-4.4.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-jdk5/17.0/463f8378feba44df7ba7cd9272d01837dad62b36/guava-jdk5-17.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-constants/0.9.8/478036404879bd582be79e9a7939f3a161601c8b/jnr-constants-0.9.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.greenrobot/eventbus/3.1.1/5cd91fd014f5b72292f959748c20a2cefefae77d/eventbus-3.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.20/2aedb93fd5541cb5d78e9c6dd80d72ef8ef1c95f/snakeyaml-1.20-android.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-sqladmin/v1beta4-rev56-1.23.0/27b6215bfcff24e8b19c5246fa0579d851c86a7b/google-api-services-sqladmin-v1beta4-rev56-1.23.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.5/6c6c702c89bfff3cd9e80b04d668c5e190d588c6/commons-lang3-3.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.5.0-b30/4e882c90e9ba801803991b4000e6d9ad216ac261/aopalliance-repackaged-2.5.0-b30.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/dk.brics.automaton/automaton/1.11-8/6ebfa65eb431ff4b715a23be7a750cbc4cc96d0f/automaton-1.11-8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-java/3.3.0/9f301d1a27501b1afcb2ed16aad428337dabf9e4/protobuf-java-3.3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-jackson2/1.23.0/fd6761f4046a8cb0455e6fa5f58e12b061e9826e/google-http-client-jackson2-1.23.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.3/f6c3aed1cdfa21b5c1737c915186ea93a95a58bd/jackson-core-2.1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.23.0/e57ea1e2220bda5a2bd24ff17860212861f3c5cf/google-oauth-client-1.23.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-posix/3.0.35/ffba08928bec368c494180c1573a10f1f57cd031/jnr-posix-3.0.35.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-core/1.11.166/5f28def6d43d805cc1d795ad08187d5b463d6c9d/aws-java-sdk-core-1.11.166.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-cloudkms/v1-rev9-1.22.0/f646c0903083001e2c8224b1c4a21b07ca04e2d/google-api-services-cloudkms-v1-rev9-1.22.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.mifmif/generex/1.0.2/b378f873b4e8d7616c3d920e2132cb1c87679600/generex-1.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-enxio/0.16/ae38d71e2c224e3ea0f9528ed026c4e5a9f2b851/jnr-enxio-0.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-java-sdk-kms/1.11.166/33a4c0d5c26c4ab6bb14c1d80cdec435f837d887/aws-java-sdk-kms-1.11.166.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-analysis/5.0.3/c7126aded0e8e13fed5f913559a0dd7b770a10f3/asm-analysis-5.0.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-commons/5.0.3/a7111830132c7f87d08fe48cb0ca07630f8cb91c/asm-commons-5.0.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.pdfbox/fontbox/2.0.9/f961f17ebdbc307e9055e3cf7c0e207f0895ae55/fontbox-2.0.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.crypto.tink/tink/1.1.0/6eb0bddb58506c9a8c0f663f3b266e2fdb36698e/tink-1.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.6.7.1/306775aeb5164835a1dcbdf3f945587045cfb3b5/jackson-databind-2.6.7.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.20.0-GA/a9cbcdfb7e9f86fbc74d3afae65f2248bfbf82a0/javassist-3.20.0-GA.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud.sql/jdbc-socket-factory-core/1.0.9/994b1baad57c127aa31dc58b7dc7f72de5d81160/jdbc-socket-factory-core-1.0.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpclient/4.5.2/733db77aa8d9b2d68015189df76ab06304406e50/httpclient-4.5.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client/1.23.0/8e86c84ff3c98eca6423e97780325b299133d858/google-http-client-1.23.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jnr-ffi/2.1.4/a63bbd4af5cee55d820ef40dc5347d45765b788/jnr-ffi-2.1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sargue/mailgun/1.9.0/3f43c08c57167df5897b4ce61c39333df56e197e/mailgun-1.9.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/2.6.7/ba9e74b11135b18248e960df657a2b86ae77a079/jackson-dataformat-cbor-2.6.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-multipart/2.25/c16881a7522dc8e2636bf5024d183919c16a7f75/jersey-media-multipart-2.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-tree/5.0.3/287749b48ba7162fb67c93a026d690b29f410bed/asm-tree-5.0.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.cloud.sql/mysql-socket-factory/1.0.9/dc0e7690d80cb2a893edd0a8cef2ed5970ba2f6a/mysql-socket-factory-1.0.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.ws.rs/javax.ws.rs-api/2.0.1/104e9c2b5583cfcfeac0402316221648d6d8ea6b/javax.ws.rs-api-2.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.5.0-b30/b17fc7d8082ac00e59cd96fda9cff21f24cc367c/hk2-utils-2.5.0-b30.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.jnr/jffi/1.2.15/f480f0234dd8f053da2421e60574cfbd9d85e1f5/jffi-1.2.15.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
     </root>
   </artifact>
 </component>

@@ -5,6 +5,7 @@ import customers.PatientVisits;
 import errors.Error;
 import errors.ErrorPane;
 import home.Home;
+import home.TodayVisits;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -13,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import mail.SendMail;
 import models.Employee;
 import models.Patient;
 import statistics.EmployeeStatisticsAlgorithm;
@@ -21,6 +23,7 @@ import toasts.Toast;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -47,7 +50,7 @@ public class HomeController
 	private Label userNameLabel, amountEarnedLabel;
 	
 	@FXML
-	private Button searchButton, refreshAmountButton;
+	private Button searchButton, refreshAmountButton, viewVisitsButton;
 	
 	@FXML
 	private TextField searchBar;
@@ -67,23 +70,32 @@ public class HomeController
 			}
 		});
 		
-		searchButton.setOnAction(event -> {
-			handleSearch();
-		});
+		searchButton.setOnAction(event -> handleSearch());
 		
-		refreshAmountButton.setOnAction(event -> {
-			handleAmountRefresh();
+		refreshAmountButton.setOnAction(event -> handleAmountRefresh());
+		
+		viewVisitsButton.setOnAction(event -> {
+			TodayVisits todayVisits = new TodayVisits();
+			try
+			{
+				todayVisits.start((Stage) searchButton.getScene().getWindow(), empl);
+			} catch( IOException e )
+			{
+				Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
+			}
 		});
 	}
 	
 	public void handleAmountRefresh()
 	{
 		EmployeeStatisticsAlgorithm employeeStatisticsAlgorithm = new EmployeeStatisticsAlgorithm();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		try
 		{
-			String total = employeeStatisticsAlgorithm.getEarning(empl, simpleDateFormat.format(date), simpleDateFormat.format(date));
+			String total = employeeStatisticsAlgorithm.getEarning(empl, simpleDateFormat.format(date)+" 00:00:00", simpleDateFormat.format(date)+" 23:59:59");
 			if( total != null && !total.equals("") )
 			{
 				amountEarnedLabel.setTextFill(Color.GREEN);
@@ -98,7 +110,9 @@ public class HomeController
 			else firstTimeLoad.set(true);
 		} catch( IOException|SQLException e )
 		{
-			e.printStackTrace();
+			Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+			SendMail sendMail = new SendMail();
+			sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 		}
 	}
 	
@@ -116,7 +130,9 @@ public class HomeController
 				resultOfSearch = addPatient.searchForPatient(searchBar.getText(), selectedButton.getText(), patient);
 			} catch( IOException|SQLException e )
 			{
-				e.printStackTrace();
+				Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+				SendMail sendMail = new SendMail();
+				sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 			}
 			
 			//patient found
@@ -154,7 +170,9 @@ public class HomeController
 							patient = null;
 							//in case cannot be inserted
 							resultOfSearch = false;
-							e.printStackTrace();
+							Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+							SendMail sendMail = new SendMail();
+							sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 						}
 					}
 				}
@@ -169,7 +187,9 @@ public class HomeController
 					visits.start(stage);
 				} catch( IOException e )
 				{
-					e.printStackTrace();
+					Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 				}
 			}
 		} else

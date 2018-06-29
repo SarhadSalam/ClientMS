@@ -11,6 +11,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import mail.SendMail;
+
+import java.util.Arrays;
 
 /**
  * Class Details:- Author: Sarhad User: sarhad Date: 31/05/18 Time : 5:35 PM Project Name: ClientMS Class Name: Toast
@@ -49,7 +52,9 @@ public class Toast
 					Thread.sleep(toastDelay);
 				} catch( InterruptedException e )
 				{
-					e.printStackTrace();
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
+					System.out.println("failed");
 				}
 				
 				Timeline fadeOutTimeline = new Timeline();

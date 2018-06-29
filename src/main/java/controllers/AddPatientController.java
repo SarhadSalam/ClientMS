@@ -11,12 +11,15 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import mail.SendMail;
 import models.Employee;
 import models.Patient;
 import org.greenrobot.eventbus.EventBus;
+import toasts.Toast;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
@@ -92,7 +95,9 @@ public class AddPatientController
 				} catch( IOException|SQLException e )
 				{
 					//oops failed
-					e.printStackTrace();
+					Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 				}
 				
 				Stage stage = (Stage) childStage.getScene().getWindow();
@@ -102,7 +107,9 @@ public class AddPatientController
 					visits.start(stage);
 				} catch( IOException e )
 				{
-					e.printStackTrace();
+					Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 				}
 				childStage.close();
 			} else

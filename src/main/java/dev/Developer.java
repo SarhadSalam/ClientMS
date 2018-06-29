@@ -19,6 +19,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -27,6 +28,7 @@ import java.util.Date;
  */
 public class Developer
 {
+	
 	public Patient getPatient(int id) throws IOException, SQLException
 	{
 		Patient patient = new Patient();
@@ -74,7 +76,7 @@ public class Developer
 					Date end = sDF.parse("06/31/2018");
 					
 					Date insertionTime = fakeVisit.date().between(begin, end);
-
+					
 					Timestamp timestamp = new Timestamp(insertionTime.getTime());
 					
 					visit.setTimestamp(timestamp);
@@ -91,8 +93,6 @@ public class Developer
 			}
 		}
 	}
-	
-	
 	
 	private void createClusterPatients() throws IOException, SQLException
 	{
@@ -111,16 +111,15 @@ public class Developer
 		}
 	}
 	
-	
-	public static void main(String[] args)
+	public static void main(String[] args) throws GeneralSecurityException, IOException, URISyntaxException
 	{
-		Developer developer = new Developer();
-		try
-		{
-			developer.createClusterVisits();
-		} catch( IOException|SQLException|ParseException e )
-		{
-			e.printStackTrace();
-		}
+		byte b[] = {1, 33, 86, -33, -7, 97, -76, 83, 13, 30, 44, -71, 82, 105, -15, -19, -57, 111, 28, -7, -88, -27, 1, 83, 65, -74, -1, 123, 72, 23, 127, 59, 20, -106, 107, -106, -3, 118, -104, -19, -51, -22, -19};
+		Crypto crypto = new Crypto();
+		
+		String x = "\u0001!V\uFFDF\uFFF9ﾁ\uFFF0ﾯ￭\"\uFFD9\"|HKWs&ￄ￼\f4 Tﾁ\uFFF6bￎ\"kﾗￃ\u0016ﾴ(ﾐz6\uFFF7\uFFFFￒ\uFFF2x";
+		
+		System.out.println(crypto.byteArrToString(crypto.encrypt("7lfbpibCYx")));
+		System.out.println(crypto.byteArrToString(crypto.decrypt(x.getBytes())));
+		
 	}
 }

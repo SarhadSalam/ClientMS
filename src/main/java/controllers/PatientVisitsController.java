@@ -15,8 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.StringConverter;
+import mail.SendMail;
 import models.Employee;
 import models.Patient;
 import models.Visits;
@@ -32,6 +32,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -127,7 +128,9 @@ public class PatientVisitsController
 					printAndVisit.addVisit(servicesText.getText(), Double.valueOf(amount.getText()), visits);
 				} catch( SQLException|IOException e )
 				{
-					e.printStackTrace();
+					Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 				}
 				childStage.close();
 				EventBus.getDefault().post(new MessageEvent(resources.getString("recorded")));
@@ -140,7 +143,9 @@ public class PatientVisitsController
 						filename = createInvoice.createInvoiceDetails(patient, visits);
 					} catch( IOException e )
 					{
-						e.printStackTrace();
+						Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+						SendMail sendMail = new SendMail();
+						sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 					}
 					try
 					{
@@ -165,7 +170,9 @@ public class PatientVisitsController
 								}
 							} catch( Exception exp )
 							{
-								exp.printStackTrace();
+								Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+								SendMail sendMail = new SendMail();
+								sendMail.sendErrorMail(Arrays.toString(exp.getStackTrace()));
 							}
 						});
 						thread.setDaemon(true);
@@ -174,7 +181,9 @@ public class PatientVisitsController
 						printFile.print(filename, visits, Integer.valueOf(printCustomerAmount.getText()));
 					} catch( IOException|PrinterException e )
 					{
-						e.printStackTrace();
+						Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+						SendMail sendMail = new SendMail();
+						sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 					}
 				}
 				
@@ -261,11 +270,13 @@ public class PatientVisitsController
 				}
 				try
 				{
-					ObservableList<Visits> data = PatientVisits.getPreviousVisits(patient);
+					ObservableList<Visits> data = PatientVisits.getAllPreviousVisits(patient);
 					prevTable.setItems(data);
 				} catch( IOException|SQLException e )
 				{
-					e.printStackTrace();
+					Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 				}
 				alert.close();
 			}
@@ -308,7 +319,9 @@ public class PatientVisitsController
 					
 				} catch( IOException|SQLException e )
 				{
-					e.printStackTrace();
+					Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 				}
 			}
 		});
@@ -330,7 +343,9 @@ public class PatientVisitsController
 					printAndVisit.updateVisit(visits);
 				} catch( IOException|SQLException e )
 				{
-					e.printStackTrace();
+					Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+					SendMail sendMail = new SendMail();
+					sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 				}
 			}
 		});
@@ -377,7 +392,9 @@ public class PatientVisitsController
 							}
 						} catch( IOException|SQLException e )
 						{
-							e.printStackTrace();
+							Toast.makeText(null, resources.getString("typical_catch_statement"), 5000, 500, 500);
+							SendMail sendMail = new SendMail();
+							sendMail.sendErrorMail(Arrays.toString(e.getStackTrace()));
 						}
 					});
 				}

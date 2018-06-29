@@ -52,7 +52,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="prevTable" editable="true" layoutX="5.0" layoutY="14.0" prefHeight="508.0" prefWidth="583.0" tableMenuButtonVisible="true">
+                        <TableView fx:id="prevTable" editable="true" layoutX="5.0" layoutY="14.0" prefHeight="457.0" prefWidth="583.0" tableMenuButtonVisible="true">
                           <columns>
                             <TableColumn fx:id="visitCol" prefWidth="75.0" text="File No." />
                               <TableColumn fx:id="serviceCol" prefWidth="75.0" text="Services" />
