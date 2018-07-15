@@ -4,8 +4,10 @@ import com.sun.javafx.stage.StageHelper;
 import controllers.EmployeeLoginController;
 import controllers.MenuBarController;
 import crypto.Crypto;
+import database.GetDatabaseLogin;
 import errors.Error;
 import events.LogoutEvent;
+import global.Global;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +19,7 @@ import models.Employee;
 import org.greenrobot.eventbus.Subscribe;
 import properties.Properties;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
 import java.sql.Connection;
@@ -30,150 +32,143 @@ import java.util.ResourceBundle;
  * Class Details:- Author: Sarhad User: sarhad Date: 03/05/18 Time : 3:30 PM Project Name: inc.sarhad.CMS Class Name:
  * authentication.EmployeeLogin
  */
-public class EmployeeLogin extends Application
-{
-	
-	private Stage primaryStage;
-	
-	/*
-	 * Responsible for validating inputs, checks for username, password and sets the error messages.
-	 * */
-	
-	public static boolean validateInput(String username, String password, Error error)
-	{
-		ResourceBundle rs = new i18n.i18n().getResourceBundle("en", "US");
-		boolean noInputIsWrong = true;
-		if( username.length()<3 )
-		{
-			error.getErrors().add(rs.getString("username_min_char"));
-			noInputIsWrong = false;
-		}
-		
-		//if username or password is longer
-		if( username.length() >= 10 )
-		{
-			error.getErrors().add(rs.getString("username_max_char"));
-			noInputIsWrong = false;
-		}
-		
-		if( password.length()<6 )
-		{
-			error.getErrors().add(rs.getString("password_min_char"));
-			noInputIsWrong = false;
-		}
-		
-		if( password.length() >= 12 )
-		{
-			error.getErrors().add(rs.getString("password_max_char"));
-			noInputIsWrong = false;
-		}
-		
-		if( !username.matches("^[a-zA-Z0-9]*$") )
-		{
-			error.getErrors().add(rs.getString("username_alphanum"));
-			noInputIsWrong = false;
-		}
-		
-		if( !password.matches("^[a-zA-Z0-9]*$") )
-		{
-			error.getErrors().add(rs.getString("password_alphanum"));
-			noInputIsWrong = false;
-		}
-		
-		return noInputIsWrong;
-	}
-	
-	/*
-	 * Starts the primary activity scene, the employee change screen.
-	 * */
-	@Override
-	public void start(Stage primaryStage) throws Exception
-	{
-		this.primaryStage = primaryStage;
-		EmployeeLoginController employeeLoginController = new EmployeeLoginController();
-		MenuBarController menuBarController = new MenuBarController();
-		
-		//Load Layouts
-		ClassLoader cl = Thread.currentThread().getContextClassLoader();
-		
-		//load the language
-		ResourceBundle rs = new i18n.i18n().getResourceBundle("en", "US");
-		
-		//Set the scenes
-		FXMLLoader login = new FXMLLoader(cl.getResource("layout/EmployeeLogin.fxml"));
-		FXMLLoader menu = new FXMLLoader(cl.getResource("layout/Menubar.fxml"));
-		
-		login.setController(employeeLoginController);
-		menu.setController(menuBarController);
-		
-		login.setResources(rs);
-		menu.setResources(rs);
-		BorderPane borderPane = new BorderPane();
-		borderPane.setTop(menu.load());
-		borderPane.setCenter(login.load());
-		
-		primaryStage.setTitle(rs.getString("title"));
-		primaryStage.setScene(new Scene(borderPane, 600, 400));
-		primaryStage.setResizable(false);
-		primaryStage.getIcons().add(new Image(cl.getResourceAsStream("img/logo.png")));
-		primaryStage.setOnCloseRequest(event -> {
-			PreventClose preventClose = new PreventClose();
-			event.consume();
-			preventClose.createAlert(primaryStage);
-		});
-		employeeLoginController.setButtonAction(primaryStage);
-		menuBarController.setUpMenuBar();
-		menuBarController.setMenuItemOptions(primaryStage);
-		
-		primaryStage.show();
-	}
-	
-	@Deprecated
-	/*
-	* The method is public because it is required. However, avoid using it explicitly, because it returns a user even if the user is disabled.
-	* */
-	public static boolean getEmployee(String username, Connection c, Employee empl) throws SQLException
-	{
-		String query = "select first_name, last_name,password, username, role, disabled from employee where username='"+username+"'";
-		Statement statement = c.createStatement();
-		ResultSet rs = statement.executeQuery(query);
-		
-		//employee foundP
-		if( rs.next() )
-		{
-			empl.setFirst_name(rs.getString("first_name"));
-			empl.setLast_name(rs.getString("last_name"));
-			empl.setPassword(rs.getBytes("password"));
-			empl.setUsername(rs.getString("username"));
-			empl.setRole(Employee.USER_ROLE.valueOf(rs.getString("role")));
-			empl.setDisabled(rs.getByte("disabled"));
-			return true;
-		}
-		
-		//employee not found
-		return false;
-	}
-	
-	public static Employee userExists(String username, String password) throws IOException, SQLException, GeneralSecurityException, URISyntaxException
-	{
-		Properties prop = new Properties();
-		Employee empl = new Employee();
-		DatabaseConnection databaseConnection = new DatabaseConnection();
-		Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(( "dbPassword" ), Properties.PROPERTY_TYPE.env));
-		
-		if( getEmployee(username, c, empl) )
-		{
-			c.close();
-			Crypto crypto = new Crypto();
-			if( password.equals(new String(crypto.decrypt(empl.getPassword()), "UTF-8")) && !empl.isDisabled() ) return empl;
-			else return null;
-		}
-		c.close();
-		return null;
-	}
-	
-	public static void main(String[] args)
-	{
-		launch(args);
-	}
+public class EmployeeLogin extends Application {
+
+    private Stage primaryStage;
+
+    /*
+     * Responsible for validating inputs, checks for username, password and sets the error messages.
+     * */
+
+    public static boolean validateInput(String username, String password, Error error) {
+        ResourceBundle rs = new i18n.i18n().getResourceBundle("en", "US");
+        boolean noInputIsWrong = true;
+        if (username.length() < 3) {
+            error.getErrors().add(rs.getString("username_min_char"));
+            noInputIsWrong = false;
+        }
+
+        //if username or password is longer
+        if (username.length() >= 10) {
+            error.getErrors().add(rs.getString("username_max_char"));
+            noInputIsWrong = false;
+        }
+
+        if (password.length() < 6) {
+            error.getErrors().add(rs.getString("password_min_char"));
+            noInputIsWrong = false;
+        }
+
+        if (password.length() >= 12) {
+            error.getErrors().add(rs.getString("password_max_char"));
+            noInputIsWrong = false;
+        }
+
+        if (!username.matches("^[a-zA-Z0-9]*$")) {
+            error.getErrors().add(rs.getString("username_alphanum"));
+            noInputIsWrong = false;
+        }
+
+        if (!password.matches("^[a-zA-Z0-9]*$")) {
+            error.getErrors().add(rs.getString("password_alphanum"));
+            noInputIsWrong = false;
+        }
+
+        return noInputIsWrong;
+    }
+
+    /*
+     * Starts the primary activity scene, the employee change screen.
+     * */
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+        //Load Layouts
+        ClassLoader cl = Thread.currentThread().getContextClassLoader();
+
+        GetDatabaseLogin databaseLogin = new GetDatabaseLogin();
+        databaseLogin.getCloudProxy();
+
+        this.primaryStage = primaryStage;
+        EmployeeLoginController employeeLoginController = new EmployeeLoginController();
+        MenuBarController menuBarController = new MenuBarController();
+
+
+
+        //load the language
+        ResourceBundle rs = new i18n.i18n().getResourceBundle("en", "US");
+
+        //Set the scenes
+        FXMLLoader login = new FXMLLoader(cl.getResource("layout/EmployeeLogin.fxml"));
+        FXMLLoader menu = new FXMLLoader(cl.getResource("layout/Menubar.fxml"));
+
+        login.setController(employeeLoginController);
+        menu.setController(menuBarController);
+
+        login.setResources(rs);
+        menu.setResources(rs);
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(menu.load());
+        borderPane.setCenter(login.load());
+
+        primaryStage.setTitle(rs.getString("title"));
+        primaryStage.setScene(new Scene(borderPane, 600, 400));
+        primaryStage.setResizable(true);
+        primaryStage.getIcons().add(new Image(cl.getResourceAsStream("img/logo.png")));
+        primaryStage.setOnCloseRequest(event -> {
+            PreventClose preventClose = new PreventClose();
+            event.consume();
+            preventClose.createAlert(primaryStage);
+        });
+        employeeLoginController.setButtonAction(primaryStage);
+        menuBarController.setUpMenuBar();
+        menuBarController.setMenuItemOptions(primaryStage);
+
+        primaryStage.show();
+    }
+
+    @Deprecated
+    /*
+     * The method is public because it is required. However, avoid using it explicitly, because it returns a user even if the user is disabled.
+     * */
+    public static boolean getEmployee(String username, Connection c, Employee empl) throws SQLException {
+        String query = "select first_name, last_name,password, username, role, disabled from employee where username='" + username + "'";
+        Statement statement = c.createStatement();
+        ResultSet rs = statement.executeQuery(query);
+
+        //employee foundP
+        if (rs.next()) {
+            empl.setFirst_name(rs.getString("first_name"));
+            empl.setLast_name(rs.getString("last_name"));
+            empl.setPassword(rs.getBytes("password"));
+            empl.setUsername(rs.getString("username"));
+            empl.setRole(Employee.USER_ROLE.valueOf(rs.getString("role")));
+            empl.setDisabled(rs.getByte("disabled"));
+            return true;
+        }
+
+        //employee not found
+        return false;
+    }
+
+    public static Employee userExists(String username, String password) throws IOException, SQLException, GeneralSecurityException, URISyntaxException {
+        Properties prop = new Properties();
+        Employee empl = new Employee();
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection c = databaseConnection.getConnection(prop.getProperty("dbUsername", Properties.PROPERTY_TYPE.env), prop.getProperty(("dbPassword"), Properties.PROPERTY_TYPE.env));
+
+        if (getEmployee(username, c, empl)) {
+            c.close();
+            Crypto crypto = new Crypto();
+            if (password.equals(new String(crypto.decrypt(empl.getPassword()), "UTF-8")) && !empl.isDisabled())
+                return empl;
+            else return null;
+        }
+        c.close();
+        return null;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

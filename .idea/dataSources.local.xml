@@ -11,5 +11,11 @@
       <user-name>sarhad</user-name>
       <introspection-schemas>*:hijama_cms</introspection-schemas>
     </data-source>
+    <data-source name="root@googlecloud" uuid="f2e9d65a-3023-400f-8ebc-cd7c015c247c">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
+      <user-name>root</user-name>
+    </data-source>
   </component>
 </project>

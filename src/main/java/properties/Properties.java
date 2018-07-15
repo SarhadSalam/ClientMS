@@ -1,6 +1,7 @@
 package properties;
 
 import crypto.Crypto;
+import global.Global;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,8 +15,7 @@ import java.security.GeneralSecurityException;
  */
 public class Properties
 {
-	
-	private final boolean production = true;
+
 	/*
 	 * Written to prevent rewriting of code. gets the property from the properties file when user requests
 	 * */
@@ -31,7 +31,7 @@ public class Properties
 	public String getProperty(String prop, PROPERTY_TYPE type) throws IOException
 	{
 		String res;
-		if( production )
+		if(Global.prod)
 		{
 			res = "user.properties";
 			if( type == PROPERTY_TYPE.env )

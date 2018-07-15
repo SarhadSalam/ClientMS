@@ -11,7 +11,8 @@ import java.util.Locale;
  */
 public class Global
 {
-	
+	public final boolean production = true;
+	public static final boolean prod = true;
 	private static Locale locale = new Locale("en", "US");
 	
 	public static Locale getLocale()

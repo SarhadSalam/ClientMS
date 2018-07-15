@@ -21,7 +21,7 @@ dependencies {
     compile group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.9'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
     compile group: 'net.sargue', name: 'mailgun', version: '1.9.0'
-    compile group: 'com.google.cloud.sql', name: 'mysql-socket-factory', version: '1.0.9'
+    compile 'com.google.cloud.sql:mysql-socket-factory-connector-j8:1.0.10'
 }
 
 sourceSets {

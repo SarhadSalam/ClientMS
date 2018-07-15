@@ -4,6 +4,7 @@ import authentication.EmployeeLogin;
 import authentication.PreventClose;
 import authentication.Privileges;
 import com.sun.javafx.stage.StageHelper;
+import database.GetDatabaseLogin;
 import employee.EmployeeManagementScreen;
 import events.LogoutEvent;
 import global.Global;
@@ -91,6 +92,8 @@ public class MenuBarController
 			PreventClose preventClose = new PreventClose();
 			event.consume();
 			preventClose.createAlert(stage);
+            GetDatabaseLogin databaseLogin = new GetDatabaseLogin();
+            databaseLogin.removeFile();
 		});
 		
 		signOutItem.setOnAction(event -> {

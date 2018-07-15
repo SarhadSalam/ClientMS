@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "clientms-hijama",
+  "private_key_id": "29f92537f100148c3b5eabaf1fc3b05d94c43cfc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC1sB1MrYnGmpJE\nhYBEQ4HJzC62Y7ipe49DX1khvLmVE7Akpg0BC7c+ky2LcpZ5KDmhKbclpKfNALhL\nPk/HERw/HZCheyWjEbArIhGvJ2tWUskEzvRs3TeGayCKoGQD6hqcnWj6AoUN0H0s\nuRvTeB6o5f3A8tZc/7PInNDXccaCXY0EQRCs/T7TU0Gw1cKNh2gW7+MWv0Zjfe4P\nTeLd0pgLaX7geM2DN/lyJFe2v9JxZk5Y0UiWUDXjWbd4vJnMbydUTkKez1n5U4RX\n6+Posm35HqthQL/S52hvXQQzdKnbfWO16G7bcSqZBwdsfszStkYODBoEZZEmvfWV\nJaNwxkpDAgMBAAECggEACmlOrIOvRvm5kwKhcIf7yoAQVzRMsy2Y7o/qsCO78L6B\nlAAN87bjp8rQS9Ljq4qyDrmwvI/8a6N0bB9ke/BPkZBUpuRDKl6LnVUk9UgJfxdc\nXJGtcQWWNnYyFa+OO6kxIDNm/hih3kJJwgPTg+E4xI31ZhakUQz4FPFjiE0FRpgU\nEmVfP89qWny+eCLORBUe71AFqPi00bLtEb0DdbbIeIPGIX8/Cxq8ZqE09KQKLeXW\nvnugXowYUi2+yyoaz1xv/skfYPwuPHHqGTY6c/KxHzPagWALM7W4NBEjK1F3rueP\npJapFC/StV+teYdIWTetWLKeobJFdzXP6A3wNPB8VQKBgQDY5M8HWGmm9ZNDRy/7\nFc3zlC0zgSD2c07CVfVhq85NmNiAaqikHVzXiABTC2wL7fDZdE7iWwTUTahiVMye\nIi/CscpWjtllXuQwE9Je07xaAyuSzXvM24ivsqDp3eQHIGfLR075FXlsfTJpP4qn\nOJO2X3DSOz/dQGDp9R2tSvvWJwKBgQDWck5OpLq1sh3cvxwfi/GOHKZUlRUJ7/9D\n8jDrn0V6yp7+CGFAcsnizSmaIpXOoS2iIiQRFF+rdXIB8vdy9YVXiBe6+ZkY7XOe\n5mHeGHZCuvP3zrrsXvRjM93ueNT5ASSfeiIN//v54KKyM9rmRnVp26rEEO70Lqtc\naWf03Fy4hQKBgBhSSBjlxCsxvIq9z9aTEl4vDoaJA14/feRy6SpDrsWqzxRPYYvN\nsxyEJq0pSbtouipYTYQ6eqcn8ircoXlWEg7+Ctd7+0rPwjzV7DAwBB3/3wH+QtSt\nBX3WRQ8Uj75w1tLHs0ZhLxWIUH/W3UB1KrM3rpoUhMvVrUhu8R3+m5DfAoGAVkUj\n5ZV1m3TteInViYdmBPLXoz1aemX3fmEndxLbA7wR3EaIwUGsoDZDH0P8mmTTE9/C\nPLDCkBquY8RX8gJ9wyn3yftxsMqN8gXip1OV9+B4F2AuaLsGfAY4qSApJYdlMVcT\n7ifmOa86JJCh5nO/9nctqrTZPJitzX6GGMax8nUCgYAbGL4IUIjUpmcMJuyewNqE\nqKV08jPj4SY2VDqO4l+/A9z8MBZgccvaZt7cxYZ2MyeBwd3ihAkexRTcruvRoDby\nG7CILFQuQUeFaljHkPpCvM2TAdwPPHcDj+pIVKOxqgpfYmaS6yodumEhRQ9gU+8v\nWOC4jzhYOxLNzK5ZA1lmPQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "client-database-access@clientms-hijama.iam.gserviceaccount.com",
+  "client_id": "109384132681465726699",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/client-database-access%40clientms-hijama.iam.gserviceaccount.com"
+}
