@@ -92,8 +92,6 @@ public class MenuBarController
 			PreventClose preventClose = new PreventClose();
 			event.consume();
 			preventClose.createAlert(stage);
-            GetDatabaseLogin databaseLogin = new GetDatabaseLogin();
-            databaseLogin.removeFile();
 		});
 		
 		signOutItem.setOnAction(event -> {

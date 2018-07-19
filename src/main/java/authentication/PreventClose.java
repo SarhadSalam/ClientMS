@@ -1,5 +1,6 @@
 package authentication;
 
+import database.GetDatabaseLogin;
 import events.LogoutEvent;
 import global.Global;
 import javafx.application.Platform;
@@ -107,6 +108,9 @@ public class PreventClose
 					{
 						EventBus.getDefault().post(new LogoutEvent(true));
 					}
+
+                    GetDatabaseLogin databaseLogin = new GetDatabaseLogin();
+                    databaseLogin.removeFile();
 				} else
 				{
 					Toast.makeText(primaryStage, rs.getString("not_enough_permission"), 3000, 500, 500);

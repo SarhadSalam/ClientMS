@@ -4,6 +4,7 @@ import customers.AddPatient;
 import customers.PatientVisits;
 import errors.Error;
 import errors.ErrorPane;
+import global.Global;
 import home.Home;
 import home.TodayVisits;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.stage.StageStyle;
 import mail.SendMail;
 import models.Employee;
 import models.Patient;
+import org.apache.commons.lang3.time.DateUtils;
 import statistics.EmployeeStatisticsAlgorithm;
 import toasts.Toast;
 
@@ -92,7 +94,8 @@ public class HomeController
 	{
 		EmployeeStatisticsAlgorithm employeeStatisticsAlgorithm = new EmployeeStatisticsAlgorithm();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
+		Date date = DateUtils.addHours(new Date(), new Global().getCurrentTimeZoneHours());
+		date = DateUtils.addMinutes(date, new Global().getCurrentTimeZoneMinutes());
 		try
 		{
 			String total = employeeStatisticsAlgorithm.getEarning(empl, simpleDateFormat.format(date)+" 00:00:00", simpleDateFormat.format(date)+" 23:59:59");

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="userNameLabel" layoutX="32.0" layoutY="37.0" text="Username">
          <font>
@@ -19,7 +19,7 @@
          <toggleGroup>
             <ToggleGroup fx:id="searchMethod" />
          </toggleGroup></RadioButton>
-      <RadioButton layoutX="378.0" layoutY="109.0" mnemonicParsing="false" text="%file_no" toggleGroup="$searchMethod" />
+      <RadioButton fx:id="fileNoRadio" layoutX="378.0" layoutY="109.0" mnemonicParsing="false" text="%file_no" toggleGroup="$searchMethod" />
       <TextField fx:id="searchBar" layoutX="152.0" layoutY="142.0" prefHeight="26.0" prefWidth="207.0" promptText="%method_of_search_id" />
       <Button fx:id="searchButton" layoutX="377.0" layoutY="142.0" mnemonicParsing="false" text="%search" />
       <Label layoutX="192.0" layoutY="68.0" text="%search_patient">

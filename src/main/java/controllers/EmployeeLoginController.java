@@ -64,7 +64,12 @@ public class EmployeeLoginController
 	public ToggleGroup languageRadio;
 	@FXML
 	public ListView<String> errorPane;
-	
+
+
+	public void initialize(){
+        signIn.setDefaultButton(true);
+    }
+
 	public void setButtonAction(Stage primaryStage)
 	{
 		signIn.setOnAction(this::signUserIn);

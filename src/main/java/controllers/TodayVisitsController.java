@@ -1,6 +1,7 @@
 package controllers;
 
 import customers.PatientVisits;
+import global.Global;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -10,6 +11,7 @@ import mail.SendMail;
 import models.Employee;
 import models.Patient;
 import models.Visits;
+import org.apache.commons.lang3.time.DateUtils;
 import statistics.EmployeeStatisticsAlgorithm;
 import toasts.Toast;
 
@@ -49,7 +51,8 @@ public class TodayVisitsController
 		try
 		{
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = new Date();
+			Date date = DateUtils.addHours(new Date(), new Global().getCurrentTimeZoneHours());
+			date = DateUtils.addMinutes(date, new Global().getCurrentTimeZoneMinutes());
 			
 			ObservableList<Visits> data = esa.getPatientList(empl, simpleDateFormat.format(date)+" 00:00:00", simpleDateFormat.format(date)+" 23:59:59");
 			tableView.setItems(data);
